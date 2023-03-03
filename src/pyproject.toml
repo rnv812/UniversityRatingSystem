@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "universityratingsystem"
+version = "0.1.0"
+description = ""
+authors = ["Nikita Reznikov <nikita.reznikov.live@mail.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.1.7"
+
+
+[tool.poetry.group.dev.dependencies]
+pycodestyle = "^2.10.0"
+python-dotenv = "^1.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
