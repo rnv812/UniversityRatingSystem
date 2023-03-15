@@ -1,9 +1,11 @@
 [tool.poetry]
-name = "universityratingsystem"
+name = "university-rating-system"
 version = "0.1.0"
-description = ""
+description = "Rating system for university"
 authors = ["Nikita Reznikov <nikita.reznikov.live@mail.ru>"]
-readme = "README.md"
+license = "MIT"
+repository = "https://github.com/rnv812/UniversityRatingSystem"
+packages = [{include = "university_rating_system"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -12,7 +14,6 @@ django = "^4.1.7"
 
 [tool.poetry.group.dev.dependencies]
 pycodestyle = "^2.10.0"
-python-dotenv = "^1.0.0"
 
 [build-system]
 requires = ["poetry-core"]
