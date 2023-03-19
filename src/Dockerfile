@@ -1,33 +1,40 @@
-FROM python:3.10-alpine as base
+FROM python:3.11-alpine as base
 
-ARG DEPLOY_MODE
+ARG DEPLOY_ENV \
+    APP_USER_UID
 
-ENV DEPLOY_MODE ${DEPLOY_MODE} \
-    PYTHONUNBUFFERED 1 \
+ENV PYTHONUNBUFFERED=1 \
     PYTHONFAULTHANDLER=1 \
-    PYTHONHASHSEED=random
+    PYTHONHASHSEED=random \
+    PIP_NO_CACHE_DIR=off \
+    PIP_DEFAULT_TIMEOUT=100 \
+    PIP_DISABLE_PIP_VERSION_CHECK=on \
+    POETRY_VERSION=1.4.0
 
 
 FROM base as builder
 
-ENV PIP_NO_CACHE_DIR=off \
-    PIP_DISABLE_PIP_VERSION_CHECK=on \
-    PIP_DEFAULT_TIMEOUT=100 \
-    POETRY_VERSION=1.4.0
+WORKDIR /app/
 
-RUN pip install "poetry==$POETRY_VERSION"
+COPY pyproject.toml poetry.lock ./
 
-WORKDIR /app
-COPY . /app
-
-RUN poetry config virtualenvs.in-project true && \
-    poetry install $(test "$DEPLOY_MODE" == production && echo "--without dev") --no-root --no-interaction --no-ansi && \
-    poetry build
+RUN pip install poetry==$POETRY_VERSION && \
+    poetry config virtualenvs.in-project true && \
+    poetry install $(test $DEPLOY_ENV = prod && echo "--without dev") --no-root --no-interaction --no-ansi
 
 
 FROM base as final
 
-COPY --from=builder /app/.venv ./.venv
-COPY --from=builder /app/dist .
+COPY . /app/src/
+COPY --from=builder /app/.venv/ /app/.venv/
 
-RUN ./.venv/bin/pip install *.whl
+WORKDIR /app/src/
+
+RUN addgroup -S app && \
+    adduser -S app -G app -h /app -u $APP_USER_UID -DH
+
+RUN chmod 775 ./entrypoint.sh
+
+USER app
+
+ENTRYPOINT [ "./entrypoint.sh" ]
