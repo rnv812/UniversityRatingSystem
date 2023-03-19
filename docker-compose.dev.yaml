@@ -1,0 +1,27 @@
+services:
+  web:
+    image: web-dev-i
+    container_name: web-dev-c
+    build:
+      context: ./src/
+      args:
+        - DEPLOY_ENV=dev
+        - APP_USER_UID=1000
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src/:/app/src/
+    env_file:
+      - ./env/dev/web.dev.env
+    depends_on:
+      - db
+  db:
+    image: postgres:15.2-alpine
+    container_name: postgres-dev-c
+    volumes:
+      - pg_data:/var/lib/postgres/data/
+    env_file:
+      - ./env/dev/postgres.dev.env
+
+volumes:
+  pg_data:
