@@ -1,7 +1,9 @@
 FROM python:3.11-alpine as builder
 
+ARG DEPLOY_ENV dev
 
-ENV PYTHONUNBUFFERED 1 \
+ENV DEPLOY_ENV ${DEPLOY_ENV} \
+    PYTHONUNBUFFERED 1 \
     PYTHONFAULTHANDLER=1 \
     PYTHONHASHSEED=random \
     PIP_NO_CACHE_DIR=off \
@@ -15,7 +17,7 @@ COPY pyproject.toml poetry.lock /app/
 
 RUN pip install "poetry==$POETRY_VERSION" && \
     poetry config virtualenvs.in-project true && \
-    poetry install --without dev --no-root --no-interaction --no-ansi
+    poetry install $(test "$DEPLOY_ENV" == prod && echo "--without dev") --no-root --no-interaction --no-ansi
 
 
 FROM base as final
@@ -30,4 +32,4 @@ RUN addgroup -g 1000 app && \
 
 USER app
 
-ENTRYPOINT ["./entrypoint.prod.sh"]
+ENTRYPOINT ["./entrypoint.sh"]

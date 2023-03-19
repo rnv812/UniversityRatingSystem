@@ -7,9 +7,4 @@ while ! nc -z $DB_HOST $DB_PORT; do
 done
 
 echo "Database started"
-
-# python ../manage.py migrate
-# python ../manage.py collectstatic
-
 exec "$@"
-
