@@ -1,9 +1,9 @@
-FROM python:3.11-alpine as builder
+FROM python:3.11-alpine as base
 
-ARG DEPLOY_ENV=dev
+ARG DEPLOY_ENV \
+    APP_USER_UID
 
-ENV DEPLOY_ENV=${DEPLOY_ENV} \
-    PYTHONUNBUFFERED=1 \
+ENV PYTHONUNBUFFERED=1 \
     PYTHONFAULTHANDLER=1 \
     PYTHONHASHSEED=random \
     PIP_NO_CACHE_DIR=off \
@@ -11,25 +11,30 @@ ENV DEPLOY_ENV=${DEPLOY_ENV} \
     PIP_DISABLE_PIP_VERSION_CHECK=on \
     POETRY_VERSION=1.4.0
 
-WORKDIR /app
 
-COPY pyproject.toml poetry.lock /app/
+FROM base as builder
 
-RUN pip install "poetry==$POETRY_VERSION" && \
+WORKDIR /app/
+
+COPY pyproject.toml poetry.lock ./
+
+RUN pip install poetry==$POETRY_VERSION && \
     poetry config virtualenvs.in-project true && \
     poetry install $(test $DEPLOY_ENV = prod && echo "--without dev") --no-root --no-interaction --no-ansi
 
 
 FROM base as final
 
-WORKDIR /app
+COPY . /app/src/
+COPY --from=builder /app/.venv/ /app/.venv/
 
-COPY . /app
-COPY --from=builder /app/.venv ./.venv
+WORKDIR /app/src/
 
-RUN addgroup -g 1000 app && \
-    adduser app -h /app -u 1000 -G 1000 -DH
+RUN addgroup -S app && \
+    adduser -S app -G app -h /app -u $APP_USER_UID -DH
+
+RUN chmod 775 ./entrypoint.sh
 
 USER app
 
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT [ "./entrypoint.sh" ]

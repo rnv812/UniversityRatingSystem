@@ -1,4 +1,5 @@
 #!/bin/bash
+
 if [[ $1 = "prod" || $1 = "dev" ]]; then
     fileEnv="docker-compose.${1}.yaml"
     flags=${@:2}
