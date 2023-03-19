@@ -1,11 +1,12 @@
 #!/bin/bash
-if [[ $1 = "prod" || $1 = "dev"] && [$2 = "down" || $2 = "up" ]]; then
+if [[ $1 = "prod" || $1 = "dev" ]]; then
     cd ..
     fileEnv="docker-compose.${1}.yaml"
-    action=$2
     flags=${@:2}
-    echo "Running docker compose -f $fileEnv $action $flags"
-    docker compose -f $fileEnv $action $flags
+    echo "Running docker compose -f $fileEnv up $flags"
+    #docker compose -f $fileEnv $flags
 else
-    echo "Use following format ./deploy.sh prod|dev down|up [compose opts]"
+    echo "Use following format ./deploy.sh prod|dev [options]"
+    echo
+    echo "Possible options at https://docs.docker.com/engine/reference/commandline/compose_up/#options"
 fi
