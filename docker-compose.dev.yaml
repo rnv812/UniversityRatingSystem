@@ -1,7 +1,7 @@
 services:
   web:
-    image: web-dev-i
-    container_name: web-dev-c
+    image: web:latest
+    container_name: web-dev
     build:
       context: ./src/
       args:
@@ -17,7 +17,7 @@ services:
       - db
   db:
     image: postgres:15.2-alpine
-    container_name: postgres-dev-c
+    container_name: postgres-dev
     volumes:
       - pg_data:/var/lib/postgres/data/
     env_file:

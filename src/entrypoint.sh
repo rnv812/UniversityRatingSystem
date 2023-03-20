@@ -23,7 +23,7 @@ if [ $DEBUG = 0 ]; then
   exit 0
 else
   echo "Using development mode"
-  python manage.py runserver 8000
+  python manage.py runserver 0.0.0.0:8000
 fi
 
 echo "Server has started"

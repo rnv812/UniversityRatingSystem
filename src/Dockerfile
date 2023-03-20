@@ -25,15 +25,16 @@ RUN pip install poetry==$POETRY_VERSION && \
 
 FROM base as final
 
-COPY . /app/src/
 COPY --from=builder /app/.venv/ /app/.venv/
+COPY . /app/src/
 
 WORKDIR /app/src/
 
+RUN chmod +x ./entrypoint.sh && \
+    chmod +x ./activate.sh
+
 RUN addgroup -S app && \
     adduser -S app -G app -h /app -u $APP_USER_UID -DH
-
-RUN chmod 775 ./entrypoint.sh
 
 USER app
 
