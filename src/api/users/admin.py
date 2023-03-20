@@ -10,3 +10,5 @@ class CustomUserAdmin(UserAdmin):
     add_form = forms.CustomUserCreationForm
     form = forms.CustomUserChangeForm
     model = models.CustomUser
+
+    list_display = ('username', 'last_name', 'first_name', 'patronymic', )
