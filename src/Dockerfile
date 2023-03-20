@@ -34,6 +34,7 @@ RUN addgroup -S app && \
     adduser -S app -G app -h /app -u $APP_USER_UID -DH
 
 RUN chmod 775 ./entrypoint.sh
+RUN chmod 775 ./activate.sh
 
 USER app
 
