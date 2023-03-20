@@ -1,6 +1,6 @@
-# LOCALIZATION FOR UNIVERSIY RATING SYSTEM.
+# LOCALIZATION FOR UNIVERSITY RATING SYSTEM.
 # Copyright (C) 2023 Nikita Reznikov
-# This file is distributed under the same license as the UNIVERSIY RATING SYSTEM package.
+# This file is distributed under the same license as the UNIVERSITY RATING SYSTEM package.
 # Nikita Reznikov <nikita.reznikov.public@mail.ru>, 2023.
 #
 #, fuzzy
