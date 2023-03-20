@@ -1,7 +1,7 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# LOCALIZATION FOR UNIVERSIY RATING SYSTEM.
+# Copyright (C) 2023 Nikita Reznikov
+# This file is distributed under the same license as the UNIVERSIY RATING SYSTEM package.
+# Nikita Reznikov <nikita.reznikov.public@mail.ru>, 2023.
 #
 #, fuzzy
 msgid ""
@@ -19,6 +19,8 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+# Empty msgstr consider using django default localizations
 
 #: api/users/admin.py:20
 msgid "Personal info"
