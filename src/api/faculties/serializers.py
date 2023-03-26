@@ -1,11 +1,9 @@
-from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer
 
-from . import models
+from .models import Faculty
 
 
-class FacultySerializer(serializers.ModelSerializer):
-    """Serializer for Faculty model."""
-
+class FacultySerializer(ModelSerializer):
     class Meta:
-        model = models.Faculty
+        model = Faculty
         fields = ('name', 'head')
