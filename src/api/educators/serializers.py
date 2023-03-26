@@ -6,4 +6,4 @@ from .models import Educator
 class EducatorSerializer(ModelSerializer):
     class Meta:
         model = Educator
-        fields = '__all__'
+        fields = ('id', 'user_id', 'qualification_id', 'department_id', )

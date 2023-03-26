@@ -6,4 +6,4 @@ from .models import Faculty
 class FacultySerializer(ModelSerializer):
     class Meta:
         model = Faculty
-        fields = '__all__'
+        fields = ('id', 'name', 'head_id', )
