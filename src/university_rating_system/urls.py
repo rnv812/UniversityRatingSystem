@@ -21,15 +21,17 @@ from rest_framework import routers
 from api.users.views import UserViewSet
 from api.faculties.views import FacultyViewSet
 from api.departments.views import DepartmentViewSet
+from api.educators.views import EducatorViewSet
 
 
 api_router = routers.DefaultRouter()
 api_router.register(prefix='users', viewset=UserViewSet, basename='user')
 api_router.register(prefix='faculties', viewset=FacultyViewSet, basename='faculty')
 api_router.register(prefix='departments', viewset=DepartmentViewSet, basename='department')
+api_router.register(prefix='educators', viewset=EducatorViewSet, basename='educator')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/auth/', include('rest_framework.urls')),
-    path('api/v1/', include(api_router.urls))
+    path('api/v1/', include(api_router.urls)),
 ]
