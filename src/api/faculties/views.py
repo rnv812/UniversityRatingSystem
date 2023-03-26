@@ -10,6 +10,6 @@ class FacultyViewSet(ReadOnlyModelViewSet):
     for all users (including unauthorized).
     """
 
-    queryset = Faculty.objects.all()
+    queryset = Faculty.objects.all().order_by('pk')
     serializer_class = FacultySerializer
     permission_classes = (AllowAny, )

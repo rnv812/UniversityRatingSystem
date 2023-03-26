@@ -10,6 +10,6 @@ class DepartmentViewSet(ReadOnlyModelViewSet):
     for all users (including unauthorized).
     """
 
-    queryset = Department.objects.all()
+    queryset = Department.objects.all().order_by('pk')
     serializer_class = DepartmentSerializer
     permission_classes = (AllowAny, )

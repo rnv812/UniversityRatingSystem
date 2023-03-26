@@ -12,7 +12,7 @@ class UserViewSet(ReadOnlyModelViewSet):
     Non admin users can only get their own instance.
     """
 
-    queryset = CustomUser.objects.all()
+    queryset = CustomUser.objects.all().order_by('pk')
     serializer_class = UserSerializer
     permission_classes = (IsAdminUser, )
 
