@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-20 21:50+0300\n"
+"POT-Creation-Date: 2023-03-26 18:02+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,24 +20,80 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-# Empty msgstr consider using django default localizations
+#: api/departments/apps.py:8 api/departments/models.py:28
+msgid "departments"
+msgstr "кафедры"
 
+#: api/departments/models.py:11 api/departments/models.py:21
+#: api/educators/models.py:11 api/faculties/models.py:9
+msgid "name"
+msgstr "название"
+
+#: api/departments/models.py:14 api/departments/models.py:22
+msgid "department type"
+msgstr "тип кафедры"
+
+#: api/departments/models.py:15
+msgid "department types"
+msgstr "типы кафедр"
+
+#: api/departments/models.py:23 api/faculties/models.py:10
+msgid "head"
+msgstr "руководитель"
+
+#: api/departments/models.py:24 api/faculties/models.py:13
+msgid "faculty"
+msgstr "факультет"
+
+#: api/departments/models.py:27 api/educators/models.py:26
+msgid "department"
+msgstr "кафедра"
+
+#: api/educators/apps.py:8 api/educators/models.py:30
+msgid "educators"
+msgstr "преподаватели"
+
+#: api/educators/models.py:14 api/educators/models.py:25
+msgid "qualification"
+msgstr "квалификация"
+
+#: api/educators/models.py:15
+msgid "qualifications"
+msgstr "квалификации"
+
+# handled by django
+#: api/educators/models.py:24
+msgid "user"
+msgstr ""
+
+#: api/educators/models.py:29
+msgid "educator"
+msgstr "преподаватель"
+
+#: api/faculties/apps.py:8 api/faculties/models.py:14
+msgid "faculties"
+msgstr "факультеты"
+
+# handled by django
 #: api/users/admin.py:20
 msgid "Personal info"
 msgstr ""
 
+# handled by django
 #: api/users/admin.py:22
 msgid "Permissions"
 msgstr ""
 
+# handled by django
 #: api/users/admin.py:33
 msgid "Important dates"
 msgstr ""
 
+# handled by django
 #: api/users/apps.py:8
 msgid "users"
 msgstr ""
 
-#: api/users/models.py:8
+#: api/users/models.py:9
 msgid "patronomyc"
 msgstr "отчество"
