@@ -6,7 +6,9 @@ from django.utils.translation import gettext_lazy as _
 class CustomUser(AbstractUser):
     """Custom user model with `patronomyc` field."""
 
-    patronymic = models.CharField(verbose_name=_('patronomyc'), max_length=150, blank=True)
+    first_name = models.CharField(verbose_name=_('first name'), max_length=150)
+    last_name = models.CharField(verbose_name=_('last name'), max_length=150)
+    patronymic = models.CharField(verbose_name=_('patronomyc'), max_length=150)
 
     def __str__(self) -> str:
         return self.get_full_name()
