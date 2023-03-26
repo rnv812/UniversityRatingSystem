@@ -22,15 +22,12 @@ from api.users.views import UserViewSet
 from api.faculties.views import FacultyViewSet
 
 
-users_router = routers.DefaultRouter()
-users_router.register(prefix='users', viewset=UserViewSet, basename='user')
-
-faculties_router = routers.DefaultRouter()
-faculties_router.register(prefix='faculties', viewset=FacultyViewSet, basename='faculty')
+api_router = routers.DefaultRouter()
+api_router.register(prefix='users', viewset=UserViewSet, basename='user')
+api_router.register(prefix='faculties', viewset=FacultyViewSet, basename='faculty')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/auth/', include('rest_framework.urls')),
-    path('api/v1/', include(users_router.urls)),
-    path('api/v1/', include(faculties_router.urls))
+    path('api/v1/', include(api_router.urls)),
 ]
