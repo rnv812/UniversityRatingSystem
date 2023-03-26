@@ -8,7 +8,7 @@ from api.departments.models import Department
 class Qualification(models.Model):
     """Model that represents educator qualification."""
 
-    name = models.CharField(verbose_name=_('name'), max_length=100)
+    name = models.CharField(verbose_name=_('qualification name'), max_length=100)
 
     class Meta:
         verbose_name = _('qualification')
@@ -21,9 +21,9 @@ class Qualification(models.Model):
 class Educator(models.Model):
     """Model that represents university educator."""
 
-    user = models.OneToOneField(verbose_name=_('user'), to=CustomUser, on_delete=models.PROTECT)
-    qualification = models.ForeignKey(verbose_name=_('qualification'), to=Qualification, on_delete=models.PROTECT)
-    department = models.ForeignKey(verbose_name=_('department'), to=Department, on_delete=models.PROTECT)
+    user = models.OneToOneField(verbose_name=_('educator profile'), to=CustomUser, on_delete=models.PROTECT)
+    qualification = models.ForeignKey(verbose_name=_('educator qualification'), to=Qualification, on_delete=models.PROTECT)
+    department = models.ForeignKey(verbose_name=_('educator department'), to=Department, on_delete=models.PROTECT)
 
     class Meta:
         verbose_name = _('educator')
