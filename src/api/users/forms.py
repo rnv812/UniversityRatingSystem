@@ -4,7 +4,7 @@ from . import models
 
 
 class CustomUserCreationForm(UserCreationForm):
-    """Base UserCreateForm with patronymic field."""
+    """Form for creation CustomUser model instance."""
 
     class Meta:
         model = models.CustomUser
@@ -12,7 +12,7 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 class CustomUserChangeForm(UserChangeForm):
-    """Base UserChangeForm with patronymic field."""
+    """Form for changing CustomUser model instance."""
 
     class Meta:
         models = models.CustomUser

@@ -1,11 +1,9 @@
-from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer
 
-from . import models
+from .models import Educator
 
 
-class EducatorSerializer(serializers.ModelSerializer):
-    """Serializer for Educator model."""
-
+class EducatorSerializer(ModelSerializer):
     class Meta:
-        model = models.Educator
+        model = Educator
         fields = '__all__'

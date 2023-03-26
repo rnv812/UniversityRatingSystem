@@ -1,15 +1,15 @@
-from rest_framework import viewsets
-from rest_framework import permissions
+from rest_framework.viewsets import ReadOnlyModelViewSet
+from rest_framework.permissions import AllowAny
 
-from . import models
-from . import serializers
+from .models import Educator
+from .serializers import EducatorSerializer
 
 
-class EducatorViewSet(viewsets.ReadOnlyModelViewSet):
+class EducatorViewSet(ReadOnlyModelViewSet):
     """Educator view set that only allows to read all educator instances
     for all users (including unauthorized).
     """
 
-    queryset = models.Educator.objects.all()
-    serializer_class = serializers.EducatorSerializer
-    permission_classes = (permissions.AllowAny, )
+    queryset = Educator.objects.all()
+    serializer_class = EducatorSerializer
+    permission_classes = (AllowAny, )
