@@ -2,6 +2,7 @@ from rest_framework.viewsets import ReadOnlyModelViewSet
 from rest_framework.permissions import SAFE_METHODS, IsAdminUser, IsAuthenticated
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.request import Request
 
 from .models import CustomUser
 from .serializers import UserSerializer
@@ -17,6 +18,6 @@ class UserViewSet(ReadOnlyModelViewSet):
     permission_classes = (IsAdminUser, )
 
     @action(detail=False, methods=SAFE_METHODS, permission_classes=(IsAuthenticated, ))
-    def me(self, request):
+    def me(self, request: Request) -> Response:
         """Respond user with his own instance."""
         return Response(UserSerializer(instance=request.user).data)
