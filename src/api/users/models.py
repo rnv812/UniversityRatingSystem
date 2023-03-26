@@ -4,8 +4,9 @@ from django.utils.translation import gettext_lazy as _
 
 
 class CustomUser(AbstractUser):
-    """Base User model with patronomyc field."""
-    patronymic = models.CharField(_('patronomyc'), max_length=150, blank=True)
+    """Custom user model with `patronomyc` field."""
+
+    patronymic = models.CharField(verbose_name=_('patronomyc'), max_length=150, blank=True)
 
     def get_full_name(self) -> str:
         """Return the last_name plus the first_name plus the patronymic, with a space in between."""

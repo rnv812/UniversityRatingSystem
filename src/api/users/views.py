@@ -1,21 +1,22 @@
-from rest_framework import viewsets
-from rest_framework import permissions
+from rest_framework.viewsets import ReadOnlyModelViewSet
+from rest_framework.permissions import SAFE_METHODS, IsAdminUser, IsAuthenticated
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from . import models
-from . import serializers as custom_serializers
+from .models import CustomUser
+from .serializers import UserSerializer
 
 
-class UserViewSet(viewsets.ReadOnlyModelViewSet):
-    """User view set that only allows to read all user instances for admins
-    and get own instance for non admins (authorized users).
+class UserViewSet(ReadOnlyModelViewSet):
+    """User view set that only allows to read all user instances for admins.
+    Non admin users can only get their own instance.
     """
 
-    queryset = models.CustomUser.objects.all()
-    serializer_class = custom_serializers.UserSerializer
-    permission_classes = (permissions.IsAdminUser, )
+    queryset = CustomUser.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = (IsAdminUser, )
 
-    @action(detail=False, methods=permissions.SAFE_METHODS, permission_classes=(permissions.IsAuthenticated, ))
+    @action(detail=False, methods=SAFE_METHODS, permission_classes=(IsAuthenticated, ))
     def me(self, request):
-        return Response(custom_serializers.UserSerializer(instance=request.user).data)
+        """Respond user with his own instance."""
+        return Response(UserSerializer(instance=request.user).data)
