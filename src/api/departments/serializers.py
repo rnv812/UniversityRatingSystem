@@ -1,11 +1,9 @@
-from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer
 
-from . import models
+from .models import Department
 
 
-class DepartmentSerializer(serializers.ModelSerializer):
-    """Serializer for Department model."""
-
+class DepartmentSerializer(ModelSerializer):
     class Meta:
-        model = models.Department
+        model = Department
         fields = '__all__'
