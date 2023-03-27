@@ -102,3 +102,5 @@ class Criterion(models.Model):
         else:
             return (f'{self.partitions.abbreviation}.{self.number}'
                     f' {self.indicator}')
+
+
