@@ -78,7 +78,7 @@ class Criterion(models.Model):
         to=Indicator,
         on_delete=models.CASCADE
     )
-    partitions = models.ForeignKey(
+    partition = models.ForeignKey(
         verbose_name=_('criterion partition'),
         to=RatingPartition,
         on_delete=models.CASCADE
@@ -97,10 +97,8 @@ class Criterion(models.Model):
 
     def __str__(self) -> str:
         if self.subnumber:
-            return (f'{self.partitions.abbreviation}.{self.number}'
+            return (f'{self.partition.abbreviation}.{self.number}'
                     f'.{self.subnumber} {self.indicator}')
         else:
-            return (f'{self.partitions.abbreviation}.{self.number}'
+            return (f'{self.partition.abbreviation}.{self.number}'
                     f' {self.indicator}')
-
-
