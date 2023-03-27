@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-26 22:31+0300\n"
+"POT-Creation-Date: 2023-03-27 20:33+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,11 +21,11 @@ msgstr ""
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 #: api/departments/admin.py:11
 msgid "Department name or head first name, last name or patronymic"
-msgstr "Название кафедры или имя, фамилия или отчество преподавателя"
+msgstr "Название кафедры или имя, фамилия или отчество руководителя"
 
 #: api/departments/apps.py:8 api/departments/models.py:31
 msgid "departments"
-msgstr "кафедра"
+msgstr "кафедры"
 
 #: api/departments/models.py:11
 msgid "department type name"
@@ -57,7 +57,7 @@ msgstr "кафедра"
 
 #: api/educators/apps.py:8 api/educators/models.py:30
 msgid "educators"
-msgstr "преподаватели"
+msgstr "преподаватель"
 
 #: api/educators/models.py:11
 msgid "qualification name"
@@ -87,6 +87,10 @@ msgstr "кафедра преподавателя"
 msgid "educator"
 msgstr "преподаватель"
 
+#: api/educators_rating/apps.py:8
+msgid "educators rating"
+msgstr "рейтинг преподавателей"
+
 #: api/faculties/admin.py:11
 msgid "Faculty name or head first name, last name or patronymic"
 msgstr "Название факультета или имя, фамилия или отчество руководителя"
@@ -101,11 +105,95 @@ msgstr "название факультета"
 
 #: api/faculties/models.py:10
 msgid "faculty head profile"
-msgstr "профиль руководителя факультета"
+msgstr "профиль руководитля факультета"
 
 #: api/faculties/models.py:13
 msgid "faculty"
 msgstr "факультет"
+
+#: api/rating/admin.py:21 api/rating/admin.py:29
+msgid "Indicator name"
+msgstr "Название показателя"
+
+#: api/rating/apps.py:8
+msgid "rating"
+msgstr "рейтинг"
+
+#: api/rating/models.py:7
+msgid "value type name"
+msgstr "название типа значения"
+
+#: api/rating/models.py:13 api/rating/models.py:32
+msgid "value type"
+msgstr "тип значения"
+
+#: api/rating/models.py:14
+msgid "value types"
+msgstr "типы значений"
+
+#: api/rating/models.py:22
+msgid "indicator name"
+msgstr "название показателя"
+
+#: api/rating/models.py:27
+msgid "annotation"
+msgstr "аннотация"
+
+#: api/rating/models.py:37
+msgid "staff only editable"
+msgstr "редактируется только персоналом"
+
+#: api/rating/models.py:42
+msgid "indicator"
+msgstr "показатель"
+
+#: api/rating/models.py:43
+msgid "indicators"
+msgstr "показатели"
+
+#: api/rating/models.py:51
+msgid "rating partition name"
+msgstr "название раздела рейтинга"
+
+#: api/rating/models.py:56
+msgid "rating partition abbreviation"
+msgstr "шифр раздела рейтинга"
+
+#: api/rating/models.py:68
+msgid "rating partition"
+msgstr "раздел рейтинга"
+
+#: api/rating/models.py:69
+msgid "rating partitions"
+msgstr "разделы рейтинга"
+
+#: api/rating/models.py:77
+msgid "criterion indicator"
+msgstr "показатель критерия"
+
+#: api/rating/models.py:82
+msgid "criterion partition"
+msgstr "раздел критерия"
+
+#: api/rating/models.py:86
+msgid "criterion number"
+msgstr "пункт критерия"
+
+#: api/rating/models.py:88
+msgid "criterion subnumber"
+msgstr "подпункт критерия"
+
+#: api/rating/models.py:92
+msgid "criterion weight"
+msgstr "вес критерия"
+
+#: api/rating/models.py:95
+msgid "criterion"
+msgstr "критерий"
+
+#: api/rating/models.py:96
+msgid "criterions"
+msgstr "критерии"
 
 #: api/users/admin.py:20
 msgid "Personal info"
