@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'api.departments.apps.DepartmentsConfig',
     'api.educators.apps.EducatorsConfig',
     'api.educators_rating.apps.EducatorsRatingConfig',
+    'api.indicators.apps.IndicatorsConfig',
 ]
 
 MIDDLEWARE = [
