@@ -3,6 +3,8 @@ from django.utils.translation import gettext_lazy as _
 
 
 class ValueType(models.Model):
+    """Model that represents type of indicator value."""
+
     name = models.CharField(
         verbose_name=_('value type name'),
         max_length=100,
@@ -18,6 +20,8 @@ class ValueType(models.Model):
 
 
 class Indicator(models.Model):
+    """Model that represents key performance indicator of entity."""
+
     name = models.CharField(
         verbose_name=_('indicator name'),
         max_length=500,
@@ -47,6 +51,8 @@ class Indicator(models.Model):
 
 
 class RatingPartition(models.Model):
+    """Model that represents group of criterions of similar indicators."""
+
     name = models.CharField(
         verbose_name=_('rating partition name'),
         max_length=100,
@@ -73,6 +79,8 @@ class RatingPartition(models.Model):
 
 
 class Criterion(models.Model):
+    """Model that represents indicator in a specific rating partition."""
+
     indicator = models.ForeignKey(
         verbose_name=_('criterion indicator'),
         to=Indicator,
