@@ -9,19 +9,12 @@ from .serializers import EducatorSerializer, QualificationSerializer
 
 
 class EducatorViewSet(ReadOnlyModelViewSet):
-    """Educator view set that only allows to read all educator instances
-    for all users (including unauthorized).
-    """
-
     queryset = Educator.objects.all().order_by('pk')
     serializer_class = EducatorSerializer
     permission_classes = (AllowAny, )
 
-    @action(detail=False, methods=SAFE_METHODS, permission_classes=(AllowAny, ))
-    def qualifications(self, request: Request) -> Response:
-        return Response(
-            QualificationSerializer(
-                instance=Qualification.objects.all().order_by('pk'),
-                many=True
-            ).data
-        )
+
+class QualificationViewSet(ReadOnlyModelViewSet):
+    queryset = Qualification.objects.all().order_by('pk')
+    serializer_class = QualificationSerializer
+    permission_classes = (AllowAny, )
