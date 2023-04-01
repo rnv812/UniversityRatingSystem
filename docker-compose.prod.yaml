@@ -1,7 +1,7 @@
 services:
   web:
-    image: web:latest
-    container_name: web-prod
+    image: university-rating-system-web:latest
+    container_name: urs-web-prod
     build:
       context: ./src/
       args:
