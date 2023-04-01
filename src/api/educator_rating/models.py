@@ -49,7 +49,7 @@ class EducatorReport(models.Model):
     )
     year = ValidRatingYearField(verbose_name=_('report year'))
     approved = models.BooleanField(
-        verbose_name=_('report approval'),
+        verbose_name=_('report approved status'),
         default=False
     )
 
