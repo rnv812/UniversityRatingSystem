@@ -18,10 +18,16 @@ class RatingPartitionSerializer(ModelSerializer):
 class IndicatorSerializer(ModelSerializer):
     class Meta:
         model = Indicator
-        fields = ('id', 'name', 'annotation', 'value_type_id', 'staff_only_editable', )
+        fields = (
+            'id', 'name', 'annotation',
+            'value_type_id', 'staff_only_editable',
+        )
 
 
 class CriterionSerializer(ModelSerializer):
     class Meta:
         model = Criterion
-        fields = ('id', 'partition_id', 'number', 'subnumber', 'indicator_id', 'weight', )
+        fields = (
+            'id', 'partition_id', 'number', 'subnumber',
+            'indicator_id', 'weight',
+        )
