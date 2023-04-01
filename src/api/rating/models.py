@@ -39,8 +39,8 @@ class Indicator(models.Model):
         to=ValueType,
         on_delete=models.RESTRICT
     )
-    unprivileged_editability = models.BooleanField(
-        verbose_name=_('indicator unprivileged user editability'),
+    privileged = models.BooleanField(
+        verbose_name=_('indicator privileged status'),
         default=False
     )
 
