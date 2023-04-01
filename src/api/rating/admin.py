@@ -18,11 +18,11 @@ class RatingPartitionAdmin(admin.ModelAdmin):
 class IndicatorAdmin(admin.ModelAdmin):
     list_display = (
         'name', 'annotation',
-        'value_type', 'staff_only_editable',
+        'value_type', 'unprivileged_editability',
     )
     search_fields = ('name', )
     search_help_text = _('Indicator name')
-    list_filter = ('value_type__name', 'staff_only_editable')
+    list_filter = ('value_type__name', 'unprivileged_editability')
 
 
 @admin.register(Criterion)

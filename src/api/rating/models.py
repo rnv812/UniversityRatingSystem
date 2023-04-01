@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class ValueType(models.Model):
-    """Model that represents type of indicator value."""
+    """Model represents type of indicator value."""
 
     name = models.CharField(
         verbose_name=_('value type name'),
@@ -20,7 +20,9 @@ class ValueType(models.Model):
 
 
 class Indicator(models.Model):
-    """Model that represents key performance indicator of entity."""
+    """Model represents key performance indicator of educator,
+    department or faculty.
+    """
 
     name = models.CharField(
         verbose_name=_('indicator name'),
@@ -28,17 +30,17 @@ class Indicator(models.Model):
         unique=True
     )
     annotation = models.CharField(
-        verbose_name=_('annotation'),
+        verbose_name=_('indicator annotation'),
         max_length=500,
         blank=True
     )
     value_type = models.ForeignKey(
-        verbose_name=_('value type'),
+        verbose_name=_('indicator value type'),
         to=ValueType,
         on_delete=models.RESTRICT
     )
-    staff_only_editable = models.BooleanField(
-        verbose_name=_('staff only editable'),
+    unprivileged_editability = models.BooleanField(
+        verbose_name=_('indicator unprivileged user editability'),
         default=False
     )
 
@@ -51,7 +53,7 @@ class Indicator(models.Model):
 
 
 class RatingPartition(models.Model):
-    """Model that represents group of criterions of similar indicators."""
+    """Model represents group of criterions of similar indicators."""
 
     name = models.CharField(
         verbose_name=_('rating partition name'),
@@ -79,7 +81,10 @@ class RatingPartition(models.Model):
 
 
 class Criterion(models.Model):
-    """Model that represents indicator in a specific rating partition."""
+    """Model represents indicator in a specific rating partition. Criterion
+    in addition to Inicator has weight of the influency for the speficified
+    partition and its own number and subnumber inside partition.
+    """
 
     indicator = models.ForeignKey(
         verbose_name=_('criterion indicator'),
