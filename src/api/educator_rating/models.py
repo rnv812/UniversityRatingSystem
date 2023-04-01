@@ -59,7 +59,7 @@ class EducatorReport(models.Model):
         unique_together = ('educator', 'year', )
 
     def __str__(self) -> str:
-        return ''
+        return f'{self.educator} {self.year}'
 
 
 class EducatorIndicatorValue(models.Model):
