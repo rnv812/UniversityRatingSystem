@@ -23,11 +23,13 @@ The rating of **educators** consists of six **partitions**:
 ## Terms
 **Form** (ru. Бланк) - web form that the educator fills up on the site at the end of each year. He enters his **indicators values** for the current year.
 
-**Indicator value** (ru. Значение показателя) - specific value achieved by the educator for a specific **indicator**.
+**Indicator** (ru. Показатель) - parameter representing the effectiveness of the educator in a particular task.
 
-**Indicator** (ru. Показатель) - variable  representing the effectiveness of the educator in a particular task. Each indicator has one or more **partitions** to which it belongs.
+**Criterion** (ru. Критерий) - indicator that belongs to specific **partition** and has some weight of rating impact.
 
-**Partition** (ru. Раздел) - named group of indicators related to a similar thematics.
+**Criterion value** (ru. Значение критерия) - value achieved by the educator for a specific **сriterion**.
+
+**Partition** (ru. Раздел) - named group of criterions related to a similar thematics.
 
 ## Roles and permissions
 
