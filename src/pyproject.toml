@@ -15,7 +15,7 @@ djangorestframework = "^3.14.0"
 
 
 [tool.poetry.group.dev.dependencies]
-pycodestyle = "^2.10.0"
+flake8 = "^6.0.0"
 
 [build-system]
 requires = ["poetry-core"]
