@@ -27,7 +27,7 @@ class EducatorRatingPartition(models.Model):
         verbose_name_plural = _("educator rating partitions")
 
     def __str__(self) -> str:
-        return self.partition
+        return f'{self.partition}'
 
 
 class EducatorReport(models.Model):
