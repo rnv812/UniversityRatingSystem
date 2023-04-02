@@ -14,7 +14,7 @@ class ValueType(models.Model):
         STR = 'str', _('text')
 
     name = models.CharField(
-        verbose_name=_('value type name'),
+        verbose_name=_('type name'),
         max_length=100,
         unique=True
     )
