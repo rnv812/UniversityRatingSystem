@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from typing import Callable
+
 
 class ValueType(models.Model):
     """Model represents type of indicator value."""
@@ -29,6 +31,15 @@ class ValueType(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+    @property
+    def parse_function(self) -> Callable:
+        return {
+            self.DataTypes.BOOL.value: bool,
+            self.DataTypes.INT.value: int,
+            self.DataTypes.FLOAT.value: float,
+            self.DataTypes.STR.value: str,
+        }[self.datatype]
 
 
 class Indicator(models.Model):
