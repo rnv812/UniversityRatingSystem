@@ -6,7 +6,7 @@ from api.departments.models import Department
 
 
 class Qualification(models.Model):
-    """Model that represents educator qualification."""
+    """Model represents educator qualification."""
 
     name = models.CharField(
         verbose_name=_('qualification name'),
@@ -22,7 +22,7 @@ class Qualification(models.Model):
 
 
 class Educator(models.Model):
-    """Model that represents university educator."""
+    """Model represents university educator."""
 
     user = models.OneToOneField(
         verbose_name=_('educator profile'),

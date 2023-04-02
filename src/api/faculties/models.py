@@ -4,7 +4,7 @@ from api.users.models import CustomUser
 
 
 class Faculty(models.Model):
-    """Model that represents university faculty."""
+    """Model represents university faculty."""
 
     name = models.CharField(
         verbose_name=_('faculty name'),
