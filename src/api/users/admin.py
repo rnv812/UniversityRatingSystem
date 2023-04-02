@@ -13,11 +13,21 @@ class CustomUserAdmin(UserAdmin):
     model = models.CustomUser
 
     list_display = ('username', 'last_name', 'first_name', 'patronymic', )
-    search_fields = ('username', 'last_name', 'first_name', 'patronymic', 'email')
+    search_fields = (
+        'username', 'last_name', 'first_name',
+        'patronymic', 'email',
+    )
 
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
-        (_('Personal info'), {'fields': ('last_name', 'first_name', 'patronymic', 'email')}),
+        (
+            _('Personal info'),
+            {
+                'fields': (
+                    'last_name', 'first_name', 'patronymic', 'email',
+                )
+            }
+        ),
         (
             _('Permissions'),
             {
@@ -38,7 +48,10 @@ class CustomUserAdmin(UserAdmin):
             None,
             {
                 'classes': ('wide',),
-                'fields': ('username', 'last_name', 'first_name', 'patronymic', 'password1', 'password2'),
+                'fields': (
+                    'username', 'last_name', 'first_name', 'patronymic',
+                    'password1', 'password2',
+                ),
             },
         ),
     )

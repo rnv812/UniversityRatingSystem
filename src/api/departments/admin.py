@@ -7,9 +7,13 @@ from .models import Department, DepartmentType
 @admin.register(Department)
 class DepartmentAdmin(admin.ModelAdmin):
     list_display = ('name', 'head', 'department_type', 'faculty', )
-    search_fields = ('name', 'head__first_name', 'head__last_name', 'head__patronymic', )
-    search_help_text = _('Department name or head first name, last name or patronymic', )
-    list_filter = ('department_type__name', 'faculty__name')
+    search_fields = (
+        'name', 'head__first_name', 'head__last_name', 'head__patronymic',
+    )
+    search_help_text = _(
+        'Department name or head first name, last name or patronymic'
+    )
+    list_filter = ('department_type__name', 'faculty__name', )
 
 
 @admin.register(DepartmentType)

@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'api.users.apps.UsersConfig',
     'api.faculties.apps.FacultiesConfig',
     'api.departments.apps.DepartmentsConfig',
-    'api.educators.apps.EducatorsConfig'
+    'api.educators.apps.EducatorsConfig',
+    'api.rating.apps.RatingConfig',
+    'api.educator_rating.apps.EducatorRatingConfig',
 ]
 
 MIDDLEWARE = [
@@ -97,16 +99,20 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': ('django.contrib.auth.password_validation'
+                 '.UserAttributeSimilarityValidator'),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': ('django.contrib.auth.password_validation'
+                 '.MinimumLengthValidator'),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': ('django.contrib.auth.password_validation'
+                 '.CommonPasswordValidator'),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': ('django.contrib.auth.password_validation'
+                 '.NumericPasswordValidator'),
     },
 ]
 

@@ -6,8 +6,16 @@ from api.users.models import CustomUser
 class Faculty(models.Model):
     """Model that represents university faculty."""
 
-    name = models.CharField(verbose_name=_('faculty name'), max_length=255, unique=True)
-    head = models.OneToOneField(verbose_name=_('faculty head profile'), to=CustomUser, on_delete=models.PROTECT)
+    name = models.CharField(
+        verbose_name=_('faculty name'),
+        max_length=255,
+        unique=True
+    )
+    head = models.OneToOneField(
+        verbose_name=_('faculty head profile'),
+        to=CustomUser,
+        on_delete=models.PROTECT
+    )
 
     class Meta:
         verbose_name = _('faculty')

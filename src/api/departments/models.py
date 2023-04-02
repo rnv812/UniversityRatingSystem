@@ -8,7 +8,11 @@ from api.users.models import CustomUser
 class DepartmentType(models.Model):
     """Model that represents type of university department."""
 
-    name = models.CharField(verbose_name=_('department type name'), max_length=100, unique=True)
+    name = models.CharField(
+        verbose_name=_('department type name'),
+        max_length=100,
+        unique=True
+    )
 
     class Meta:
         verbose_name = _('department type')
@@ -21,10 +25,26 @@ class DepartmentType(models.Model):
 class Department(models.Model):
     """Model that represents university department."""
 
-    name = models.CharField(verbose_name=_('department name'), max_length=255, unique=True)
-    department_type = models.ForeignKey(verbose_name=_('department type'), to=DepartmentType, on_delete=models.PROTECT)
-    head = models.OneToOneField(verbose_name=_('department head profile'), to=CustomUser, on_delete=models.PROTECT)
-    faculty = models.ForeignKey(verbose_name=_('department faculty'), to=Faculty, on_delete=models.PROTECT)
+    name = models.CharField(
+        verbose_name=_('department name'),
+        max_length=255,
+        unique=True
+    )
+    department_type = models.ForeignKey(
+        verbose_name=_('department type'),
+        to=DepartmentType,
+        on_delete=models.PROTECT
+    )
+    head = models.OneToOneField(
+        verbose_name=_('department head profile'),
+        to=CustomUser,
+        on_delete=models.PROTECT
+    )
+    faculty = models.ForeignKey(
+        verbose_name=_('department faculty'),
+        to=Faculty,
+        on_delete=models.PROTECT
+    )
 
     class Meta:
         verbose_name = _('department')

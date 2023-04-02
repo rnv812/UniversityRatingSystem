@@ -6,10 +6,6 @@ from .serializers import FacultySerializer
 
 
 class FacultyViewSet(ReadOnlyModelViewSet):
-    """Faculty view set that only allows to read all faculty instances
-    for all users (including unauthorized).
-    """
-
     queryset = Faculty.objects.all().order_by('pk')
     serializer_class = FacultySerializer
     permission_classes = (AllowAny, )
