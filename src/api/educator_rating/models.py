@@ -86,6 +86,9 @@ class EducatorIndicatorValue(models.Model):
         verbose_name = _('educator indicator value')
         verbose_name_plural = _('educator indicator values')
 
+    def __str__(self) -> str:
+        return f'{self.value}'
+
 
 class EducatorReportController(models.Model):
     """Model represents a user who is able to inspect and approve reports
