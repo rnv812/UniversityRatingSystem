@@ -7,6 +7,8 @@ from api.educators.models import Educator
 from uuid import uuid4
 
 from .fields import ValidRatingYearField
+from api.users.models import CustomUser
+from api.departments.models import Department
 
 
 class EducatorRatingPartition(models.Model):
@@ -83,3 +85,28 @@ class EducatorIndicatorValue(models.Model):
     class Meta:
         verbose_name = _('educator indicator value')
         verbose_name_plural = _('educator indicator values')
+
+
+class EducatorReportController(models.Model):
+    """Model represents a user who is able to inspect and approve reports
+    of educators at the department which he is assigned to."""
+
+    user = models.ForeignKey(
+        verbose_name=_('controller profile'),
+        to=CustomUser,
+        on_delete=models.CASCADE
+    )
+
+    department = models.ForeignKey(
+        verbose_name=_('responsible department'),
+        to=Department,
+        on_delete=models.CASCADE
+    )
+
+    class Meta:
+        verbose_name = _('educator report controller')
+        verbose_name_plural = _('educator report controllers')
+        unique_together = ('user', 'department', )
+
+    def __str__(self) -> str:
+        return f'{self.user}'
