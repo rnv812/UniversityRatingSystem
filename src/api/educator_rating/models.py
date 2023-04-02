@@ -100,7 +100,8 @@ class EducatorReportController(models.Model):
     department = models.ForeignKey(
         verbose_name=_('responsible department'),
         to=Department,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='educator_report_controllers'
     )
 
     class Meta:
