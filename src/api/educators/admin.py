@@ -6,10 +6,16 @@ from .models import Educator, Qualification
 
 @admin.register(Educator)
 class EducatorAdmin(admin.ModelAdmin):
-    list_display = ('user', 'qualification', 'department', )
+    list_display = ('__str__', 'user', 'qualification', 'department', )
     search_fields = (
-        'user__first_name', 'user__last_name', 'user__patronymic',
+        'department__name', 'user__first_name', 'user__last_name',
+        'user__patronymic', 'user__username',
     )
+    search_help_text = _(
+        ('Department name or educator username, '
+         'first name, last name or patronymic')
+    )
+    list_filter = ('qualification__name', )
 
 
 @admin.register(Qualification)
