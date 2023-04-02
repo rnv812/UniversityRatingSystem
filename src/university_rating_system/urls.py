@@ -26,6 +26,10 @@ from api.rating.views import (ValueTypeViewSet,
                               RatingPartitionViewSet,
                               IndicatorViewSet,
                               CriterionViewSet)
+from api.educator_rating.views import (EducatorRatingPartitionViewSet,
+                                       EducatorIndicatorValueViewSet,
+                                       EducatorReportViewSet,
+                                       EducatorReportControllerViewSet)
 
 
 api_router = routers.DefaultRouter()
@@ -78,6 +82,26 @@ api_router.register(
     prefix='criterions',
     viewset=CriterionViewSet,
     basename='criterion'
+)
+api_router.register(
+    prefix='educator-partitions',
+    viewset=EducatorRatingPartitionViewSet,
+    basename='educator-partition'
+)
+api_router.register(
+    prefix='educator-indicator-values',
+    viewset=EducatorIndicatorValueViewSet,
+    basename='educator-indicator-value'
+)
+api_router.register(
+    prefix='educator-reports',
+    viewset=EducatorReportViewSet,
+    basename='educator-report'
+)
+api_router.register(
+    prefix='educator-report-controllers',
+    viewset=EducatorReportControllerViewSet,
+    basename='educator-report-controller'
 )
 
 urlpatterns = [
