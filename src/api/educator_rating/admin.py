@@ -14,12 +14,12 @@ class EducatorRatingPartitionAdmin(admin.ModelAdmin):
 
 @admin.register(EducatorIndicatorValue)
 class EducatorIndicatorValueAdmin(admin.ModelAdmin):
-    list_display = ('report', 'indicator', 'value', )
+    list_display = ('__str__', 'report', 'indicator', )
 
 
 @admin.register(EducatorReport)
 class EducatorReportAdmin(admin.ModelAdmin):
-    list_display = ('__str__', 'approved', )
+    list_display = ('__str__', 'year', 'approved', )
     search_fields = (
         'educator__user__first_name', 'educator__user__last_name',
         'educator__user__patronymic',
@@ -33,9 +33,10 @@ class EducatorReportAdmin(admin.ModelAdmin):
 class EducatorReportControllerAdmin(admin.ModelAdmin):
     list_display = ('user', 'department', )
     search_fields = (
-        'user__username', 'user__first_name',
-        'user__last_name', 'user__patronymic',
+        'user__username', 'user__first_name', 'user__last_name',
+        'user__patronymic', 'department__name',
     )
     search_help_text = _(
-        'Controller username, first name, last name or patronymic'
+        ('Department name or controller username, '
+         'first name, last name or patronymic')
     )
