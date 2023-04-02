@@ -1,14 +1,14 @@
+from uuid import uuid4
+
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from api.rating.models import RatingPartition, Indicator
 from api.educators.models import Educator
-
-from uuid import uuid4
-
-from .fields import ValidRatingYearField
 from api.users.models import CustomUser
 from api.departments.models import Department
+
+from .fields import ValidRatingYearField
 
 
 class EducatorRatingPartition(models.Model):
@@ -85,6 +85,10 @@ class EducatorIndicatorValue(models.Model):
     class Meta:
         verbose_name = _('educator indicator value')
         verbose_name_plural = _('educator indicator values')
+        unique_together = ('indicator', 'report')
+
+    def __str__(self) -> str:
+        return f'{self.value}'
 
 
 class EducatorReportController(models.Model):

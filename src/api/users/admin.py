@@ -17,6 +17,9 @@ class CustomUserAdmin(UserAdmin):
         'username', 'last_name', 'first_name',
         'patronymic', 'email',
     )
+    search_help_text = _(
+        'Username, first name, last name, patronymic or email'
+    )
 
     fieldsets = (
         (None, {'fields': ('username', 'password')}),

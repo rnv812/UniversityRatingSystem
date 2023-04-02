@@ -20,7 +20,7 @@ class IndicatorSerializer(ModelSerializer):
         model = Indicator
         fields = (
             'id', 'name', 'annotation',
-            'value_type_id', 'staff_only_editable',
+            'value_type', 'privileged',
         )
 
 
@@ -28,6 +28,6 @@ class CriterionSerializer(ModelSerializer):
     class Meta:
         model = Criterion
         fields = (
-            'id', 'partition_id', 'number', 'subnumber',
-            'indicator_id', 'weight',
+            'id', 'partition', 'number', 'subnumber',
+            'indicator', 'weight',
         )

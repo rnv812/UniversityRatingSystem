@@ -7,6 +7,9 @@ from rest_framework.decorators import action
 from rest_framework.request import Request
 from rest_framework.response import Response
 
+from api.educators.permissions import IsEducator
+from api.educators.models import Educator
+
 from .models import (EducatorRatingPartition,
                      EducatorIndicatorValue,
                      EducatorReport,
@@ -16,9 +19,6 @@ from .serializers import (EducatorRatingPartitionSerializer,
                           EducatorReportSerializer,
                           EducatorReportControllerSerializer)
 from .permissions import IsEducatorReportController
-
-from api.educators.permissions import IsEducator
-from api.educators.models import Educator
 
 
 class EducatorRatingPartitionViewSet(ReadOnlyModelViewSet):

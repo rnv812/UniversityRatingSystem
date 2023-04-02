@@ -1,3 +1,5 @@
+from typing import Callable
+
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -5,10 +7,22 @@ from django.utils.translation import gettext_lazy as _
 class ValueType(models.Model):
     """Model represents type of indicator value."""
 
+    class DataTypes(models.TextChoices):
+        BOOL = 'bool', _('boolean')
+        INT = 'int', _('integer')
+        FLOAT = 'float', _('float')
+        STR = 'str', _('text')
+
     name = models.CharField(
-        verbose_name=_('value type name'),
+        verbose_name=_('type name'),
         max_length=100,
         unique=True
+    )
+
+    datatype = models.CharField(
+        verbose_name=_('data type'),
+        choices=DataTypes.choices,
+        max_length=5
     )
 
     class Meta:
@@ -17,6 +31,15 @@ class ValueType(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+    @property
+    def parse_function(self) -> Callable:
+        return {
+            self.DataTypes.BOOL.value: bool,
+            self.DataTypes.INT.value: int,
+            self.DataTypes.FLOAT.value: float,
+            self.DataTypes.STR.value: str,
+        }[self.datatype]
 
 
 class Indicator(models.Model):

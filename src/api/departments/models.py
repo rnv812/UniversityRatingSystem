@@ -6,7 +6,9 @@ from api.users.models import CustomUser
 
 
 class DepartmentType(models.Model):
-    """Model that represents type of university department."""
+    """Model represents type of university department. Graduation,
+    general technical, general scientific, etc.
+    """
 
     name = models.CharField(
         verbose_name=_('department type name'),
@@ -23,7 +25,7 @@ class DepartmentType(models.Model):
 
 
 class Department(models.Model):
-    """Model that represents university department."""
+    """Model represents university department."""
 
     name = models.CharField(
         verbose_name=_('department name'),
