@@ -6,7 +6,8 @@ from .models import ValueType, RatingPartition, Indicator, Criterion
 
 @admin.register(ValueType)
 class ValueTypeAdmin(admin.ModelAdmin):
-    list_display = ('name', )
+    list_display = ('name', 'datatype', )
+    list_filter = ('datatype', )
 
 
 @admin.register(RatingPartition)
@@ -28,8 +29,7 @@ class IndicatorAdmin(admin.ModelAdmin):
 @admin.register(Criterion)
 class CriterionAdmin(admin.ModelAdmin):
     list_display = (
-        'partition', 'number', 'subnumber',
-        'indicator', 'weight',
+        '__str__', 'partition', 'number', 'subnumber', 'indicator', 'weight',
     )
     search_fields = ('indicator__name', )
     search_help_text = _('Indicator name')
