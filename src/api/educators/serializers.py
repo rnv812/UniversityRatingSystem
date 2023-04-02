@@ -6,7 +6,7 @@ from .models import Educator, Qualification
 class EducatorSerializer(ModelSerializer):
     class Meta:
         model = Educator
-        fields = ('id', 'user_id', 'qualification_id', 'department_id', )
+        fields = ('id', 'user', 'qualification', 'department', )
 
 
 class QualificationSerializer(ModelSerializer):
