@@ -119,8 +119,10 @@ class Criterion(models.Model):
         to=RatingPartition,
         on_delete=models.CASCADE
     )
-    number = models.IntegerField(verbose_name=_('criterion number'))
-    subnumber = models.IntegerField(
+    number = models.PositiveSmallIntegerField(
+        verbose_name=_('criterion number')
+    )
+    subnumber = models.PositiveSmallIntegerField(
         verbose_name=_('criterion subnumber'),
         blank=True,
         null=True
