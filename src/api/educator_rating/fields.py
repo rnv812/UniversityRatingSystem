@@ -1,8 +1,8 @@
-from django.db import models
-from django.core.validators import MinValueValidator, MaxValueValidator
-
 from datetime import datetime
 from typing import Any
+
+from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 VSTU_FOUNDATION_YEAR = 1930

@@ -1,14 +1,14 @@
+from uuid import uuid4
+
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from api.rating.models import RatingPartition, Indicator
 from api.educators.models import Educator
-
-from uuid import uuid4
-
-from .fields import ValidRatingYearField
 from api.users.models import CustomUser
 from api.departments.models import Department
+
+from .fields import ValidRatingYearField
 
 
 class EducatorRatingPartition(models.Model):
