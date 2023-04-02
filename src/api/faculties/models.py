@@ -12,7 +12,7 @@ class Faculty(models.Model):
         max_length=255,
         unique=True
     )
-    head = models.OneToOneField(
+    head = models.ForeignKey(
         verbose_name=_('faculty head profile'),
         to=CustomUser,
         on_delete=models.PROTECT

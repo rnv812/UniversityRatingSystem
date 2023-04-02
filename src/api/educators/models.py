@@ -10,7 +10,8 @@ class Qualification(models.Model):
 
     name = models.CharField(
         verbose_name=_('qualification name'),
-        max_length=100
+        max_length=100,
+        unique=True
     )
 
     class Meta:

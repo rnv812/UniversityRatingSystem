@@ -85,6 +85,7 @@ class EducatorIndicatorValue(models.Model):
     class Meta:
         verbose_name = _('educator indicator value')
         verbose_name_plural = _('educator indicator values')
+        unique_together = ('indicator', 'report')
 
     def __str__(self) -> str:
         return f'{self.value}'
