@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_swagger',
     'api.users.apps.UsersConfig',
     'api.faculties.apps.FacultiesConfig',
     'api.departments.apps.DepartmentsConfig',
@@ -63,7 +64,9 @@ ROOT_URLCONF = 'university_rating_system.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

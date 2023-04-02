@@ -16,7 +16,11 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.views.generic import TemplateView
+
 from rest_framework import routers
+from rest_framework.schemas import get_schema_view
 
 from api.users.views import UserViewSet
 from api.faculties.views import FacultyViewSet
@@ -109,3 +113,25 @@ urlpatterns = [
     path('api/v1/auth/', include('rest_framework.urls')),
     path('api/v1/', include(api_router.urls)),
 ]
+
+urlpatterns_debug = [
+    path(
+        'api/v1/schema/',
+        get_schema_view(
+            title='API Schema',
+            version=1,
+        ),
+        name='api_schema'
+    ),
+    path(
+        'api/v1/swagger/',
+        TemplateView.as_view(
+            template_name='swagger-ui.html',
+            extra_context={'schema_url': 'api_schema'}
+        ),
+        name='swagger'
+    ),
+]
+
+if settings.DEBUG:
+    urlpatterns.extend(urlpatterns_debug)
