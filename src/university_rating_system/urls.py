@@ -33,16 +33,19 @@ urlpatterns_debug = [
     path(
         'api/v1/schema/',
         get_schema_view(
-            title='API Schema',
-            version=1,
+            title='University Rating System API',
+            description=(
+                'API for performing operations on rating reports.'
+            ),
+            version='1.0.0',
         ),
-        name='api_schema'
+        name='api-schema'
     ),
     path(
         'api/v1/swagger/',
         TemplateView.as_view(
             template_name='swagger-ui.html',
-            extra_context={'schema_url': 'api_schema'}
+            extra_context={'schema_url': 'api-schema'}
         ),
         name='swagger'
     ),
