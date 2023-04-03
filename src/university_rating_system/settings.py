@@ -166,10 +166,13 @@ REST_FRAMEWORK = {
 
 SWAGGER_SETTINGS = {
     'SECURITY_DEFINITIONS': {
-        'api_key': {
+        'Basic': {
+            'type': 'basic'
+        },
+        'Token': {
             'type': 'apiKey',
-            'in': 'header',
-            'name': 'Authorization'
+            'name': 'X-API-Key',
+            'in': 'header'
         }
     },
     'LOGIN_URL': 'rest_framework:login',
