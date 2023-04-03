@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
+    'drf_yasg',
+    'api.core.apps.CoreConfig',
     'api.users.apps.UsersConfig',
     'api.faculties.apps.FacultiesConfig',
     'api.departments.apps.DepartmentsConfig',
@@ -149,7 +152,29 @@ AUTH_USER_MODEL = 'users.CustomUser'
 # Rest framework
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
+    'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',
-    ]
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
+
+# Swagger
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Basic': {
+            'type': 'basic'
+        },
+        'Token': {
+            'type': 'apiKey',
+            'name': 'X-API-Key',
+            'in': 'header'
+        }
+    },
+    'LOGIN_URL': 'rest_framework:login',
+    'LOGOUT_URL': 'rest_framework:logout'
 }
