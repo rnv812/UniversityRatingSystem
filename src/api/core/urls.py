@@ -6,9 +6,10 @@ from rest_framework.schemas import get_schema_view
 
 from .routers import api_router
 
+
 urlpatterns = [
     path('auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('', include(api_router.urls, namespace='api')),
+    path('', include((api_router.urls, 'api'), namespace='api')),
 ]
 
 urlpatterns_debug = [
