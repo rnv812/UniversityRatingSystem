@@ -12,7 +12,7 @@ class ValueTypeAdmin(admin.ModelAdmin):
 
 @admin.register(RatingPartition)
 class RatingPartitionAdmin(admin.ModelAdmin):
-    list_display = ('name', )
+    list_display = ('name', 'abbreviation', )
 
 
 @admin.register(Indicator)

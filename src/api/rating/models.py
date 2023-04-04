@@ -132,11 +132,11 @@ class Criterion(models.Model):
     class Meta:
         verbose_name = _('criterion')
         verbose_name_plural = _('criterions')
+        unique_together = ('partition', 'number', 'subnumber', )
 
     def __str__(self) -> str:
         if self.subnumber:
             return (f'{self.partition.abbreviation}.{self.number}'
-                    f'.{self.subnumber} {self.indicator}')
+                    f'.{self.subnumber}')
         else:
-            return (f'{self.partition.abbreviation}.{self.number}'
-                    f' {self.indicator}')
+            return f'{self.partition.abbreviation}.{self.number}'
