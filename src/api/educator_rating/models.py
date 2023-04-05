@@ -4,6 +4,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from api.rating.models import RatingPartition, Indicator
+from api.rating.validators import validate_indicator_value
 from api.educators.models import Educator
 from api.users.models import CustomUser
 from api.departments.models import Department
@@ -75,7 +76,10 @@ class EducatorIndicatorValue(models.Model):
         to=Indicator,
         on_delete=models.CASCADE
     )
-    value = models.JSONField(verbose_name=_('indicator value'))
+    value = models.JSONField(
+        verbose_name=_('indicator value'),
+        validators=(validate_indicator_value, )
+    )
     report = models.ForeignKey(
         verbose_name=_('educator report'),
         to=EducatorReport,
