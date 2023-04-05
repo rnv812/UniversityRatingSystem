@@ -1,5 +1,9 @@
 from rest_framework.decorators import action
-from rest_framework.mixins import RetrieveModelMixin
+from rest_framework.mixins import (
+    CreateModelMixin,
+    DestroyModelMixin,
+    RetrieveModelMixin
+)
 from rest_framework.permissions import (
     IsAdminUser,
     IsAuthenticated,
@@ -9,7 +13,6 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.viewsets import (
     GenericViewSet,
-    ModelViewSet,
     ReadOnlyModelViewSet,
 )
 
@@ -66,7 +69,11 @@ class EducatorIndicatorValueViewSet(RetrieveModelMixin,
     )
 
 
-class EducatorReportViewSet(ModelViewSet):
+class EducatorReportViewSet(RetrieveModelMixin,
+                            CreateModelMixin,
+                            PartialUpdateModelMixin,
+                            DestroyModelMixin,
+                            GenericViewSet):
     queryset = EducatorReport.objects.all().order_by('pk')
     serializer_class = EducatorReportSerializer
     permission_classes = (
@@ -119,3 +126,26 @@ class EducatorReportViewSet(ModelViewSet):
                 many=True
             ).data
         )
+
+    @action(
+        detail=True,
+        methods=('PATCH',),
+        permission_classes=(
+            IsAuthenticated,
+            IsReportControllerUser | IsAdminUser,
+        )
+    )
+    def set_status(self, request: Request, pk: str) -> Response:
+        """Change report approval status. Expected only `approved` field in
+        request body with `true` or `false` values.
+        """
+
+        report = EducatorReport.objects.get(pk=pk)
+        default_status = report.approved
+        new_status = request.data.get('approved', default_status)
+
+        if new_status != default_status:
+            report.approved = new_status
+            report.save(update_fields=('approved', ))
+
+        return Response(EducatorReportSerializer(instance=report).data)
