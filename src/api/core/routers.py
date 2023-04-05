@@ -16,16 +16,21 @@ from api.educator_rating.views import (EducatorRatingPartitionViewSet,
 
 api_router = routers.DefaultRouter()
 
+# users app
 api_router.register(
     prefix='users',
     viewset=UserViewSet,
     basename='user'
 )
+
+# faculties app
 api_router.register(
     prefix='faculties',
     viewset=FacultyViewSet,
     basename='faculty'
 )
+
+# departments app
 api_router.register(
     prefix='departments',
     viewset=DepartmentViewSet,
@@ -36,6 +41,8 @@ api_router.register(
     viewset=DepartmentTypeViewSet,
     basename='department-type'
 )
+
+# educators app
 api_router.register(
     prefix='educators',
     viewset=EducatorViewSet,
@@ -46,6 +53,8 @@ api_router.register(
     viewset=QualificationViewSet,
     basename='qualification'
 )
+
+# rating app
 api_router.register(
     prefix='value-types',
     viewset=ValueTypeViewSet,
@@ -66,6 +75,8 @@ api_router.register(
     viewset=CriterionViewSet,
     basename='criterion'
 )
+
+# educator_rating app
 api_router.register(
     prefix='educator-partitions',
     viewset=EducatorRatingPartitionViewSet,
