@@ -1,6 +1,6 @@
 from django.utils.translation import gettext_lazy as _
 
-from rest_framework.permissions import BasePermission, SAFE_METHODS
+from rest_framework.permissions import BasePermission
 from rest_framework.request import Request
 from rest_framework.views import View
 
@@ -56,7 +56,7 @@ class IsValueController(BasePermission):
         return controller.department == obj.report.educator.department
 
 
-class IsOpenForEditOnPatch(BasePermission):
+class IsOpenForEditValueOnPatch(BasePermission):
     message = _("You cannot edit values of report which is already approved.")
 
     def has_object_permission(
@@ -65,10 +65,25 @@ class IsOpenForEditOnPatch(BasePermission):
             view: View,
             obj: EducatorIndicatorValue
     ) -> bool:
-        if request.method in SAFE_METHODS:
+        if request.method == 'PATCH':
+            return not obj.report.approved
+        else:
             return True
 
-        return not obj.report.approved
+
+class IsOnlyValuePartChangedOnPatch(BasePermission):
+    message = _("You can only edit value field.")
+
+    def has_object_permission(
+            self,
+            request: Request,
+            view: View,
+            obj: EducatorIndicatorValue
+    ) -> bool:
+        if request.method == 'PATCH':
+            return set(request.data.keys()) == set(['value'])
+        else:
+            return True
 
 
 class HasEducatorReportAccess(BasePermission):
