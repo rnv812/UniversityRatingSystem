@@ -81,7 +81,8 @@ class IsOnlyValuePartChangedOnPatch(BasePermission):
             obj: EducatorIndicatorValue
     ) -> bool:
         if request.method == 'PATCH':
-            return set(request.data.keys()) == set(['value'])
+            fields_to_change = request.data.keys()
+            return 'value' in fields_to_change and len(fields_to_change) == 1
         else:
             return True
 
