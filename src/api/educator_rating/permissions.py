@@ -6,24 +6,14 @@ from rest_framework.views import View
 
 from .models import (
     EducatorIndicatorValue,
+    EducatorReport,
     EducatorReportController,
 )
 
 
-class IsEducatorReportController(BasePermission):
-    message = _("You are not a controller of educator reports.")
-
-    def has_permission(self, request: Request, view: View) -> bool:
-        try:
-            EducatorReportController.objects.get(user=request.user)
-            return True
-        except EducatorReportController.DoesNotExist:
-            return False
-
-
-class IsValueOwner(BasePermission):
+class IsValueOwnerUser(BasePermission):
     message = _(
-        "You can operate only values of reports owned by you."
+        "You cannot operate values of reports which are not owned by you."
     )
 
     def has_object_permission(
@@ -35,9 +25,9 @@ class IsValueOwner(BasePermission):
         return obj.report.educator.user == request.user
 
 
-class IsValueController(BasePermission):
+class IsValueControllerUser(BasePermission):
     message = _(
-        "You can operate only values of reports controlled by you."
+        "You cannot operate values of reports which are not controlled by you."
     )
 
     def has_object_permission(
@@ -56,8 +46,8 @@ class IsValueController(BasePermission):
         return controller.department == obj.report.educator.department
 
 
-class IsOpenForEditValueOnPatch(BasePermission):
-    message = _("You cannot edit values of report which is already approved.")
+class IsOpenForUpdateValueOnPatch(BasePermission):
+    message = _("You cannot edit values of already approved report.")
 
     def has_object_permission(
             self,
@@ -71,8 +61,8 @@ class IsOpenForEditValueOnPatch(BasePermission):
         return not obj.report.approved
 
 
-class IsOnlyValueChangedOnPatch(BasePermission):
-    message = _("You can edit value only.")
+class IsOnlyValueUpdateOnPatch(BasePermission):
+    message = _("You cannot edit anything except value.")
 
     def has_object_permission(
             self,
@@ -90,7 +80,80 @@ class IsOnlyValueChangedOnPatch(BasePermission):
             return False
 
 
-class HasEducatorReportAccess(BasePermission):
+class IsNotPrivilegedIndicatorOnPatch(BasePermission):
+    message = _("You cannot edit values of privileged indicators.")
+
+    def has_object_permission(
+            self,
+            request: Request,
+            view: View,
+            obj: EducatorIndicatorValue
+    ) -> bool:
+        return not obj.indicator.privileged
+
+
+class IsReportOwnerUser(BasePermission):
+    message = _(
+        "You cannot operate reports which are not owned by you."
+    )
+
+    def has_object_permission(
+            self,
+            request: Request,
+            view: View,
+            obj: EducatorReport
+    ) -> bool:
+        return obj.educator.user == request.user
+
+
+class IsReportControllerUser(BasePermission):
+    message = _(
+        "You cannot operate reports which are not controlled by you."
+    )
+
+    def has_object_permission(
+            self,
+            request: Request,
+            view: View,
+            obj: EducatorReport
+    ) -> bool:
+        try:
+            controller = EducatorReportController.objects.get(
+                user=request.user
+            )
+        except EducatorReportController.DoesNotExist:
+            return False
+
+        return controller.department == obj.educator.department
+
+
+class IsOpenToDestroyReportOnDelete(BasePermission):
+    message = _(
+        "You cannot delete already approved reports."
+    )
+
+    def has_object_permission(
+        self,
+        request: Request,
+        view: View,
+        obj: EducatorReport
+    ) -> bool:
+        if request.method != 'DELETE':
+            return True
+
+        return not obj.approved
+
+
+class IsUnapprovedReportOnPost(BasePermission):
+    message = _(
+        "You cannot create approved reports."
+    )
+
     def has_permission(self, request: Request, view: View) -> bool:
-        print(request.data)
-        return False
+        if request.method != 'POST':
+            return True
+
+        if 'approved' not in request.data:
+            return True
+
+        return request.data['approved'] is False
