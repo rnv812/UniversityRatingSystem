@@ -65,14 +65,14 @@ class IsOpenForEditValueOnPatch(BasePermission):
             view: View,
             obj: EducatorIndicatorValue
     ) -> bool:
-        if request.method == 'PATCH':
-            return not obj.report.approved
-        else:
+        if request.method != 'PATCH':
             return True
 
+        return not obj.report.approved
 
-class IsOnlyValuePartChangedOnPatch(BasePermission):
-    message = _("You can only edit value field.")
+
+class IsOnlyValueChangedOnPatch(BasePermission):
+    message = _("You can edit value only.")
 
     def has_object_permission(
             self,
@@ -80,11 +80,14 @@ class IsOnlyValuePartChangedOnPatch(BasePermission):
             view: View,
             obj: EducatorIndicatorValue
     ) -> bool:
-        if request.method == 'PATCH':
-            fields_to_change = request.data.keys()
-            return 'value' in fields_to_change and len(fields_to_change) == 1
-        else:
+        if request.method != 'PATCH':
             return True
+
+        changes = request.data.keys()
+        if changes == ['value'] and isinstance(request.data['value'], dict):
+            return obj.value['type'] == request.data['value'].get('type', None)
+        else:
+            return False
 
 
 class HasEducatorReportAccess(BasePermission):
