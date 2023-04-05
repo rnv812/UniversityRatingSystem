@@ -1,3 +1,5 @@
+from django.utils.translation import gettext_lazy as _
+
 from rest_framework.permissions import BasePermission
 from rest_framework.request import Request
 from rest_framework.views import View
@@ -6,6 +8,8 @@ from .models import EducatorReportController
 
 
 class IsEducatorReportController(BasePermission):
+    message = _("You are not a controller of educator reports.")
+
     def has_permission(self, request: Request, view: View) -> bool:
         try:
             EducatorReportController.objects.get(user=request.user)
