@@ -1,24 +1,45 @@
-from rest_framework.viewsets import (ReadOnlyModelViewSet,
-                                     ModelViewSet)
-from rest_framework.permissions import (SAFE_METHODS,
-                                        IsAdminUser,
-                                        IsAuthenticated)
 from rest_framework.decorators import action
+from rest_framework.mixins import RetrieveModelMixin
+from rest_framework.permissions import (
+    IsAdminUser,
+    IsAuthenticated,
+    SAFE_METHODS,
+)
 from rest_framework.request import Request
 from rest_framework.response import Response
+from rest_framework.viewsets import (
+    GenericViewSet,
+    ModelViewSet,
+    ReadOnlyModelViewSet,
+)
 
-from api.educators.permissions import IsEducator
 from api.educators.models import Educator
+from api.educators.permissions import IsEducatorUser
 
-from .models import (EducatorRatingPartition,
-                     EducatorIndicatorValue,
-                     EducatorReport,
-                     EducatorReportController)
-from .serializers import (EducatorRatingPartitionSerializer,
-                          EducatorIndicatorValueSerializer,
-                          EducatorReportSerializer,
-                          EducatorReportControllerSerializer)
-from .permissions import IsEducatorReportController
+from .mixins import PartialUpdateModelMixin
+from .models import (
+    EducatorIndicatorValue,
+    EducatorRatingPartition,
+    EducatorReport,
+    EducatorReportController
+)
+from .permissions import (
+    IsNotPrivilegedIndicatorOnPatch,
+    IsOpenForUpdateValueOnPatch,
+    IsOpenToDestroyReportOnDelete,
+    IsOnlyValueUpdateOnPatch,
+    IsReportControllerUser,
+    IsReportOwnerUser,
+    IsUnapprovedReportOnPost,
+    IsValueControllerUser,
+    IsValueOwnerUser,
+)
+from .serializers import (
+    EducatorIndicatorValueSerializer,
+    EducatorRatingPartitionSerializer,
+    EducatorReportSerializer,
+    EducatorReportControllerSerializer
+)
 
 
 class EducatorRatingPartitionViewSet(ReadOnlyModelViewSet):
@@ -26,20 +47,39 @@ class EducatorRatingPartitionViewSet(ReadOnlyModelViewSet):
     serializer_class = EducatorRatingPartitionSerializer
 
 
-class EducatorIndicatorValueViewSet(ModelViewSet):
+class EducatorReportControllerViewSet(ReadOnlyModelViewSet):
+    queryset = EducatorReportController.objects.all().order_by('pk')
+    serializer_class = EducatorReportControllerSerializer
+
+
+class EducatorIndicatorValueViewSet(RetrieveModelMixin,
+                                    PartialUpdateModelMixin,
+                                    GenericViewSet):
     queryset = EducatorIndicatorValue.objects.all().order_by('pk')
     serializer_class = EducatorIndicatorValueSerializer
+    permission_classes = (
+        IsAuthenticated,
+        ((IsValueOwnerUser & IsNotPrivilegedIndicatorOnPatch)
+         | IsValueControllerUser | IsAdminUser),
+        IsOpenForUpdateValueOnPatch,
+        IsOnlyValueUpdateOnPatch
+    )
 
 
-class EducatorReportViewSet(ReadOnlyModelViewSet):
+class EducatorReportViewSet(ModelViewSet):
     queryset = EducatorReport.objects.all().order_by('pk')
     serializer_class = EducatorReportSerializer
-    permission_classes = (IsAdminUser, )
+    permission_classes = (
+        IsAuthenticated,
+        IsReportOwnerUser | IsReportControllerUser | IsAdminUser,
+        IsUnapprovedReportOnPost,
+        IsOpenToDestroyReportOnDelete,
+    )
 
     @action(
         detail=False,
         methods=SAFE_METHODS,
-        permission_classes=(IsAuthenticated, IsEducator, )
+        permission_classes=(IsAuthenticated, IsEducatorUser, )
     )
     def my(self, request: Request) -> Response:
         """Get list of educator own reports. If user is not an educator
@@ -58,7 +98,7 @@ class EducatorReportViewSet(ReadOnlyModelViewSet):
     @action(
         detail=False,
         methods=SAFE_METHODS,
-        permission_classes=(IsAuthenticated, IsEducatorReportController, )
+        permission_classes=(IsAuthenticated, IsReportControllerUser, )
     )
     def controlled(self, request: Request) -> Response:
         """Get list of educator reports at the department which is
@@ -79,9 +119,3 @@ class EducatorReportViewSet(ReadOnlyModelViewSet):
                 many=True
             ).data
         )
-
-
-class EducatorReportControllerViewSet(ReadOnlyModelViewSet):
-    queryset = EducatorReportController.objects.all().order_by('pk')
-    serializer_class = EducatorReportControllerSerializer
-    permission_classes = (IsAdminUser, )
