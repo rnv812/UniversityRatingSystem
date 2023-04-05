@@ -7,7 +7,7 @@ from rest_framework.views import View
 from .models import Educator
 
 
-class IsEducator(BasePermission):
+class IsEducatorUser(BasePermission):
     message = _("You are not an educator.")
 
     def has_permission(self, request: Request, view: View) -> bool:
