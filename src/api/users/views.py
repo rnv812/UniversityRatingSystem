@@ -12,7 +12,6 @@ from .serializers import UserSerializer
 class UserViewSet(ReadOnlyModelViewSet):
     queryset = CustomUser.objects.all().order_by('pk')
     serializer_class = UserSerializer
-    permission_classes = (IsAuthenticated, )
 
     @action(
         detail=False,
