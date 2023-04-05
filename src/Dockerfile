@@ -32,7 +32,7 @@ WORKDIR /app/src/
 
 RUN chmod +x ./entrypoint.sh && \
     chmod +x ./activate.sh && \
-    chmod +x ./gdown-unzip.sh
+    chmod +x ./load-fixture.sh
 
 RUN addgroup -S app && \
     adduser -S app -G app -h /app -u $APP_USER_UID -DH

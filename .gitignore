@@ -133,6 +133,6 @@ dmypy.json
 # dev migrations
 migrations/
 
-# pricate fixtures
+# private fixtures
 fixtures/
-fixtures.zip
+fixture.json
