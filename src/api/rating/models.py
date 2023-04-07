@@ -32,14 +32,21 @@ class ValueType(models.Model):
     def __str__(self) -> str:
         return self.name
 
-    @property
-    def parse_function(self) -> Callable:
-        return {
-            self.DataTypes.BOOL.value: bool,
-            self.DataTypes.INT.value: int,
-            self.DataTypes.FLOAT.value: float,
-            self.DataTypes.STR.value: str,
+    def get_default(self) -> Callable:
+        value = {
+            'type': None,
+            'value': None
+        }
+
+        value['type'] = self.datatype
+        value['value'] = {
+            self.DataTypes.BOOL.value: False,
+            self.DataTypes.INT.value: 0,
+            self.DataTypes.FLOAT.value: 0.0,
+            self.DataTypes.STR.value: '',
         }[self.datatype]
+
+        return value
 
 
 class Indicator(models.Model):
