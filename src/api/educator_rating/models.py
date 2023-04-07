@@ -1,9 +1,10 @@
+from typing import Iterable, Optional
 from uuid import uuid4
 
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from api.rating.models import RatingPartition, Indicator
+from api.rating.models import Criterion, RatingPartition, Indicator
 from api.rating.validators import validate_indicator_value
 from api.educators.models import Educator
 from api.users.models import CustomUser
@@ -63,6 +64,41 @@ class EducatorReport(models.Model):
 
     def __str__(self) -> str:
         return f"{self.educator} {self.year} {_('year')}"
+
+    def save(
+            self,
+            force_insert: bool = False,
+            force_update: bool = False,
+            using: Optional[str] = None,
+            update_fields: Optional[Iterable[str]] = None
+    ) -> None:
+        super().save(force_insert, force_update, using, update_fields)
+
+        # attach default indicator values to report
+        partition_ids = EducatorRatingPartition.objects.values_list(
+            'partition_id',
+            flat=True
+        )
+        indicator_ids = Criterion.objects.filter(
+            partition_id__in=partition_ids
+        ).distinct(
+            'indicator_id'
+        ).values_list('indicator_id', flat=True)
+
+        indicator_values = []
+        indicators = Indicator.objects.filter(pk__in=indicator_ids)
+
+        for id in indicator_ids:
+            indicator = indicators.get(pk=id)
+            indicator_values.append(
+                EducatorIndicatorValue(
+                    indicator=indicator,
+                    value=indicator.value_type.get_default(),
+                    report=self,
+                )
+            )
+
+        EducatorIndicatorValue.objects.bulk_create(indicator_values)
 
 
 class EducatorIndicatorValue(models.Model):
