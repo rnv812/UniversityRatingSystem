@@ -7,6 +7,10 @@ from .models import ValueType
 DataTypes = ValueType.DataTypes
 
 
+class IndicatorValueValidationError(ValidationError):
+    pass
+
+
 def validate_indicator_value(value: dict) -> None:
     match value:
         case {'value': bool(), 'type': DataTypes.BOOL.value}:
@@ -18,4 +22,4 @@ def validate_indicator_value(value: dict) -> None:
         case {'value': str(), 'type': DataTypes.STR.value}:
             pass
         case _:
-            raise ValidationError(_("Wrong JSON format."))
+            raise IndicatorValueValidationError(_("Wrong JSON format."))
