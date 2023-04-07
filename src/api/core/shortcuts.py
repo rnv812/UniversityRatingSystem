@@ -11,7 +11,7 @@ def get_object_or_validation_error(
         **kwargs
 ):
     """Use get() to return an object, or raise ValidationError instance
-    passed as `error` parameter if the object does not exist. Can be used as
+    passed as first parameter if the object does not exist. Can be used as
     generic version of get_object_or_404 in context of django rest framework.
 
     Use get_object_or_404 django shortcut for not to reimplement logic.
