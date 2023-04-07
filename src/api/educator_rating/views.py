@@ -27,7 +27,6 @@ from .models import (
     EducatorReportController
 )
 from .permissions import (
-    IsNotPrivilegedIndicatorOnPatch,
     IsOpenForUpdateValueOnPatch,
     IsOpenToDestroyReportOnDelete,
     IsOnlyValueUpdateOnPatch,
@@ -62,8 +61,7 @@ class EducatorIndicatorValueViewSet(RetrieveModelMixin,
     serializer_class = EducatorIndicatorValueSerializer
     permission_classes = (
         IsAuthenticated,
-        ((IsValueOwnerUser & IsNotPrivilegedIndicatorOnPatch)
-         | IsValueControllerUser | IsAdminUser),
+        IsValueOwnerUser | IsValueControllerUser | IsAdminUser,
         IsOpenForUpdateValueOnPatch,
         IsOnlyValueUpdateOnPatch
     )
@@ -71,7 +69,6 @@ class EducatorIndicatorValueViewSet(RetrieveModelMixin,
 
 class EducatorReportViewSet(RetrieveModelMixin,
                             CreateModelMixin,
-                            PartialUpdateModelMixin,
                             DestroyModelMixin,
                             GenericViewSet):
     queryset = EducatorReport.objects.all().order_by('pk')
@@ -109,8 +106,9 @@ class EducatorReportViewSet(RetrieveModelMixin,
     )
     def controlled(self, request: Request) -> Response:
         """Get list of educator reports at the department which is
-        controlled by requesting user. If user is not a report
-        controller request is not allowed.
+        controlled by requesting user. Note that response also
+        includes user own reports if he is an educator on this department.
+        If user is not a report controller request is not allowed.
         """
 
         department_ids = EducatorReportController.objects.filter(
