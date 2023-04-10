@@ -14,6 +14,9 @@ import os
 
 from pathlib import Path
 
+from django.utils.translation import gettext_lazy as _
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -33,6 +36,7 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(' ')
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -177,4 +181,37 @@ SWAGGER_SETTINGS = {
     },
     'LOGIN_URL': 'rest_framework:login',
     'LOGOUT_URL': 'rest_framework:logout'
+}
+
+# Jazzmin (Admin site)
+
+JAZZMIN_SETTINGS = {
+    'site_logo': 'core/logo/VSTU-128.png',
+    'site_icon': 'core/logo/VSTU-32.png',
+    'copyright': 'Volgograd State Technical University',
+    'welcome_sign': _('University Rating System API Administation'),
+    'icons': {
+        'departments.Department': 'fas fa-school',
+        'departments.DepartmentType': 'fas fa-certificate',
+        'educator_rating.EducatorIndicatorValue': 'fas fa-calculator',
+        'educator_rating.EducatorRatingPartition': 'fas fa-star',
+        'educator_rating.EducatorReportController': 'fas fa-eye',
+        'educator_rating.EducatorReport': 'fas fa-file',
+        'educators.Educator': 'fas fa-glasses',
+        'educators.Qualification': 'fas fa-graduation-cap',
+        'faculties.Faculty': 'fas fa-landmark',
+        'rating.Criterion': 'fas fa-subscript',
+        'rating.Indicator': 'fas fa-list',
+        'rating.RatingPartition': 'fas fa-star',
+        'rating.ValueType': 'fas fa-percent',
+        'users.CustomUser': 'fas fa-user',
+        'auth.Group': 'fas fa-users',
+        'authtoken.TokenProxy': 'fas fa-key',
+    },
+}
+
+JAZZMIN_UI_TWEAKS = {
+    'navbar_fixed': True,
+    'sidebar_fixed': True,
+    'theme': 'pulse',
 }
