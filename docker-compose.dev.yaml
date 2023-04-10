@@ -1,18 +1,18 @@
 services:
-  web:
-    image: university-rating-system-web:latest
-    container_name: urs-web-dev
+  api:
+    image: university-rating-system-api:latest
+    container_name: urs-api-dev
     build:
-      context: ./src/
+      context: ./api/
       args:
         - DEPLOY_ENV=dev
         - APP_USER_UID=1000
     ports:
       - "8000:8000"
     volumes:
-      - ./src/:/app/src/
+      - ./api/:/app/src/
     env_file:
-      - ./env/dev/web.dev.env
+      - ./env/dev/api.dev.env
     depends_on:
       - db
   db:

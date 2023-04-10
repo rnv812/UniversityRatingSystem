@@ -2,7 +2,7 @@ from django.apps import AppConfig
 from django.utils.translation import gettext_lazy as _
 
 
-class CoreConfig(AppConfig):
+class FacultiesConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'api.core'
-    verbose_name = _('API core')
+    name = 'apps.faculties'
+    verbose_name = _('faculties')

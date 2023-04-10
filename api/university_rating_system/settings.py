@@ -42,13 +42,13 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'drf_yasg',
-    'api.core.apps.CoreConfig',
-    'api.users.apps.UsersConfig',
-    'api.faculties.apps.FacultiesConfig',
-    'api.departments.apps.DepartmentsConfig',
-    'api.educators.apps.EducatorsConfig',
-    'api.rating.apps.RatingConfig',
-    'api.educator_rating.apps.EducatorRatingConfig',
+    'apps.core.apps.CoreConfig',
+    'apps.users.apps.UsersConfig',
+    'apps.faculties.apps.FacultiesConfig',
+    'apps.departments.apps.DepartmentsConfig',
+    'apps.educators.apps.EducatorsConfig',
+    'apps.rating.apps.RatingConfig',
+    'apps.educator_rating.apps.EducatorRatingConfig',
 ]
 
 MIDDLEWARE = [

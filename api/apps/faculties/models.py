@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from api.users.models import CustomUser
+from apps.users.models import CustomUser
 
 
 class Faculty(models.Model):

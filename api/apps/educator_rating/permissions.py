@@ -4,10 +4,10 @@ from rest_framework.permissions import BasePermission
 from rest_framework.request import Request
 from rest_framework.views import View
 
-from api.core.shortcuts import get_object_or_error
-from api.core.exceptions import UnprocessableEntity
-from api.educators.models import Educator
-from api.rating.validators import (
+from apps.core.shortcuts import get_object_or_error
+from apps.core.exceptions import UnprocessableEntity
+from apps.educators.models import Educator
+from apps.rating.validators import (
     IndicatorValueValidationError,
     validate_indicator_value,
 )

@@ -1,14 +1,14 @@
 from rest_framework import routers
 
-from api.users.views import UserViewSet
-from api.faculties.views import FacultyViewSet
-from api.departments.views import DepartmentViewSet, DepartmentTypeViewSet
-from api.educators.views import EducatorViewSet, QualificationViewSet
-from api.rating.views import (ValueTypeViewSet,
+from apps.users.views import UserViewSet
+from apps.faculties.views import FacultyViewSet
+from apps.departments.views import DepartmentViewSet, DepartmentTypeViewSet
+from apps.educators.views import EducatorViewSet, QualificationViewSet
+from apps.rating.views import (ValueTypeViewSet,
                               RatingPartitionViewSet,
                               IndicatorViewSet,
                               CriterionViewSet)
-from api.educator_rating.views import (EducatorRatingPartitionViewSet,
+from apps.educator_rating.views import (EducatorRatingPartitionViewSet,
                                        EducatorIndicatorValueViewSet,
                                        EducatorReportViewSet,
                                        EducatorReportControllerViewSet)

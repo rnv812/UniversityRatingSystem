@@ -1,8 +1,8 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from api.faculties.models import Faculty
-from api.users.models import CustomUser
+from apps.faculties.models import Faculty
+from apps.users.models import CustomUser
 
 
 class DepartmentType(models.Model):

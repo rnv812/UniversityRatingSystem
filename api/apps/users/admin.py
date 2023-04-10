@@ -2,15 +2,15 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext_lazy as _
 
-from . import forms
-from . import models
+from .forms import CustomUserCreationForm, CustomUserChangeForm
+from .models import CustomUser
 
 
-@admin.register(models.CustomUser)
+@admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
-    add_form = forms.CustomUserCreationForm
-    form = forms.CustomUserChangeForm
-    model = models.CustomUser
+    add_form = CustomUserCreationForm
+    form = CustomUserChangeForm
+    model = CustomUser
 
     list_display = ('username', 'last_name', 'first_name', 'patronymic', )
     search_fields = (

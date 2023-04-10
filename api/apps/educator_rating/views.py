@@ -16,8 +16,8 @@ from rest_framework.viewsets import (
     ReadOnlyModelViewSet,
 )
 
-from api.educators.models import Educator
-from api.educators.permissions import IsEducatorUser
+from apps.educators.models import Educator
+from apps.educators.permissions import IsEducatorUser
 
 from .mixins import PartialUpdateModelMixin
 from .models import (
