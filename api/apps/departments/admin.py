@@ -14,8 +14,11 @@ class DepartmentAdmin(admin.ModelAdmin):
         'Department name or head first name, last name or patronymic'
     )
     list_filter = ('department_type__name', 'faculty__name', )
+    autocomplete_fields = ('department_type', 'head', 'faculty', )
 
 
 @admin.register(DepartmentType)
 class DepartmentTypeAdmin(admin.ModelAdmin):
     list_display = ('name', )
+    search_fields = ('name', )
+    search_help_text = _('Department type name')

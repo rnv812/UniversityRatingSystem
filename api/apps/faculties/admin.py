@@ -14,3 +14,4 @@ class FacultyAdmin(admin.ModelAdmin):
     search_help_text = _(
         'Faculty name or head first name, last name or patronymic'
     )
+    autocomplete_fields = ('head', )

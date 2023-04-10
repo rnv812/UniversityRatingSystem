@@ -16,8 +16,11 @@ class EducatorAdmin(admin.ModelAdmin):
          'first name, last name or patronymic')
     )
     list_filter = ('qualification__name', )
+    autocomplete_fields = ('user', 'qualification', 'department', )
 
 
 @admin.register(Qualification)
 class QualificationAdmin(admin.ModelAdmin):
     list_display = ('name', )
+    search_fields = ('name', )
+    search_help_text = _('Qualification name')

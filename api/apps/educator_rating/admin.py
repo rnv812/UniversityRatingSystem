@@ -10,11 +10,13 @@ from .models import (EducatorRatingPartition,
 @admin.register(EducatorRatingPartition)
 class EducatorRatingPartitionAdmin(admin.ModelAdmin):
     list_display = ('partition', )
+    autocomplete_fields = ('partition', )
 
 
 @admin.register(EducatorIndicatorValue)
 class EducatorIndicatorValueAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'report', 'indicator', )
+    autocomplete_fields = ('report', 'indicator', )
 
 
 @admin.register(EducatorReport)
@@ -27,6 +29,7 @@ class EducatorReportAdmin(admin.ModelAdmin):
     list_select_related = ('educator__user', 'educator__qualification')
     search_help_text = _('Educator first name, lastname or patronymic')
     list_filter = ('educator__qualification__name', 'year', )
+    autocomplete_fields = ('educator', )
 
 
 @admin.register(EducatorReportController)
@@ -40,3 +43,4 @@ class EducatorReportControllerAdmin(admin.ModelAdmin):
         ('Department name or controller username, '
          'first name, last name or patronymic')
     )
+    autocomplete_fields = ('user', 'department', )
