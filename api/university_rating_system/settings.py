@@ -190,6 +190,14 @@ JAZZMIN_SETTINGS = {
     'site_icon': 'core/logo/VSTU-32.png',
     'copyright': 'Volgograd State Technical University',
     'welcome_sign': _('University Rating System API Administation'),
+    'order_with_respect_to': [
+        'users',
+        'educators',
+        'departments',
+        'faculties',
+        'rating',
+        'educator_rating'
+    ],
     'icons': {
         'departments.Department': 'fas fa-school',
         'departments.DepartmentType': 'fas fa-certificate',
@@ -212,6 +220,8 @@ JAZZMIN_SETTINGS = {
 
 JAZZMIN_UI_TWEAKS = {
     'navbar_fixed': True,
+    'sidebar': 'sidebar-light-primary',
     'sidebar_fixed': True,
-    'theme': 'pulse',
+    'sidebar_nav_small_text': True,
+    'theme': 'default',
 }
