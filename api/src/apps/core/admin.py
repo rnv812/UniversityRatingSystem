@@ -4,6 +4,8 @@ from django.utils.translation import gettext_lazy as _
 from rest_framework.authtoken.models import TokenProxy
 from rest_framework.authtoken.admin import TokenAdmin
 
+TokenProxy._meta.verbose_name = _('token')
+TokenProxy._meta.verbose_name_plural = _('tokens')
 
 admin.site.unregister(TokenProxy)
 
