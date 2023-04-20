@@ -17,6 +17,6 @@ class TokenCustomAdmin(TokenAdmin):
     search_help_text = _('Username')
 
 
-admin.site.site_header = _('API Administration')
+admin.site.site_header = _('VSTU')
 admin.site.site_title = _('API Administration')
 admin.site.index_title = _('API Administration')

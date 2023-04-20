@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-21 02:31+0300\n"
+"POT-Creation-Date: 2023-04-21 02:53+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,7 +32,11 @@ msgstr "токены"
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: apps/core/admin.py:20 apps/core/admin.py:21 apps/core/admin.py:22
+#: apps/core/admin.py:20
+msgid "VSTU"
+msgstr "ВолгГТУ"
+
+#: apps/core/admin.py:21 apps/core/admin.py:22
 msgid "API Administration"
 msgstr "Администрирование API"
 
@@ -381,19 +385,23 @@ msgstr "критерии"
 msgid "Wrong JSON format."
 msgstr "Неверный формат JSON"
 
-#: apps/users/admin.py:21
+#: apps/users/admin.py:10
+msgid "Groups"
+msgstr "Группы"
+
+#: apps/users/admin.py:25
 msgid "Username, first name, last name, patronymic or email"
 msgstr "Имя пользователя, имя, фамилия, отчество или email"
 
-#: apps/users/admin.py:27
+#: apps/users/admin.py:31
 msgid "Personal info"
 msgstr "Персональные данные"
 
-#: apps/users/admin.py:35
+#: apps/users/admin.py:39
 msgid "Permissions"
 msgstr "Права доступа"
 
-#: apps/users/admin.py:46
+#: apps/users/admin.py:50
 msgid "Important dates"
 msgstr "Важные даты"
 

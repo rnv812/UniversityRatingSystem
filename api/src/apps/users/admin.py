@@ -1,9 +1,13 @@
 from django.contrib import admin
+from django.contrib.auth.apps import AuthConfig
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext_lazy as _
 
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from .models import CustomUser
+
+# change name cause User model is not in this app anymore. So only "Groups".
+AuthConfig.verbose_name = _('Groups')
 
 
 @admin.register(CustomUser)
