@@ -3,14 +3,12 @@ services:
     image: university-rating-system-api:latest
     container_name: urs-api-prod
     build:
-      context: ./src/
+      context: ./api/
       args:
         - DEPLOY_ENV=prod
         - APP_USER_UID=1000
     ports:
       - "8000:8000"
-    volumes:
-      - ./api/:/app/src/
     env_file:
       - ./env/prod/api.prod.env
     depends_on:

@@ -10,7 +10,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./api/:/app/src/
+      - ./api/src/:/app/src/
     env_file:
       - ./env/dev/api.dev.env
     depends_on:

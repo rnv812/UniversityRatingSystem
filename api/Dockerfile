@@ -16,17 +16,27 @@ FROM base as builder
 
 WORKDIR /app/
 
-COPY pyproject.toml poetry.lock ./
+COPY src/pyproject.toml src/poetry.lock ./
 
 RUN pip install poetry==$POETRY_VERSION && \
     poetry config virtualenvs.in-project true && \
     poetry install $(test $DEPLOY_ENV = prod && echo "--without dev") --no-root --no-interaction --no-ansi
 
 
-FROM base as final
+
+FROM base as composer
 
 COPY --from=builder /app/.venv/ /app/.venv/
-COPY . /app/src/
+COPY src/ /app/src/
+
+WORKDIR /app/src/
+
+RUN rm pyproject.toml poetry.lock
+
+
+FROM base as final
+
+COPY --from=composer /app/ /app/
 
 WORKDIR /app/src/
 
