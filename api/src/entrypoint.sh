@@ -19,7 +19,7 @@ echo "Applying database migrations..."
 python manage.py migrate
 echo "You can use load-fixture.sh script to prepopulate database with some values"
 
-echo "Creating admin user..."
+echo "Creating superuser..."
 python manage.py createsuperuser --email $DJANGO_SUPERUSER_EMAIL --no-input
 
 echo "Running server on port $DJANGO_SERVER_PORT ..."
