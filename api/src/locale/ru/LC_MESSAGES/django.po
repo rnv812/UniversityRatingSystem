@@ -1,0 +1,413 @@
+# LOCALIZATION FOR UNIVERSITY RATING SYSTEM API.
+# Copyright (C) 2023 Nikita Reznikov
+# This file is distributed under the same license as the UNIVERSITY RATING SYSTEM API package.
+# Nikita Reznikov <nikita.reznikov.public@mail.ru>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-21 01:58+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: apps/core/admin.py:15
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: apps/core/admin.py:18 apps/core/admin.py:19 apps/core/admin.py:20
+msgid "API Administration"
+msgstr "Администрирование API"
+
+#: apps/core/apps.py:8
+msgid "API core"
+msgstr "Ядро API"
+
+#: apps/core/exceptions.py:9
+msgid "Cannot perform operation on specified entity."
+msgstr "Невозможно выполнить операцию над указанной сущностью"
+
+#: apps/departments/admin.py:14
+msgid "Department name or head first name, last name or patronymic"
+msgstr "Название кафедры или имя, фамилия или отчество преподавателя"
+
+#: apps/departments/admin.py:24
+msgid "Department type name"
+msgstr "Название типа кафедры"
+
+#: apps/departments/apps.py:8
+msgid "Departments"
+msgstr "Кафедры"
+
+#: apps/departments/models.py:14
+msgid "department type name"
+msgstr "название типа кафедры"
+
+#: apps/departments/models.py:20 apps/departments/models.py:36
+msgid "department type"
+msgstr "тип кафедры"
+
+#: apps/departments/models.py:21
+msgid "department types"
+msgstr "типы кафедр"
+
+#: apps/departments/models.py:31
+msgid "department name"
+msgstr "название кафедры"
+
+#: apps/departments/models.py:41
+msgid "department head profile"
+msgstr "профиль зав. кафедрой"
+
+#: apps/departments/models.py:46
+msgid "department faculty"
+msgstr "факультет кафедры"
+
+#: apps/departments/models.py:52
+msgid "department"
+msgstr "кафедра"
+
+#: apps/departments/models.py:53
+msgid "departments"
+msgstr "кафедры"
+
+#: apps/educator_rating/admin.py:30
+msgid "Educator first name, lastname or patronymic"
+msgstr "Имя, фамилия или отчество преподавателя"
+
+#: apps/educator_rating/apps.py:8
+msgid "Educator rating"
+msgstr "Рейтинг преподавателя"
+
+#: apps/educator_rating/models.py:24 apps/rating/models.py:106
+msgid "rating partition"
+msgstr "раздел рейтинга"
+
+#: apps/educator_rating/models.py:30
+msgid "educator rating partition"
+msgstr "раздел рейтинга преподавателей"
+
+#: apps/educator_rating/models.py:31
+msgid "educator rating partitions"
+msgstr "разделы рейтинга преподавателей"
+
+#: apps/educator_rating/models.py:43
+msgid "report UUID"
+msgstr "UUID анкеты"
+
+#: apps/educator_rating/models.py:50 apps/educators/models.py:45
+msgid "educator"
+msgstr "преподаватель"
+
+#: apps/educator_rating/models.py:54
+msgid "report year"
+msgstr "год анкеты"
+
+#: apps/educator_rating/models.py:56
+msgid "report approved status"
+msgstr "статус подтверждения анкеты"
+
+#: apps/educator_rating/models.py:61 apps/educator_rating/models.py:120
+msgid "educator report"
+msgstr "анкета преподавателя"
+
+#: apps/educator_rating/models.py:62
+msgid "educator reports"
+msgstr "анкеты преподавателей"
+
+#: apps/educator_rating/models.py:111 apps/rating/models.py:78
+msgid "indicator"
+msgstr "показатель"
+
+#: apps/educator_rating/models.py:116
+msgid "indicator value"
+msgstr "значение показателя"
+
+#: apps/educator_rating/models.py:126
+msgid "educator indicator value"
+msgstr "значение показателя преподавателя"
+
+#: apps/educator_rating/models.py:127
+msgid "educator indicator values"
+msgstr "значения показателей преподавателей"
+
+#: apps/educator_rating/models.py:139
+msgid "controller profile"
+msgstr "профиль проверяющего"
+
+#: apps/educator_rating/models.py:145
+msgid "responsible department"
+msgstr "ответственная кафедра"
+
+#: apps/educator_rating/models.py:152
+msgid "educator report controller"
+msgstr "проверяющий анкеты преподавателей"
+
+#: apps/educator_rating/models.py:153
+msgid "educator report controllers"
+msgstr "проверяющие анкеты преподавателей"
+
+#: apps/educator_rating/permissions.py:24
+msgid ""
+"You cannot operate values of reports which are not owned by you or values of "
+"privileged indicators."
+msgstr ""
+"Вы не можете оперировать значениями анкет, которые принадлежат не вам или "
+"значениями, которые являются привилегированными."
+
+#: apps/educator_rating/permissions.py:40
+msgid "You cannot operate values of reports which are not controlled by you."
+msgstr ""
+"Вы не можете оперировать значениями анкет, не явлющихся проверяемыми вами."
+
+#: apps/educator_rating/permissions.py:60
+msgid "You cannot edit values of already approved report."
+msgstr "Вы не можете изменять значения уже подтвержденных анкет."
+
+#: apps/educator_rating/permissions.py:75
+msgid "You cannot edit anything except value."
+msgstr "Вы не можете изменять что-либо кроме значение."
+
+#: apps/educator_rating/permissions.py:100
+#: apps/educator_rating/permissions.py:128
+msgid "You cannot operate reports which are not owned or controlled by you."
+msgstr ""
+"Вы можете оперировать только теми анкетами, владельцем или проверяющим "
+"которых вы являетесь."
+
+#: apps/educator_rating/permissions.py:107
+#: apps/educator_rating/permissions.py:142
+msgid "Specified educator is not found."
+msgstr "Указанный преподователь не найден."
+
+#: apps/educator_rating/permissions.py:170
+msgid "You cannot create approved reports."
+msgstr "Вы не можете создавать подтвержденные анкеты."
+
+#: apps/educator_rating/permissions.py:181
+msgid "You cannot delete already approved reports."
+msgstr "Вы не можете удалять уже подтвержденные анкеты."
+
+#: apps/educators/admin.py:26
+msgid "Qualification name"
+msgstr "Название квалификации"
+
+#: apps/educators/apps.py:8
+msgid "Educators"
+msgstr "Преподаватели"
+
+#: apps/educators/models.py:12
+msgid "qualification name"
+msgstr "название квалификации"
+
+#: apps/educators/models.py:18
+msgid "qualification"
+msgstr "квалификация"
+
+#: apps/educators/models.py:19
+msgid "qualifications"
+msgstr "квалификации"
+
+#: apps/educators/models.py:29
+msgid "educator profile"
+msgstr "профиль преподавателя"
+
+#: apps/educators/models.py:34
+msgid "educator qualification"
+msgstr "квалификация преподавателя"
+
+#: apps/educators/models.py:39
+msgid "educator department"
+msgstr "кафедра преподавателя"
+
+#: apps/educators/models.py:46
+msgid "educators"
+msgstr "преподаватели"
+
+#: apps/educators/permissions.py:11
+msgid "You are not an educator."
+msgstr "Вы не являетесь преподавателем."
+
+#: apps/faculties/admin.py:15
+msgid "Faculty name or head first name, last name or patronymic"
+msgstr "Название факультета или имя, фамилия или отчество декана"
+
+#: apps/faculties/apps.py:8
+msgid "Faculties"
+msgstr "Факультеты"
+
+#: apps/faculties/models.py:11
+msgid "faculty name"
+msgstr "название факультета"
+
+#: apps/faculties/models.py:16
+msgid "faculty head profile"
+msgstr "профиль декана"
+
+#: apps/faculties/models.py:22
+msgid "faculty"
+msgstr "факультет"
+
+#: apps/faculties/models.py:23
+msgid "faculties"
+msgstr "факультеты"
+
+#: apps/rating/admin.py:12
+msgid "Value type name"
+msgstr "Название типа значения"
+
+#: apps/rating/admin.py:19
+msgid "Rating partition name"
+msgstr "Название раздела рейтинга"
+
+#: apps/rating/admin.py:29 apps/rating/admin.py:40
+msgid "Indicator name"
+msgstr "Название индикатора"
+
+#: apps/rating/apps.py:8
+msgid "Rating"
+msgstr "Рейтинг"
+
+#: apps/rating/models.py:11
+msgid "boolean"
+msgstr "булевый"
+
+#: apps/rating/models.py:12
+msgid "integer"
+msgstr "целочисленный"
+
+#: apps/rating/models.py:13
+msgid "float"
+msgstr "дробный"
+
+#: apps/rating/models.py:14
+msgid "text"
+msgstr "текстовый"
+
+#: apps/rating/models.py:17
+msgid "type name"
+msgstr "название типа"
+
+#: apps/rating/models.py:23
+msgid "data type"
+msgstr "тип данных"
+
+#: apps/rating/models.py:29
+msgid "value type"
+msgstr "тип значения"
+
+#: apps/rating/models.py:30
+msgid "value types"
+msgstr "типы значений"
+
+#: apps/rating/models.py:58
+msgid "indicator name"
+msgstr "название показателя"
+
+#: apps/rating/models.py:63
+msgid "indicator annotation"
+msgstr "аннотация к показателю"
+
+#: apps/rating/models.py:68
+msgid "indicator value type"
+msgstr "тип значения показателя"
+
+#: apps/rating/models.py:73
+msgid "indicator privileged status"
+msgstr "привилегированный статус показателя"
+
+#: apps/rating/models.py:79
+msgid "indicators"
+msgstr "показатели"
+
+#: apps/rating/models.py:89
+msgid "rating partition name"
+msgstr "название раздела рейтинга"
+
+#: apps/rating/models.py:94
+msgid "rating partition abbreviation"
+msgstr "сокращение раздела рейтинга"
+
+#: apps/rating/models.py:107
+msgid "rating partitions"
+msgstr "разделы рейтинга"
+
+#: apps/rating/models.py:120
+msgid "criterion indicator"
+msgstr "показатель критерия"
+
+#: apps/rating/models.py:125
+msgid "criterion partition"
+msgstr "раздел критерия"
+
+#: apps/rating/models.py:130
+msgid "criterion number"
+msgstr "пункт критерия"
+
+#: apps/rating/models.py:133
+msgid "criterion subnumber"
+msgstr "подпункт критерия"
+
+#: apps/rating/models.py:137
+msgid "criterion weight"
+msgstr "вес критерия"
+
+#: apps/rating/models.py:140
+msgid "criterion"
+msgstr "критерий"
+
+#: apps/rating/models.py:141
+msgid "criterions"
+msgstr "критерии"
+
+#: apps/rating/validators.py:25
+msgid "Wrong JSON format."
+msgstr "Неверный формат JSON"
+
+#: apps/users/admin.py:21
+msgid "Username, first name, last name, patronymic or email"
+msgstr "Имя пользователя, имя, фамилия, отчество или email"
+
+#: apps/users/admin.py:27
+msgid "Personal info"
+msgstr "Персональные данные"
+
+#: apps/users/admin.py:35
+msgid "Permissions"
+msgstr "Права доступа"
+
+#: apps/users/admin.py:46
+msgid "Important dates"
+msgstr "Важные даты"
+
+#: apps/users/apps.py:8
+msgid "Users"
+msgstr "Пользователи"
+
+#: apps/users/models.py:11
+msgid "first name"
+msgstr "имя"
+
+#: apps/users/models.py:12
+msgid "last name"
+msgstr "фамилия"
+
+#: apps/users/models.py:13
+msgid "patronomyc"
+msgstr "отчество"
+
+#: university_rating_system/settings.py:192
+msgid "API Administation"
+msgstr "Администрирование API"
+
+#~ msgid "University Rating System API Administation"
+#~ msgstr "Администрирование API Рейтинговой Системы Университета"

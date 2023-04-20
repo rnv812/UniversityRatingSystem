@@ -58,7 +58,7 @@ nosetests.xml
 coverage.xml
 
 # Translations
-*.mo
+# *.mo uncomment this line if container has GNU gettext tools installed
 *.pot
 
 # Django stuff:

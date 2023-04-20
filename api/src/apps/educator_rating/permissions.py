@@ -21,7 +21,7 @@ from .models import (
 
 class IsValueOwnerUser(BasePermission):
     message = _(
-        "You cannot operate values of reports which are not owned by you"
+        "You cannot operate values of reports which are not owned by you "
         "or values of privileged indicators."
     )
 

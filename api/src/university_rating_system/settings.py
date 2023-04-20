@@ -189,7 +189,7 @@ JAZZMIN_SETTINGS = {
     'site_logo': 'core/logo/VSTU-128.png',
     'site_icon': 'core/logo/VSTU-32.png',
     'copyright': 'Volgograd State Technical University',
-    'welcome_sign': _('University Rating System API Administation'),
+    'welcome_sign': _('API Administation'),
     'order_with_respect_to': [
         'users',
         'educators',

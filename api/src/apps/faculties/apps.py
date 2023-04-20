@@ -5,4 +5,4 @@ from django.utils.translation import gettext_lazy as _
 class FacultiesConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'apps.faculties'
-    verbose_name = _('faculties')
+    verbose_name = _('Faculties')
