@@ -1,9 +1,7 @@
 from rest_framework.serializers import ModelSerializer
 
-from .models import (EducatorRatingPartition,
-                     EducatorIndicatorValue,
-                     EducatorReport,
-                     EducatorReportController)
+from .models import (EducatorIndicatorValue, EducatorRatingPartition,
+                     EducatorReport, EducatorReportController)
 
 
 class EducatorRatingPartitionSerializer(ModelSerializer):

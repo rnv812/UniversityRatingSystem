@@ -1,17 +1,15 @@
 from rest_framework import routers
 
-from apps.users.views import UserViewSet
-from apps.faculties.views import FacultyViewSet
-from apps.departments.views import DepartmentViewSet, DepartmentTypeViewSet
+from apps.departments.views import DepartmentTypeViewSet, DepartmentViewSet
+from apps.educator_rating.views import (EducatorIndicatorValueViewSet,
+                                        EducatorRatingPartitionViewSet,
+                                        EducatorReportControllerViewSet,
+                                        EducatorReportViewSet)
 from apps.educators.views import EducatorViewSet, QualificationViewSet
-from apps.rating.views import (ValueTypeViewSet,
-                              RatingPartitionViewSet,
-                              IndicatorViewSet,
-                              CriterionViewSet)
-from apps.educator_rating.views import (EducatorRatingPartitionViewSet,
-                                       EducatorIndicatorValueViewSet,
-                                       EducatorReportViewSet,
-                                       EducatorReportControllerViewSet)
+from apps.faculties.views import FacultyViewSet
+from apps.rating.views import (CriterionViewSet, IndicatorViewSet,
+                               RatingPartitionViewSet, ValueTypeViewSet)
+from apps.users.views import UserViewSet
 
 
 api_router = routers.DefaultRouter()

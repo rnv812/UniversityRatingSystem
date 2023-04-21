@@ -1,5 +1,5 @@
-from django.urls import path, include
 from django.conf import settings
+from django.urls import include, path
 
 if settings.DEBUG:
     from django.urls import re_path
@@ -10,7 +10,6 @@ if settings.DEBUG:
     from drf_yasg import openapi
 
 from .routers import api_router
-
 
 urlpatterns = [
     path('auth/', include('rest_framework.urls', namespace='rest_framework')),

@@ -4,11 +4,11 @@ from uuid import uuid4
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from apps.rating.models import Criterion, RatingPartition, Indicator
-from apps.rating.validators import validate_indicator_value
-from apps.educators.models import Educator
-from apps.users.models import CustomUser
 from apps.departments.models import Department
+from apps.educators.models import Educator
+from apps.rating.models import Criterion, Indicator, RatingPartition
+from apps.rating.validators import validate_indicator_value
+from apps.users.models import CustomUser
 
 from .fields import ValidRatingYearField
 

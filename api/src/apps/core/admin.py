@@ -1,8 +1,7 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
-
-from rest_framework.authtoken.models import TokenProxy
 from rest_framework.authtoken.admin import TokenAdmin
+from rest_framework.authtoken.models import TokenProxy
 
 TokenProxy._meta.verbose_name = _('token')
 TokenProxy._meta.verbose_name_plural = _('tokens')

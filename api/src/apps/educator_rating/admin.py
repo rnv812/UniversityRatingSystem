@@ -1,10 +1,8 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
-from .models import (EducatorRatingPartition,
-                     EducatorIndicatorValue,
-                     EducatorReport,
-                     EducatorReportController)
+from .models import (EducatorIndicatorValue, EducatorRatingPartition,
+                     EducatorReport, EducatorReportController)
 
 
 @admin.register(EducatorRatingPartition)

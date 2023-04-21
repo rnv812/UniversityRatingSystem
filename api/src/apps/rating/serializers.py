@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
-from .models import ValueType, RatingPartition, Indicator, Criterion
+from .models import Criterion, Indicator, RatingPartition, ValueType
 
 
 class ValueTypeSerializer(ModelSerializer):

@@ -1,47 +1,28 @@
 from rest_framework.decorators import action
-from rest_framework.mixins import (
-    CreateModelMixin,
-    DestroyModelMixin,
-    RetrieveModelMixin
-)
-from rest_framework.permissions import (
-    IsAdminUser,
-    IsAuthenticated,
-    SAFE_METHODS,
-)
+from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
+                                   RetrieveModelMixin)
+from rest_framework.permissions import (SAFE_METHODS, IsAdminUser,
+                                        IsAuthenticated)
 from rest_framework.request import Request
 from rest_framework.response import Response
-from rest_framework.viewsets import (
-    GenericViewSet,
-    ReadOnlyModelViewSet,
-)
+from rest_framework.viewsets import GenericViewSet, ReadOnlyModelViewSet
 
 from apps.educators.models import Educator
 from apps.educators.permissions import IsEducatorUser
 
 from .mixins import PartialUpdateModelMixin
-from .models import (
-    EducatorIndicatorValue,
-    EducatorRatingPartition,
-    EducatorReport,
-    EducatorReportController
-)
-from .permissions import (
-    IsOpenForUpdateValueOnPatch,
-    IsOpenToDestroyReportOnDelete,
-    IsOnlyValueUpdateOnPatch,
-    IsReportControllerUser,
-    IsReportOwnerUser,
-    IsUnapprovedReportOnPost,
-    IsValueControllerUser,
-    IsValueOwnerUser,
-)
-from .serializers import (
-    EducatorIndicatorValueSerializer,
-    EducatorRatingPartitionSerializer,
-    EducatorReportSerializer,
-    EducatorReportControllerSerializer
-)
+from .models import (EducatorIndicatorValue, EducatorRatingPartition,
+                     EducatorReport, EducatorReportController)
+from .permissions import (IsOnlyValueUpdateOnPatch,
+                          IsOpenForUpdateValueOnPatch,
+                          IsOpenToDestroyReportOnDelete,
+                          IsReportControllerUser, IsReportOwnerUser,
+                          IsUnapprovedReportOnPost, IsValueControllerUser,
+                          IsValueOwnerUser)
+from .serializers import (EducatorIndicatorValueSerializer,
+                          EducatorRatingPartitionSerializer,
+                          EducatorReportControllerSerializer,
+                          EducatorReportSerializer)
 
 
 class EducatorRatingPartitionViewSet(ReadOnlyModelViewSet):

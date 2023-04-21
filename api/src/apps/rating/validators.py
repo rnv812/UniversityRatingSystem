@@ -3,7 +3,6 @@ from django.utils.translation import gettext_lazy as _
 
 from .models import ValueType
 
-
 DataTypes = ValueType.DataTypes
 
 
