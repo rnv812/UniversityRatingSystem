@@ -40,7 +40,3 @@ else
     echo "Using development mode"
     python manage.py runserver 0.0.0.0:8000
 fi
-
-echo "Server has started"
-
-exec "$@"
