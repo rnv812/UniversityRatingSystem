@@ -3,7 +3,6 @@
 if [ $# = 2 ]; then
     containerId=$(docker ps -aqf "name=$1")
     if [ $containerId ]; then
-        echo $containerId
         docker exec -u $2 -it $containerId /bin/sh
     else
         echo "No running container with name $1"
