@@ -22,6 +22,19 @@ services:
       - pg_data:/var/lib/postgres/data/
     env_file:
       - ./env/dev/postgres.dev.env
+  client:
+    image: university-rating-system-client:latest
+    container_name: urs-client-dev
+    build:
+      context: ./client/
+      args:
+        - DEPLOY_ENV=dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client/src/:/app/src/
+    env_file:
+      - ./env/dev/client.dev.env
 
 volumes:
   pg_data:
