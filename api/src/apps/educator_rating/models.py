@@ -58,8 +58,8 @@ class EducatorReport(models.Model):
     )
 
     class Meta:
-        verbose_name = _('educator report')
-        verbose_name_plural = _('educator reports')
+        verbose_name = _('report')
+        verbose_name_plural = _('reports')
         unique_together = ('educator', 'year', )
 
     def __str__(self) -> str:
@@ -123,8 +123,8 @@ class EducatorIndicatorValue(models.Model):
     )
 
     class Meta:
-        verbose_name = _('educator indicator value')
-        verbose_name_plural = _('educator indicator values')
+        verbose_name = _('indicator value')
+        verbose_name_plural = _('indicator values')
         unique_together = ('indicator', 'report')
 
     def __str__(self) -> str:
@@ -149,8 +149,8 @@ class EducatorReportController(models.Model):
     )
 
     class Meta:
-        verbose_name = _('educator report controller')
-        verbose_name_plural = _('educator report controllers')
+        verbose_name = _('controller')
+        verbose_name_plural = _('controllers')
         unique_together = ('user', 'department', )
 
     def __str__(self) -> str:

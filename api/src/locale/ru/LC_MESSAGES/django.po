@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-21 02:53+0300\n"
+"POT-Creation-Date: 2023-04-21 03:11+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -128,29 +128,29 @@ msgstr "год анкеты"
 msgid "report approved status"
 msgstr "статус подтверждения анкеты"
 
-#: apps/educator_rating/models.py:61 apps/educator_rating/models.py:120
-msgid "educator report"
-msgstr "анкета преподавателя"
+#: apps/educator_rating/models.py:61
+msgid "report"
+msgstr "анкета"
 
 #: apps/educator_rating/models.py:62
-msgid "educator reports"
-msgstr "анкеты преподавателей"
+msgid "reports"
+msgstr "анкеты"
 
 #: apps/educator_rating/models.py:111 apps/rating/models.py:78
 msgid "indicator"
 msgstr "показатель"
 
-#: apps/educator_rating/models.py:116
+#: apps/educator_rating/models.py:116 apps/educator_rating/models.py:126
 msgid "indicator value"
 msgstr "значение показателя"
 
-#: apps/educator_rating/models.py:126
-msgid "educator indicator value"
-msgstr "значение показателя преподавателя"
+#: apps/educator_rating/models.py:120
+msgid "educator report"
+msgstr "анкета преподавателя"
 
 #: apps/educator_rating/models.py:127
-msgid "educator indicator values"
-msgstr "значения показателей преподавателей"
+msgid "indicator values"
+msgstr "значения показателей"
 
 #: apps/educator_rating/models.py:139
 msgid "controller profile"
@@ -161,12 +161,12 @@ msgid "responsible department"
 msgstr "ответственная кафедра"
 
 #: apps/educator_rating/models.py:152
-msgid "educator report controller"
-msgstr "проверяющий анкеты преподавателей"
+msgid "controller"
+msgstr "проверяющий"
 
 #: apps/educator_rating/models.py:153
-msgid "educator report controllers"
-msgstr "проверяющие анкеты преподавателей"
+msgid "controllers"
+msgstr "проверяющие"
 
 #: apps/educator_rating/permissions.py:24
 msgid ""
@@ -424,6 +424,21 @@ msgstr "отчество"
 #: university_rating_system/settings.py:192
 msgid "API Administation"
 msgstr "Администрирование API"
+
+#~ msgid "educator reports"
+#~ msgstr "анкеты преподавателей"
+
+#~ msgid "educator indicator value"
+#~ msgstr "значение показателя преподавателя"
+
+#~ msgid "educator indicator values"
+#~ msgstr "значения показателей преподавателей"
+
+#~ msgid "educator report controller"
+#~ msgstr "проверяющий анкеты преподавателей"
+
+#~ msgid "educator report controllers"
+#~ msgstr "проверяющие анкеты преподавателей"
 
 #~ msgid "University Rating System API Administation"
 #~ msgstr "Администрирование API Рейтинговой Системы Университета"
