@@ -186,7 +186,7 @@ SWAGGER_SETTINGS = {
 # Jazzmin (Admin site)
 
 JAZZMIN_SETTINGS = {
-    'site_logo': 'core/logo/VSTU-128.png',
+    'site_logo': 'core/logo/VSTU-128-for-circle.png',
     'site_icon': 'core/logo/VSTU-32.png',
     'copyright': 'Volgograd State Technical University',
     'welcome_sign': _('API Administation'),
