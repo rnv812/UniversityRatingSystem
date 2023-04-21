@@ -32,6 +32,7 @@ services:
       - "3000:3000"
     volumes:
       - ./client/src/:/app/src/
+      - ./client/public/:/app/public/
     env_file:
       - ./env/dev/client.dev.env
 
