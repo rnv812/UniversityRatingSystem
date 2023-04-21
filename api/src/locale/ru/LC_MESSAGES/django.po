@@ -424,21 +424,3 @@ msgstr "отчество"
 #: university_rating_system/settings.py:192
 msgid "API Administation"
 msgstr "Администрирование API"
-
-#~ msgid "educator reports"
-#~ msgstr "анкеты преподавателей"
-
-#~ msgid "educator indicator value"
-#~ msgstr "значение показателя преподавателя"
-
-#~ msgid "educator indicator values"
-#~ msgstr "значения показателей преподавателей"
-
-#~ msgid "educator report controller"
-#~ msgstr "проверяющий анкеты преподавателей"
-
-#~ msgid "educator report controllers"
-#~ msgstr "проверяющие анкеты преподавателей"
-
-#~ msgid "University Rating System API Administation"
-#~ msgstr "Администрирование API Рейтинговой Системы Университета"
