@@ -22,6 +22,12 @@ echo "You can use load-fixture.sh script to prepopulate database with some value
 echo "Creating superuser..."
 python manage.py createsuperuser --email $DJANGO_SUPERUSER_EMAIL --no-input
 
+if [ $? = 0 ]; then
+  echo "Superuser '$DJANGO_SUPERUSER_USERNAME' created successfully"
+else
+  echo "Superuser '$DJANGO_SUPERUSER_USERNAME' already exists"
+fi
+
 echo "Running server on port $DJANGO_SERVER_PORT ..."
 
 if [ $DEBUG = 0 ]; then
