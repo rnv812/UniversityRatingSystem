@@ -28,7 +28,7 @@ else
   echo "Superuser '$DJANGO_SUPERUSER_USERNAME' already exists"
 fi
 
-echo "Running server on port $DJANGO_SERVER_PORT ..."
+echo "Running server ..."
 
 if [ $DEBUG = 0 ]; then
   echo "Using production mode"
@@ -38,7 +38,7 @@ if [ $DEBUG = 0 ]; then
   exit 0
 else
   echo "Using development mode"
-  python manage.py runserver 0.0.0.0:$DJANGO_SERVER_PORT
+  python manage.py runserver 0.0.0.0:8000
 fi
 
 echo "Server has started"
