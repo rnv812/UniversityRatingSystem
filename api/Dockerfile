@@ -1,9 +1,9 @@
 FROM python:3.11-alpine as base
 
-ARG DEPLOY_ENV \
-    APP_USER_UID
+ARG DEPLOY_ENV
 
-ENV PYTHONUNBUFFERED=1 \
+ENV DEPLOY_ENV=${DEPLOY_ENV} \
+    PYTHONUNBUFFERED=1 \
     PYTHONFAULTHANDLER=1 \
     PYTHONHASHSEED=random \
     PIP_NO_CACHE_DIR=off \
@@ -45,7 +45,7 @@ RUN chmod +x ./entrypoint.sh && \
     chmod +x ./load-fixture.sh
 
 RUN addgroup -S app && \
-    adduser -S app -G app -h /app -u $APP_USER_UID -DH
+    adduser -S app -G app -h /app -DH
 
 USER app
 

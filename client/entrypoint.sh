@@ -2,7 +2,7 @@
 
 echo "Starting client ..."
 
-if [ $DEBUG = 0 ]; then
+if [ $DEPLOY_ENV = "prod" ]; then
     echo "Using production mode"
     echo "Creating production build ..."
     npm run build

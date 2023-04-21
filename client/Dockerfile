@@ -2,7 +2,7 @@ FROM node:18-alpine as base
 
 ARG DEPLOY_ENV
 
-ENV DEBUG=${DEPLOY_ENV}
+ENV DEPLOY_ENV=${DEPLOY_ENV}
 
 
 FROM base as builder
