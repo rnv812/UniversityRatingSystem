@@ -1,10 +1,11 @@
 import * as React from 'react';
-import {Card, CardContent, CardActions, Button, Typography} from '@mui/material';
+import {Card, CardContent, CardActions, CardActionArea, Button, Typography} from '@mui/material';
 import styles from '../styles/ReportCard.module.css';
 
 export default function ReportCard() {
     return (
         <Card className={styles.reportCard}>
+            <CardActionArea>
             <CardContent>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                     Анкета №_
@@ -19,8 +20,11 @@ export default function ReportCard() {
                     Статус
                 </Typography>
             </CardContent>
+            </CardActionArea>
             <CardActions>
-                <Button size="small">Открыть анкету</Button>
+                <Button size="small">Открыть</Button>
+                <Button size="small">Редактировать</Button>
+                <Button size="small" color="error">Удалить</Button>
             </CardActions>
         </Card>
     );
