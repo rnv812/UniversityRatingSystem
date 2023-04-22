@@ -30,7 +30,7 @@ fi
 
 echo "Running server ..."
 
-if [ $DEPLOY_ENV = "prod" ]; then
+if [ "$DEPLOY_ENV" = "prod" ]; then
     echo "Using production mode"
     echo "Performing security checks..."
     python manage.py check --deploy
