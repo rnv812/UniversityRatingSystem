@@ -1,0 +1,36 @@
+.formContainer {
+    margin-top: 200px;
+    display: flex;
+    justify-content: center;
+}
+
+.formBox {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.formTitle{
+    text-align: center;
+    margin: 20px;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    min-width: 400px;
+    margin: 20px;
+}
+
+.formField {
+    margin: 10px 0;
+}
+
+.submitBtn {
+    margin-top: 30px;
+}

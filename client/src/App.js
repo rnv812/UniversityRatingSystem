@@ -1,15 +1,17 @@
-import React from 'react';
-import ReportListNavbar from './components/ReportListNavbar';
-import ReportListContainer from './components/ReportListContainer';
+import * as React from 'react';
+import {Routes, Route} from'react-router-dom';
+import LoginPage from './pages/LoginPage';
+import ReportsPage from './pages/ReportsPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 
-function App() {
+export default function App() {
     return (
-        <div>
-            <ReportListNavbar/>
-            <ReportListContainer/>
-        </div>
+        <Routes>
+            <Route path="/login" element={<LoginPage />} />
+
+            <Route path="/reports" element={<ReportsPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+        </Routes>  
     );
 }
-
-export default App;
