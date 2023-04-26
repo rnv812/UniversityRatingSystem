@@ -4,12 +4,12 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.viewsets import ReadOnlyModelViewSet
 
-from .models import CustomUser
+from .models import UserProfile
 from .serializers import UserSerializer
 
 
 class UserViewSet(ReadOnlyModelViewSet):
-    queryset = CustomUser.objects.all().order_by('pk')
+    queryset = UserProfile.objects.all().order_by('pk')
     serializer_class = UserSerializer
 
     @action(

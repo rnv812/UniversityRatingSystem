@@ -9,10 +9,10 @@ class EducatorAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'user', 'qualification', 'department', )
     search_fields = (
         'department__name', 'user__first_name', 'user__last_name',
-        'user__patronymic', 'user__username',
+        'user__patronymic', 'user__email',
     )
     search_help_text = _(
-        ('Department name or educator username, '
+        ('Department name or educator email, '
          'first name, last name or patronymic')
     )
     list_filter = ('qualification__name', )

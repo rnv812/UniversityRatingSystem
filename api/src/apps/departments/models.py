@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from apps.faculties.models import Faculty
-from apps.users.models import CustomUser
+from apps.users.models import UserProfile
 
 
 class DepartmentType(models.Model):
@@ -39,7 +39,7 @@ class Department(models.Model):
     )
     head = models.OneToOneField(
         verbose_name=_('department head profile'),
-        to=CustomUser,
+        to=UserProfile,
         on_delete=models.PROTECT
     )
     faculty = models.ForeignKey(

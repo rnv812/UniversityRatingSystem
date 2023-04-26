@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from apps.users.models import CustomUser
+from apps.users.models import UserProfile
 
 
 class Faculty(models.Model):
@@ -14,7 +14,7 @@ class Faculty(models.Model):
     )
     head = models.ForeignKey(
         verbose_name=_('faculty head profile'),
-        to=CustomUser,
+        to=UserProfile,
         on_delete=models.PROTECT
     )
 

@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from apps.departments.models import Department
-from apps.users.models import CustomUser
+from apps.users.models import UserProfile
 
 
 class Qualification(models.Model):
@@ -27,7 +27,7 @@ class Educator(models.Model):
 
     user = models.OneToOneField(
         verbose_name=_('educator profile'),
-        to=CustomUser,
+        to=UserProfile,
         on_delete=models.PROTECT
     )
     qualification = models.ForeignKey(

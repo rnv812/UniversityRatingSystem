@@ -8,7 +8,7 @@ from apps.departments.models import Department
 from apps.educators.models import Educator
 from apps.rating.models import Criterion, Indicator, RatingPartition
 from apps.rating.validators import validate_indicator_value
-from apps.users.models import CustomUser
+from apps.users.models import UserProfile
 
 from .fields import ValidRatingYearField
 
@@ -137,7 +137,7 @@ class EducatorReportController(models.Model):
 
     user = models.ForeignKey(
         verbose_name=_('controller profile'),
-        to=CustomUser,
+        to=UserProfile,
         on_delete=models.CASCADE
     )
 

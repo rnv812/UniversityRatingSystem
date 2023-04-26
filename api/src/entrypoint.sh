@@ -23,9 +23,9 @@ echo "Creating superuser..."
 python manage.py createsuperuser --email $DJANGO_SUPERUSER_EMAIL --no-input
 
 if [ $? = 0 ]; then
-    echo "Superuser '$DJANGO_SUPERUSER_USERNAME' created successfully"
+    echo "Superuser '$DJANGO_SUPERUSER_EMAIL' created successfully"
 else
-    echo "Superuser '$DJANGO_SUPERUSER_USERNAME' already exists"
+    echo "Superuser '$DJANGO_SUPERUSER_EMAIL' already exists"
 fi
 
 echo "Running server ..."

@@ -34,11 +34,11 @@ class EducatorReportAdmin(admin.ModelAdmin):
 class EducatorReportControllerAdmin(admin.ModelAdmin):
     list_display = ('user', 'department', )
     search_fields = (
-        'user__username', 'user__first_name', 'user__last_name',
+        'user__email', 'user__first_name', 'user__last_name',
         'user__patronymic', 'department__name',
     )
     search_help_text = _(
-        ('Department name or controller username, '
+        ('Department name or controller email, '
          'first name, last name or patronymic')
     )
     autocomplete_fields = ('user', 'department', )

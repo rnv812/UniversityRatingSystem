@@ -1,19 +1,19 @@
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 
-from .models import CustomUser
+from .models import UserProfile
 
 
-class CustomUserCreationForm(UserCreationForm):
-    """Form for creation CustomUser model instance."""
-
-    class Meta:
-        model = CustomUser
-        fields = ('patronymic', )
-
-
-class CustomUserChangeForm(UserChangeForm):
-    """Form for changing CustomUser model instance."""
+class UserProfileCreationForm(UserCreationForm):
+    """Form for creation UserProfile model instance."""
 
     class Meta:
-        models = CustomUser
-        fields = ('patronymic', )
+        model = UserProfile
+        fields = ('email', )
+
+
+class UserProfileChangeForm(UserChangeForm):
+    """Form for changing UserProfile model instance."""
+
+    class Meta:
+        model = UserProfile
+        fields = ('email', )

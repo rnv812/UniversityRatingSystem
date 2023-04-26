@@ -3,8 +3,8 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.apps import AuthConfig
 from django.utils.translation import gettext_lazy as _
 
-from .forms import CustomUserChangeForm, CustomUserCreationForm
-from .models import AllowedEmail, CustomUser
+from .forms import UserProfileChangeForm, UserProfileCreationForm
+from .models import AllowedEmail, UserProfile
 
 
 # change name cause User model is not in this app anymore. So only "Groups".
@@ -18,29 +18,30 @@ class AllowedEmailAdmin(admin.ModelAdmin):
     search_help_text = _('Email address')
 
 
-@admin.register(CustomUser)
-class CustomUserAdmin(UserAdmin):
-    add_form = CustomUserCreationForm
-    form = CustomUserChangeForm
-    model = CustomUser
+@admin.register(UserProfile)
+class UserProfileAdmin(UserAdmin):
+    form = UserProfileChangeForm
+    add_form = UserProfileCreationForm
+
+    ordering = ('email',)
 
     list_display = (
-        'username', 'email', 'last_name', 'first_name', 'patronymic',
+        'email', 'last_name', 'first_name', 'patronymic',
     )
     search_fields = (
-        'username', 'email', 'last_name', 'first_name', 'patronymic',
+        'email', 'last_name', 'first_name', 'patronymic',
     )
     search_help_text = _(
-        'Username, first name, last name, patronymic or email'
+        'Email, first name, last name or patronymic'
     )
 
     fieldsets = (
-        (None, {'fields': ('username', 'password')}),
+        (None, {'fields': ('email', 'password')}),
         (
             _('Personal info'),
             {
                 'fields': (
-                    'last_name', 'first_name', 'patronymic', 'email',
+                    'last_name', 'first_name', 'patronymic',
                 )
             }
         ),
@@ -65,8 +66,8 @@ class CustomUserAdmin(UserAdmin):
             {
                 'classes': ('wide',),
                 'fields': (
-                    'username', 'email', 'last_name', 'first_name',
-                    'patronymic', 'password1', 'password2',
+                    'email', 'last_name', 'first_name', 'patronymic',
+                    'password1', 'password2',
                 ),
             },
         ),

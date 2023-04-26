@@ -34,7 +34,7 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(' ')
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',
+    #'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'djoser',
     'drf_yasg',
     'apps.core.apps.CoreConfig',
     'apps.users.apps.UsersConfig',
@@ -149,7 +150,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Custom models
 
-AUTH_USER_MODEL = 'users.CustomUser'
+AUTH_USER_MODEL = 'users.UserProfile'
 
 # Rest framework
 
@@ -210,7 +211,7 @@ JAZZMIN_SETTINGS = {
         'rating.Indicator': 'fas fa-list',
         'rating.RatingPartition': 'fas fa-star',
         'rating.ValueType': 'fas fa-percent',
-        'users.CustomUser': 'fas fa-user',
+        'users.UserProfile': 'fas fa-user',
         'users.AllowedEmail': 'fas fa-at',
         'auth.Group': 'fas fa-users',
         'authtoken.TokenProxy': 'fas fa-key',
