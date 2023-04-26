@@ -1,4 +1,4 @@
 # VScode
 .vscode/
 
-.env/dev/
+env/dev/
