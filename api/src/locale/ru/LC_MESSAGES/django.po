@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-21 03:11+0300\n"
+"POT-Creation-Date: 2023-04-26 18:10+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,23 +20,23 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: apps/core/admin.py:7
+#: apps/core/admin.py:6
 msgid "token"
 msgstr "токен"
 
-#: apps/core/admin.py:8
+#: apps/core/admin.py:7
 msgid "tokens"
 msgstr "токены"
 
-#: apps/core/admin.py:17
+#: apps/core/admin.py:16
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: apps/core/admin.py:20
+#: apps/core/admin.py:19
 msgid "VSTU"
 msgstr "ВолгГТУ"
 
-#: apps/core/admin.py:21 apps/core/admin.py:22
+#: apps/core/admin.py:20 apps/core/admin.py:21
 msgid "API Administration"
 msgstr "Администрирование API"
 
@@ -44,7 +44,7 @@ msgstr "Администрирование API"
 msgid "API core"
 msgstr "Ядро API"
 
-#: apps/core/exceptions.py:9
+#: apps/core/exceptions.py:8
 msgid "Cannot perform operation on specified entity."
 msgstr "Невозможно выполнить операцию над указанной сущностью"
 
@@ -92,7 +92,7 @@ msgstr "кафедра"
 msgid "departments"
 msgstr "кафедры"
 
-#: apps/educator_rating/admin.py:30
+#: apps/educator_rating/admin.py:28
 msgid "Educator first name, lastname or patronymic"
 msgstr "Имя, фамилия или отчество преподавателя"
 
@@ -168,7 +168,7 @@ msgstr "проверяющий"
 msgid "controllers"
 msgstr "проверяющие"
 
-#: apps/educator_rating/permissions.py:24
+#: apps/educator_rating/permissions.py:18
 msgid ""
 "You cannot operate values of reports which are not owned by you or values of "
 "privileged indicators."
@@ -176,36 +176,36 @@ msgstr ""
 "Вы не можете оперировать значениями анкет, которые принадлежат не вам или "
 "значениями, которые являются привилегированными."
 
-#: apps/educator_rating/permissions.py:40
+#: apps/educator_rating/permissions.py:34
 msgid "You cannot operate values of reports which are not controlled by you."
 msgstr ""
 "Вы не можете оперировать значениями анкет, не явлющихся проверяемыми вами."
 
-#: apps/educator_rating/permissions.py:60
+#: apps/educator_rating/permissions.py:54
 msgid "You cannot edit values of already approved report."
 msgstr "Вы не можете изменять значения уже подтвержденных анкет."
 
-#: apps/educator_rating/permissions.py:75
+#: apps/educator_rating/permissions.py:69
 msgid "You cannot edit anything except value."
 msgstr "Вы не можете изменять что-либо кроме значение."
 
-#: apps/educator_rating/permissions.py:100
-#: apps/educator_rating/permissions.py:128
+#: apps/educator_rating/permissions.py:94
+#: apps/educator_rating/permissions.py:122
 msgid "You cannot operate reports which are not owned or controlled by you."
 msgstr ""
 "Вы можете оперировать только теми анкетами, владельцем или проверяющим "
 "которых вы являетесь."
 
-#: apps/educator_rating/permissions.py:107
-#: apps/educator_rating/permissions.py:142
+#: apps/educator_rating/permissions.py:101
+#: apps/educator_rating/permissions.py:136
 msgid "Specified educator is not found."
 msgstr "Указанный преподователь не найден."
 
-#: apps/educator_rating/permissions.py:170
+#: apps/educator_rating/permissions.py:164
 msgid "You cannot create approved reports."
 msgstr "Вы не можете создавать подтвержденные анкеты."
 
-#: apps/educator_rating/permissions.py:181
+#: apps/educator_rating/permissions.py:175
 msgid "You cannot delete already approved reports."
 msgstr "Вы не можете удалять уже подтвержденные анкеты."
 
@@ -245,7 +245,7 @@ msgstr "кафедра преподавателя"
 msgid "educators"
 msgstr "преподаватели"
 
-#: apps/educators/permissions.py:11
+#: apps/educators/permissions.py:10
 msgid "You are not an educator."
 msgstr "Вы не являетесь преподавателем."
 
@@ -381,27 +381,31 @@ msgstr "критерий"
 msgid "criterions"
 msgstr "критерии"
 
-#: apps/rating/validators.py:25
+#: apps/rating/validators.py:24
 msgid "Wrong JSON format."
 msgstr "Неверный формат JSON"
 
-#: apps/users/admin.py:10
+#: apps/users/admin.py:11
 msgid "Groups"
 msgstr "Группы"
 
-#: apps/users/admin.py:25
+#: apps/users/admin.py:18
+msgid "Email address"
+msgstr "Email"
+
+#: apps/users/admin.py:34
 msgid "Username, first name, last name, patronymic or email"
 msgstr "Имя пользователя, имя, фамилия, отчество или email"
 
-#: apps/users/admin.py:31
+#: apps/users/admin.py:40
 msgid "Personal info"
 msgstr "Персональные данные"
 
-#: apps/users/admin.py:39
+#: apps/users/admin.py:48
 msgid "Permissions"
 msgstr "Права доступа"
 
-#: apps/users/admin.py:50
+#: apps/users/admin.py:59
 msgid "Important dates"
 msgstr "Важные даты"
 
@@ -409,18 +413,34 @@ msgstr "Важные даты"
 msgid "Users"
 msgstr "Пользователи"
 
-#: apps/users/models.py:11
+#: apps/users/models.py:10 apps/users/models.py:28
+msgid "email address"
+msgstr "email"
+
+#: apps/users/models.py:13
+msgid "allowed email"
+msgstr "разрешенный email"
+
+#: apps/users/models.py:14
+msgid "allowed emails"
+msgstr "разрешенные email"
+
+#: apps/users/models.py:25
 msgid "first name"
 msgstr "имя"
 
-#: apps/users/models.py:12
+#: apps/users/models.py:26
 msgid "last name"
 msgstr "фамилия"
 
-#: apps/users/models.py:13
+#: apps/users/models.py:27
 msgid "patronomyc"
 msgstr "отчество"
 
-#: university_rating_system/settings.py:192
+#: apps/users/models.py:42
+msgid "Email is not in allowed list"
+msgstr "Email не найден в списке разрешенных"
+
+#: university_rating_system/settings.py:190
 msgid "API Administation"
 msgstr "Администрирование API"
