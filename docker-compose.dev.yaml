@@ -11,7 +11,7 @@ services:
     volumes:
       - ./api/src/:/app/src/
     env_file:
-      - ./env/dev/api.dev.env
+      - ./.env/dev/api.dev.env
     depends_on:
       - db
   db:
@@ -20,7 +20,7 @@ services:
     volumes:
       - pg_data:/var/lib/postgres/data/
     env_file:
-      - ./env/dev/postgres.dev.env
+      - ./.env/dev/postgres.dev.env
   client:
     image: university-rating-system-client:latest
     container_name: urs-client-dev
@@ -34,7 +34,7 @@ services:
       - ./client/src/:/app/src/
       - ./client/public/:/app/public/
     env_file:
-      - ./env/dev/client.dev.env
+      - ./.env/dev/client.dev.env
 
 volumes:
   pg_data:
