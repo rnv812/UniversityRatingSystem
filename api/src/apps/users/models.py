@@ -34,6 +34,7 @@ class CustomUser(AbstractUser):
         return f'{self.last_name} {self.first_name} {self.patronymic}'
 
     def clean(self) -> None:
+        """Check if email address of an instance is added to allowed list."""
         try:
             AllowedEmail.objects.get(email=self.email)
         except AllowedEmail.DoesNotExist:
