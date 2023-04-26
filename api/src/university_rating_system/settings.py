@@ -211,6 +211,7 @@ JAZZMIN_SETTINGS = {
         'rating.RatingPartition': 'fas fa-star',
         'rating.ValueType': 'fas fa-percent',
         'users.CustomUser': 'fas fa-user',
+        'users.AllowedEmail': 'fas fa-envelope',
         'auth.Group': 'fas fa-users',
         'authtoken.TokenProxy': 'fas fa-key',
     },
