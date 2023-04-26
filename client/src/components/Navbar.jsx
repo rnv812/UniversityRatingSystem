@@ -11,7 +11,7 @@ export default function Navbar({actions}) {
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     Фамилия Имя Отчество
                 </Typography>
-                {actions.map(action => <Button color="inherit" onClick={action.func}>{action.name}</Button>)}
+                {actions.map(action => <Button color="inherit" key={action.name} onClick={action.func}>{action.name}</Button>)}
             </Toolbar>
         </AppBar>
   );

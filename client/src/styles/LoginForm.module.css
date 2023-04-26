@@ -1,36 +1,32 @@
-.formContainer {
-    margin-top: 200px;
+.form-box-container {
     display: flex;
     justify-content: center;
+    margin-top: 200px;
 }
 
-.formBox {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+.form-box {
     border: 1px;
     border-style: solid;
     border-radius: 5px;
-    padding: 5px;
+    border-color: rgb(212, 212, 212);
+    padding: 20px;
 }
 
-.formTitle{
+.form-title {
     text-align: center;
-    margin: 20px;
+    padding-bottom: 20px;
 }
 
-.form {
+.form-field {
     display: flex;
     justify-content: center;
-    flex-direction: column;
-    min-width: 400px;
-    margin: 20px;
+    flex: 1;
+    margin-bottom: 10px;
 }
 
-.formField {
-    margin: 10px 0;
-}
-
-.submitBtn {
-    margin-top: 30px;
+.submit-btn {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    margin-top: 20px;
 }
