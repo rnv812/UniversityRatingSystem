@@ -1,8 +1,7 @@
 from django.contrib.auth.models import AbstractUser
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-
-from .exceptions import NotAllowedEmailValidationError
 
 
 class AllowedEmail(models.Model):
@@ -12,7 +11,7 @@ class AllowedEmail(models.Model):
 
     class Meta:
         verbose_name = _('allowed email')
-        verbose_name = _('allowed emails')
+        verbose_name_plural = _('allowed emails')
 
     def __str__(self) -> str:
         return f'{self.email}'
@@ -26,7 +25,7 @@ class CustomUser(AbstractUser):
     first_name = models.CharField(verbose_name=_('first name'), max_length=150)
     last_name = models.CharField(verbose_name=_('last name'), max_length=150)
     patronymic = models.CharField(verbose_name=_('patronomyc'), max_length=150)
-    email = models.EmailField(verbose_name=_('email address'))
+    email = models.EmailField(verbose_name=_('email address'), unique=True)
 
     def get_full_name(self) -> str:
         """Return the last_name plus the first_name plus the patronymic,
@@ -38,10 +37,6 @@ class CustomUser(AbstractUser):
         try:
             AllowedEmail.objects.get(email=self.email)
         except AllowedEmail.DoesNotExist:
-            raise NotAllowedEmailValidationError(
+            raise ValidationError(
                 message=_('Email is not in allowed list')
             )
-
-    def save(self, *args, **kwargs):
-        self.clean()
-        super().save()
