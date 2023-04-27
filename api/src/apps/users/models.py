@@ -17,6 +17,15 @@ class AllowedEmail(models.Model):
     def __str__(self) -> str:
         return f'{self.email}'
 
+    @staticmethod
+    def validate_email(email):
+        try:
+            AllowedEmail.objects.get(email=email)
+        except AllowedEmail.DoesNotExist:
+            raise ValidationError(
+                message=_('Email is not in allowed list')
+            )
+
 
 class UserProfileManager(BaseUserManager):
     def _create_user(self, email, password, **extra_fields):
@@ -53,7 +62,11 @@ class UserProfile(AbstractUser):
     """
     username = None
 
-    email = models.EmailField(verbose_name=_('email address'), unique=True)
+    email = models.EmailField(
+        verbose_name=_('email address'),
+        unique=True,
+        validators=[AllowedEmail.validate_email]
+    )
     first_name = models.CharField(verbose_name=_('first name'), max_length=150)
     last_name = models.CharField(verbose_name=_('last name'), max_length=150)
     patronymic = models.CharField(
@@ -69,16 +82,6 @@ class UserProfile(AbstractUser):
 
     def __str__(self) -> str:
         return f'{self.email}'
-
-    def clean(self) -> None:
-        super().clean()
-
-        try:
-            AllowedEmail.objects.get(email=self.email)
-        except AllowedEmail.DoesNotExist:
-            raise ValidationError(
-                message=_('Email is not in allowed list')
-            )
 
     def get_full_name(self) -> str:
         """Return the last_name plus the first_name plus the patronymic,
