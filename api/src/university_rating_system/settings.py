@@ -159,9 +159,10 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
     )
 }
 
@@ -226,7 +227,7 @@ JAZZMIN_UI_TWEAKS = {
     'theme': 'default',
 }
 
-# Djoser
+# Mailing
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
@@ -239,3 +240,27 @@ EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 EMAIL_USE_TLS = bool(os.getenv('EMAIL_USE_TLS'))
+
+# SimpleJWT
+
+SIMPLE_JWT = {
+   'AUTH_HEADER_TYPES': ('JWT', ),
+}
+
+# Djoser
+
+DJOSER = {
+    'LOGIN_FIELD': 'email',
+    'SET_PASSWORD_RETYPE': True,
+    'PASSWORD_RESET_CONFIRM_RETYPE': True,
+    'USER_CREATE_PASSWORD_RETYPE': True,
+    'SEND_CONFIRMATION_EMAIL': True,
+    'SEND_ACTIVATION_EMAIL': True,
+    'PASSWORD_CHANGED_EMAIL_CONFIRMATION': True,
+    'ACTIVATION_URL': 'activate/{uid}/{token}',
+    'PASSWORD_RESET_CONFIRM_URL': 'password-reset/confirm/{uid}/{token}',
+    'SERIALIZERS': {
+        'user': 'apps.users.serializers.UserProfileSerializer',
+        'current_user': 'apps.users.serializers.UserProfileSerializer',
+    }
+}
