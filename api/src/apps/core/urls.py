@@ -13,6 +13,8 @@ from .routers import api_router
 
 urlpatterns = [
     path('auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('', include('djoser.urls')),
+    path('', include('djoser.urls.jwt')),
     path('', include((api_router.urls, 'api'), namespace='api')),
 ]
 

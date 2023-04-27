@@ -1,5 +1,4 @@
 import os
-from uuid import uuid4
 
 from django.conf import settings
 from django.contrib import admin
@@ -14,7 +13,7 @@ if settings.DEBUG:
 else:
     urlpatterns.append(
         path(
-            f'{os.getenv("ADMIN_SITE_URL", str(uuid4()))}/',
+            f'{os.getenv("ADMIN_SITE_URL")}/',
             admin.site.urls
         )
     )

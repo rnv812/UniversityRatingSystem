@@ -9,17 +9,9 @@ from apps.educators.views import EducatorViewSet, QualificationViewSet
 from apps.faculties.views import FacultyViewSet
 from apps.rating.views import (CriterionViewSet, IndicatorViewSet,
                                RatingPartitionViewSet, ValueTypeViewSet)
-from apps.users.views import UserViewSet
 
 
 api_router = routers.DefaultRouter()
-
-# users app
-api_router.register(
-    prefix='users',
-    viewset=UserViewSet,
-    basename='user'
-)
 
 # faculties app
 api_router.register(
