@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
-from .models import UserProfile
+from .models import AllowedEmail, UserProfile
 
 
 class UserProfileSerializer(ModelSerializer):
@@ -12,3 +12,9 @@ class UserProfileSerializer(ModelSerializer):
             'is_active', 'is_staff', 'is_superuser',
             'date_joined', 'last_login',
         )
+
+
+class AllowedEmailSerializer(ModelSerializer):
+    class Meta:
+        model = AllowedEmail
+        fields = ('id', 'email',)
