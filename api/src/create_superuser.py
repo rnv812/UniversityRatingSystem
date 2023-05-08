@@ -9,10 +9,15 @@ from apps.users.models import AllowedEmail, UserProfile
 
 email = os.environ.get('DJANGO_SUPERUSER_EMAIL')
 password = os.environ.get('DJANGO_SUPERUSER_PASSWORD')
-AllowedEmail.objects.create(email=email)
-UserProfile.objects.create_superuser(
-    email=email,
-    password=password,
-    is_superuser=True,
-    is_staff=True,
-)
+
+try:
+    AllowedEmail.objects.get(email=email)
+    exit(1)
+except AllowedEmail.DoesNotExist:
+    AllowedEmail.objects.create(email=email)
+    UserProfile.objects.create_superuser(
+        email=email,
+        password=password,
+        is_superuser=True,
+        is_staff=True,
+    )
