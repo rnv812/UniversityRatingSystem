@@ -8,7 +8,7 @@ if [ $# = 2 ]; then
         echo "No running container with name $1"
     fi
 else
-    echo "Use following format: service-shell.sh <container> <user>"
+    echo "Use following format: container-shell.sh <container name> <user>"
     echo
-    echo "Example usage: service-shell.sh dev api root"
+    echo "Example usage: container-shell.sh dev api root"
 fi
