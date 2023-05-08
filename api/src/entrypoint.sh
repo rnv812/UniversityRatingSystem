@@ -20,12 +20,12 @@ python manage.py migrate
 echo "You can use load-fixture.sh script to prepopulate database with some values"
 
 echo "Creating superuser..."
-python manage.py createsuperuser --email $DJANGO_SUPERUSER_EMAIL --no-input
+python manage.py shell < create_superuser.py
 
 if [ $? = 0 ]; then
     echo "Superuser '$DJANGO_SUPERUSER_EMAIL' created successfully"
 else
-    echo "Superuser '$DJANGO_SUPERUSER_EMAIL' already exists"
+    echo "Superuser '$DJANGO_SUPERUSER_EMAIL' was not created successfully"
 fi
 
 echo "Running server ..."
