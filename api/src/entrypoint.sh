@@ -18,6 +18,7 @@ fi
 echo "Applying database migrations..."
 python manage.py migrate
 echo "You can use load-fixture.sh script to prepopulate database with some values"
+echo "You can use localize.sh script to switch to presented locale"
 
 echo "Creating superuser..."
 python manage.py shell < create_superuser.py
@@ -25,7 +26,7 @@ python manage.py shell < create_superuser.py
 if [ $? = 0 ]; then
     echo "Superuser '$DJANGO_SUPERUSER_EMAIL' created successfully"
 else
-    echo "Superuser '$DJANGO_SUPERUSER_EMAIL' was not created successfully"
+    echo "Superuser '$DJANGO_SUPERUSER_EMAIL' is already exists"
 fi
 
 echo "Running server ..."
