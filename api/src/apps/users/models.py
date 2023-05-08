@@ -8,7 +8,7 @@ from django.utils.translation import gettext_lazy as _
 class AllowedEmail(models.Model):
     """Model stores emails of users that are allowed to register."""
 
-    email = models.EmailField(verbose_name=_('email address'))
+    email = models.EmailField(verbose_name=_('email address'), unique=True)
 
     class Meta:
         verbose_name = _('allowed email')
