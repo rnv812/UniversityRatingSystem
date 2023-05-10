@@ -57,7 +57,7 @@ docker-compose -f docker-compose.<dev|prod>.yaml
 ```
 
 ### Auxiliary scripts
-- `container-shell.sh <container name> <user>`
+- `container-shell.sh <container name> <user>` - attach terminal to container as specific user. 
 
 #### API scripts
 - `load-fixture.sh <file id>` - load fixture from google drive and install it to database;
