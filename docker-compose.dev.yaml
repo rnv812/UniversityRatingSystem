@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  api:
+    image: university-rating-system-api:latest
+    container_name: urs-api-dev
+    build:
+      context: ./api/
+      args:
+        - DEPLOY_ENV=dev
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./api/src/:/app/src/
+    env_file:
+      - ./env/dev/api.dev.env
+    depends_on:
+      - db
+  db:
+    image: postgres:15.2-alpine
+    container_name: postgres-dev
+    volumes:
+      - pg_data:/var/lib/postgres/data/
+    env_file:
+      - ./env/dev/postgres.dev.env
+  client:
+    image: university-rating-system-client:latest
+    container_name: urs-client-dev
+    build:
+      context: ./client/
+      args:
+        - DEPLOY_ENV=dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client/src/:/app/src/
+      - ./client/public/:/app/public/
+    env_file:
+      - ./env/dev/client.dev.env
+
+volumes:
+  pg_data:

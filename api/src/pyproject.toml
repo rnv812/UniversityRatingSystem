@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "university-rating-system"
+version = "0.1.0"
+description = "Rating system for university"
+authors = ["Nikita Reznikov <nikita.reznikov.live@mail.ru>"]
+license = "MIT"
+repository = "https://github.com/rnv812/UniversityRatingSystem"
+packages = [{include = "university_rating_system"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^4.1.7"
+psycopg2-binary = "^2.9.5"
+djangorestframework = "^3.14.0"
+gdown = "^4.7.1"
+django-jazzmin = "^2.6.0"
+djangorestframework-simplejwt = "^5.2.2"
+djoser = "^2.2.0"
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "^6.0.0"
+pyyaml = "^6.0"
+uritemplate = "^4.1.1"
+drf-yasg = "^1.21.5"
+isort = "^5.12.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
