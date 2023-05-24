@@ -15,6 +15,8 @@ from pathlib import Path
 
 from django.utils.translation import gettext_lazy as _
 
+from corsheaders.defaults import default_headers, default_methods
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -45,6 +47,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'djoser',
     'drf_yasg',
+    'corsheaders',
     'apps.core.apps.CoreConfig',
     'apps.users.apps.UsersConfig',
     'apps.faculties.apps.FacultiesConfig',
@@ -62,6 +65,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'university_rating_system.urls'
@@ -264,3 +269,20 @@ DJOSER = {
         'current_user': 'apps.users.serializers.UserProfileSerializer',
     }
 }
+
+# CORS
+
+CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS').split(' ')
+
+CSRF_TRUSTED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS').split(' ')
+
+CORS_ALLOW_METHODS = (
+    *default_methods,
+)
+
+CORS_ALLOW_HEADERS = (
+    *default_headers,
+    'JWT',
+)
+
+CORS_ALLOW_CREDENTIALS = True
