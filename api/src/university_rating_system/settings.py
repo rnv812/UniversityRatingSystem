@@ -254,6 +254,10 @@ SIMPLE_JWT = {
 
 # Djoser
 
+DOMAIN = os.getenv('DOMAIN')
+
+SITE_NAME = os.getenv('SITE_NAME')
+
 DJOSER = {
     'LOGIN_FIELD': 'email',
     'SET_PASSWORD_RETYPE': True,
