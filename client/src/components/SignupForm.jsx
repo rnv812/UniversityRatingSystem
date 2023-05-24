@@ -16,50 +16,51 @@ export default function SignupForm() {
 
     return (
         <Box className={styles['form-box-container']}>
-            <Box className={styles['form-box']}>
-                <Typography className={styles['form-title']} variant="h5" component="div">
-                    Регистрация
-                </Typography>
-                <form>
-                    <Box className={styles['form-field']}>
+            <Typography variant="h5" className={styles['form-title']}>
+                Регистрация
+            </Typography>
+            <form>
+                <Box className={styles['form-fields']}>
+                    <Box className={styles['form-input']}>
                         <TextField
-                            style={{width: "370px"}}
                             value={email}
                             onChange={event => setEmail(event.target.value)}
                             label="Почта"
                             variant="outlined"
+                            sx={{width: "100%"}}
                         /> 
                     </Box>
-                    <Box className={styles['form-field']}>
+                    <Box className={styles['form-input']}>
                         <TextField
-                            style={{width: "370px"}}
                             value={password}
                             onChange={event => setPassword(event.target.value)}
                             label="Пароль"
                             variant="outlined"
                             type="password"
+                            sx={{width: "100%"}}
                         />
                     </Box>
-                    <Box className={styles['form-field']}>
+                    <Box className={styles['form-input']}>
                         <TextField
-                            style={{width: "370px"}}
                             value={repassword}
                             onChange={event => setRepassword(event.target.value)}
                             label="Подтверждение пароля"
                             variant="outlined"
                             type="password"
+                            sx={{width: "100%"}}
                         />
                     </Box>
-                    <Box className={styles['submit-btn']}>
-                        <Button style={{width: "370px"}} onClick={submit} variant="contained">Зарегистрироваться</Button>
-                    </Box>
-                </form>
-                <Link to="/login">
-                    <Typography style={{marginTop: "20px"}}>
-                        Уже есть аккаунт?
-                    </Typography>
-                </Link>
-            </Box>
+                </Box>
+                <Box className={styles['form-actions']}>
+                    <Link to="/login" className={styles['text-action']}>
+                        <Typography >
+                            Уже есть аккаунт?
+                        </Typography>
+                    </Link>
+                    <Button onClick={submit} variant="contained">Зарегистрироваться</Button>
+
+                </Box>
+            </form>
         </Box>
     );
 }
