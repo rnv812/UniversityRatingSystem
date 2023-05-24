@@ -58,7 +58,6 @@ export default function SignupForm() {
                         </Typography>
                     </Link>
                     <Button onClick={submit} variant="contained">Зарегистрироваться</Button>
-
                 </Box>
             </form>
         </Box>

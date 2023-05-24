@@ -6,49 +6,49 @@ import {Link} from "react-router-dom";
 
 
 export default function LoginForm() {
-    const [username, setUsername] = React.useState('');
+    const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
 
     function submit() {
-        authorize(username, password)
+        authorize(email, password)
     }
 
     return (
         <Box className={styles['form-box-container']}>
-            <Box className={styles['form-box']}>
-                <Typography className={styles['form-title']} variant="h5" component="div">
-                    Авторизация
-                </Typography>
-                <form>
-                    <Box className={styles['form-field']}>
+            <Typography variant="h5" className={styles['form-title']}>
+                Авторизация
+            </Typography>
+            <form>
+                <Box className={styles['form-fields']}>
+                    <Box className={styles['form-input']}>
                         <TextField
-                            style={{width: "370px"}}
-                            value={username}
-                            onChange={event => setUsername(event.target.value)}
+                            value={email}
+                            onChange={event => setEmail(event.target.value)}
                             label="Почта"
                             variant="outlined"
+                            sx={{width: "100%"}}
                         /> 
                     </Box>
-                    <Box className={styles['form-field']}>
+                    <Box className={styles['form-input']}>
                         <TextField
-                            style={{width: "370px"}}
                             value={password}
                             onChange={event => setPassword(event.target.value)}
                             label="Пароль"
                             variant="outlined"
                             type="password"
+                            sx={{width: "100%"}}
                         />
                     </Box>
-                    <Box className={styles['submit-btn']}>
-                        <Button style={{width: "370px"}} onClick={submit} variant="contained">Войти</Button>
-                    </Box>
-                </form>
-                <Link to="/signup">
-                    <Typography style={{marginTop: "20px"}}>
-                        Создать аккаунт
-                    </Typography>
-                </Link>
-            </Box>
+                </Box>
+                <Box className={styles['form-actions']}>
+                    <Link to="/signup" className={styles['text-action']}>
+                        <Typography >
+                            Нет аккаунта?
+                        </Typography>
+                    </Link>
+                    <Button onClick={submit} variant="contained">Войти</Button>
+                </Box>
+            </form>
         </Box>
     );
 }
