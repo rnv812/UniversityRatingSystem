@@ -6,12 +6,12 @@ import {Link} from "react-router-dom";
 
 
 export default function SignupForm() {
-    const [username, setUsername] = React.useState('');
+    const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [repassword, setRepassword] = React.useState('');
 
     function submit() {
-        authorize(username, password) // TODO update function
+        authorize(email, password)
     }
 
     return (
@@ -24,8 +24,8 @@ export default function SignupForm() {
                     <Box className={styles['form-field']}>
                         <TextField
                             style={{width: "370px"}}
-                            value={username}
-                            onChange={event => setUsername(event.target.value)}
+                            value={email}
+                            onChange={event => setEmail(event.target.value)}
                             label="Почта"
                             variant="outlined"
                         /> 
