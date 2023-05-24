@@ -8,7 +8,7 @@ import styles from '../styles/ReportListContainer.module.css';
 export default function ReportListContainer({reports}) {
     return (
         <Container className={styles.container}>
-            <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
+            <Typography variant="h4">
                 Список анкет
             </Typography>
 

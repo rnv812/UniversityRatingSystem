@@ -8,33 +8,35 @@ import {
     DialogTitle,
 } from "@mui/material"
 import ItemSelect from '../components/ItemSelect';
+import styles from '../styles/CreateReport.module.css';
 
 
-export default function CreateReportDialog({isOpen, onClose, onCreate}) {
+export default function CreateReportDialog({isOpen, onClose, onCreate, availableYears, availableEducators}) {
     return (
         <Dialog
             open={isOpen}
             keepMounted
             onClose={onClose}
-            aria-describedby="alert-dialog-slide-description"
         >
             <DialogTitle>{"Создание анкеты"}</DialogTitle>
             <DialogContent>
                 <Box style={{display:"flex", flexDirection: "column"}}>
-                    <ItemSelect
-                        id={'report-educator'}
-                        title={"Преподаватель"}
-                        items={[{label: "Фамилия Имя Отчество", value: "TestName"}]}
-                        defaultValue={"TestName"}
-                        sx={{ minWidth: "340px", marginTop: "20px" }}
-                    />
-                    <ItemSelect
-                        id={'report-year'}
-                        title={"Год анкеты"}
-                        items={[{label: "2023", value: "2022"}]}
-                        defaultValue={"2023"}
-                        sx={{ minWidth: "340px", marginTop: "20px"}}
-                    />
+                    <Box className={styles['select-box']}>
+                        <ItemSelect
+                            id={'report-educator'}
+                            title={"Преподаватель"}
+                            items={availableEducators }
+                            sx={{width: "100%"}}
+                        />
+                    </Box>
+                    <Box className={styles['select-box']}>
+                        <ItemSelect
+                            id={'report-year'}
+                            title={"Год анкеты"}
+                            items={availableYears}
+                            sx={{width: "100%"}}
+                        />
+                    </Box>
                 </Box>
             </DialogContent>
             <DialogActions>
