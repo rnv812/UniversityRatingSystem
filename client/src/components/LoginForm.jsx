@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Box, TextField, Button, Typography} from '@mui/material';
-import styles from '../styles/LoginForm.module.css';
+import styles from '../styles/Form.module.css';
 import { authorize } from '../API/auth';
 import {Link} from "react-router-dom";
 
@@ -19,7 +19,7 @@ export default function LoginForm() {
                 <Typography className={styles['form-title']} variant="h5" component="div">
                     Авторизация
                 </Typography>
-                <form className={styles['login-form']}>
+                <form>
                     <Box className={styles['form-field']}>
                         <TextField
                             style={{width: "370px"}}
