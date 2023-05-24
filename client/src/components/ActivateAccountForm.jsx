@@ -10,14 +10,10 @@ export default function ActivateAccountForm() {
 
     return (
         <Box className={styles['form-box-container']}>
-            <Box className={styles['form-box']}>
-                <Typography className={styles['form-title']} variant="h5" component="div">
-                    Подтверждение аккаунта
-                </Typography>
-                <Box className={styles['submit-btn']}>
-                    <Button style={{width: "370px"}} onClick={submit} variant="contained">Подтвердить</Button>
-                </Box>
-            </Box>
+            <Typography variant="h5" className={styles['form-title']}>
+                Активация аккаунта
+            </Typography>
+            <Button onClick={submit} variant="contained">Активировать</Button>
         </Box>
     );
 }
