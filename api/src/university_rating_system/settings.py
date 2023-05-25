@@ -261,7 +261,7 @@ DOMAIN = os.getenv('DOMAIN')
 SITE_NAME = os.getenv('SITE_NAME')
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=300),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
 }
 
