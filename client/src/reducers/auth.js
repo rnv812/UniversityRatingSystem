@@ -5,7 +5,9 @@ import {
     USER_LOAD_FAIL,
     AUTHENTICATION_SUCCESS,
     AUTHENTICATION_FAIL,
-    LOGOUT
+    REFRESH_SUCCESS,
+    REFRESH_FAIL,
+    LOGOUT,
 } from '../actions/types';
 
 
@@ -33,6 +35,7 @@ export default function auth(state = initialState, action) {
             }
         case LOGIN_SUCCESS:
             localStorage.setItem('access', payload.access);
+            localStorage.setItem('refresh', payload.access);
             return {
                 ...state,
                 isAuthenticated: true,
@@ -67,6 +70,22 @@ export default function auth(state = initialState, action) {
         case USER_LOAD_FAIL:
             return {
                 ...state,
+                user: null
+            };
+        case REFRESH_SUCCESS:
+            localStorage.setItem('access', payload.access);
+            return {
+                ...state,
+                access: payload.access,
+            };
+        case REFRESH_FAIL:
+            localStorage.removeItem('access');
+            localStorage.removeItem('refresh');
+            return {
+                ...state,
+                isAuthenticated: false,
+                access: null,
+                refresh: null,
                 user: null
             };
         default:

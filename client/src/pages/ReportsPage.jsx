@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import ReportListContainer from "../components/ReportListContainer";
 import CreateReportDialog from "../components/CreateReportDialog";
 import Layout from "./Layout";
-import { logout, isAuthenticated } from "../actions/auth"; 
+import { logout } from "../actions/auth"; 
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
 

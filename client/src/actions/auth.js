@@ -6,8 +6,37 @@ import {
     USER_LOAD_FAIL,
     AUTHENTICATION_SUCCESS,
     AUTHENTICATION_FAIL,
-    LOGOUT
+    REFRESH_SUCCESS,
+    REFRESH_FAIL,
+    LOGOUT,
 } from './types';
+
+
+export const refreshToken = () => async dispatch => {
+    if (localStorage.getItem('refresh')) {
+        const config = {headers: {'Content-Type': 'application/json',}};
+        const body = JSON.stringify({refresh: localStorage.getItem('refresh')});
+        
+        try {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/jwt/refresh`, body, config);
+            dispatch({
+                payload: response.data,
+                type: REFRESH_SUCCESS
+            });
+        }
+        catch (err) {
+            dispatch({
+                type: REFRESH_FAIL,
+            });
+        }
+    }
+    else {
+        dispatch({
+            type: REFRESH_FAIL,
+        });
+    }
+}
+
 
 export const checkAuthenticated = () => async dispatch => {
     if (localStorage.getItem('access')) {
@@ -17,27 +46,16 @@ export const checkAuthenticated = () => async dispatch => {
                 'Accept': 'application/json'
             }
         };
-
-        const body = JSON.stringify({
-            token: localStorage.getItem('access'),
-        });
-
+        const body = JSON.stringify({token: localStorage.getItem('access'),});
+        
         try {
-            const response = await axios.post(`${process.env.REACT_APP_API_URL}/jwt/verify`, body, config);
-            if (response.data.code !== "token_not_valid") {
-                dispatch({
-                    type: AUTHENTICATION_SUCCESS
-                });
-            }
-            else {
-                dispatch({
-                    type: AUTHENTICATION_FAIL
-                });
-            }
-        } catch (err) {
+            await axios.post(`${process.env.REACT_APP_API_URL}/jwt/verify`, body, config);
             dispatch({
-                type: AUTHENTICATION_FAIL
+                type: AUTHENTICATION_SUCCESS
             });
+        }
+        catch (err) {
+            dispatch(refreshToken());
         };
     }
     else {
@@ -46,6 +64,7 @@ export const checkAuthenticated = () => async dispatch => {
         });
     }
 };
+
 
 export const loadUser = () => async dispatch => {
     if (localStorage.getItem('access')) {
@@ -63,7 +82,8 @@ export const loadUser = () => async dispatch => {
                 type: USER_LOAD_SUCCESS,
                 payload: response.data
             });
-        } catch (err) {
+        }
+        catch (err) {
             dispatch({
                 type: USER_LOAD_FAIL,
             });
@@ -94,7 +114,8 @@ export const login = (email, password) => async dispatch => {
         });
 
         dispatch(loadUser());
-    } catch (err) {
+    }
+    catch (err) {
         dispatch({
             type: LOGIN_FAIL,
         });
