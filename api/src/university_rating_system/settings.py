@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 import os
+
+from datetime import timedelta
 from pathlib import Path
 
 from django.utils.translation import gettext_lazy as _
@@ -180,7 +182,7 @@ SWAGGER_SETTINGS = {
         },
         'Token': {
             'type': 'apiKey',
-            'name': 'X-API-Key',
+            'name': 'Authorization',
             'in': 'header'
         }
     },
@@ -257,6 +259,11 @@ SIMPLE_JWT = {
 DOMAIN = os.getenv('DOMAIN')
 
 SITE_NAME = os.getenv('SITE_NAME')
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=300),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+}
 
 DJOSER = {
     'LOGIN_FIELD': 'email',
