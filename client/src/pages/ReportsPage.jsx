@@ -4,9 +4,12 @@ import Navbar from "../components/Navbar";
 import ReportListContainer from "../components/ReportListContainer";
 import CreateReportDialog from "../components/CreateReportDialog";
 import Layout from "./Layout";
+import { logout, isAuthenticated } from "../actions/auth"; 
+import { connect } from "react-redux";
+import { Navigate } from "react-router-dom";
 
 
-export default function ReportsPage() {
+function ReportsPage({ logout, isAuthenticated }) {
     const [isOpen, setOpenCreateReport] = React.useState(false);
 
     const handleClickOpenCreateReport = () => {
@@ -23,7 +26,7 @@ export default function ReportsPage() {
 
     const navbarActions = [
         {name: "Создать анкету", func: handleClickOpenCreateReport},
-        {name: "Выйти", func: null}
+        {name: "Выйти", func: logout}
     ]
 
     var reports = [{id: 1}, {id: 2}, {id: 3}]
@@ -31,6 +34,9 @@ export default function ReportsPage() {
     const availableEducators = [{label: "Фамилия Имя Отчество", value: "TestName"}]
     const availableYears = [{label: "2023", value: "2023"}]
 
+    if (!isAuthenticated) {
+        return <Navigate to='/login' />
+    }
 
     return (
         <Layout>
@@ -48,3 +54,10 @@ export default function ReportsPage() {
         </Layout>
     );
 }
+
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+
+});
+
+export default connect(mapStateToProps, { logout })(ReportsPage);
