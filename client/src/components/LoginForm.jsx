@@ -2,11 +2,11 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import {Box, TextField, Button, Typography} from '@mui/material';
 import styles from '../styles/Form.module.css';
-import {Link} from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
 import { login } from '../actions/auth';
 
 
-function LoginForm({login}) {
+function LoginForm({login, isAuthenticated}) {
     const [formData, setFormData] = React.useState({
         email: '',
         password: ''
@@ -21,6 +21,10 @@ function LoginForm({login}) {
     function onSubmit(e) {
         e.preventDefault();
         login(email, password)
+    }
+
+    if (isAuthenticated) {
+        return <Navigate to='/reports' />
     }
 
     return (
@@ -65,9 +69,9 @@ function LoginForm({login}) {
     );
 }
 
-// const mapStateToProps = state => ({
-//     //TODO implement auth check
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
 
-// });
+});
 
-export default connect(null, { login })(LoginForm);
+export default connect(mapStateToProps, { login })(LoginForm);

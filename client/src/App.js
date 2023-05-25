@@ -18,9 +18,10 @@ export default function App() {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/reports" element={<ReportsPage />} />
                 <Route path="/reports/:uuid" element={<ReportDetailedPage />} />
-                <Route path="*" element={<Navigate to="/reports" replace={true} />} />
+                <Route path="*" element={<Navigate to="/login" replace={true} />} />
             </Routes>
         </Provider>
           
     );
 }
+

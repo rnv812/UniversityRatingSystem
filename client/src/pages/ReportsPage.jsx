@@ -3,6 +3,7 @@ import {Box} from "@mui/material"
 import Navbar from "../components/Navbar";
 import ReportListContainer from "../components/ReportListContainer";
 import CreateReportDialog from "../components/CreateReportDialog";
+import Layout from "./Layout";
 
 
 export default function ReportsPage() {
@@ -32,16 +33,18 @@ export default function ReportsPage() {
 
 
     return (
-        <Box>
-            <Navbar actions={navbarActions} fullname={"Фамилия Имя Отчество"} />
-            <ReportListContainer reports={reports}/>
-            <CreateReportDialog 
-                isOpen={isOpen}
-                onClose={handleCloseCreateReport}
-                onCreate={onCreateReport} 
-                availableYears={availableYears}
-                availableEducators={availableEducators}
-            />
-        </Box>
+        <Layout>
+            <Box>
+                <Navbar actions={navbarActions} fullname={"Фамилия Имя Отчество"} />
+                <ReportListContainer reports={reports}/>
+                <CreateReportDialog 
+                    isOpen={isOpen}
+                    onClose={handleCloseCreateReport}
+                    onCreate={onCreateReport} 
+                    availableYears={availableYears}
+                    availableEducators={availableEducators}
+                />
+            </Box>
+        </Layout>
     );
 }

@@ -2,6 +2,7 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import {Box} from "@mui/material"
 import ReportListNavbar from "../components/Navbar";
+import Layout from "./Layout";
 
 
 export default function ReportDetailedPage() {
@@ -21,8 +22,10 @@ export default function ReportDetailedPage() {
     var fullname = "Фамилия Имя Отчество"
 
     return (
-        <Box>
-            <ReportListNavbar actions={navbarActions} fullname={fullname}/>
-        </Box>
+        <Layout>
+            <Box>
+                <ReportListNavbar actions={navbarActions} fullname={fullname}/>
+            </Box>
+        </Layout>
     );
 }
