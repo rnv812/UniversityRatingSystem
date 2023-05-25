@@ -1,16 +1,26 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import {Box, TextField, Button, Typography} from '@mui/material';
 import styles from '../styles/Form.module.css';
-import { authorize } from '../API/auth';
 import {Link} from "react-router-dom";
+import { login } from '../actions/auth';
 
 
-export default function LoginForm() {
-    const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('');
+function LoginForm({login}) {
+    const [formData, setFormData] = React.useState({
+        email: '',
+        password: ''
+    })
 
-    function submit() {
-        authorize(email, password)
+    const {email, password} = formData;
+
+    function onChange(e) {
+        setFormData({...formData, [e.target.name]: e.target.value});
+    }
+    
+    function onSubmit(e) {
+        e.preventDefault();
+        login(email, password)
     }
 
     return (
@@ -23,7 +33,8 @@ export default function LoginForm() {
                     <Box className={styles['form-input']}>
                         <TextField
                             value={email}
-                            onChange={event => setEmail(event.target.value)}
+                            name="email"
+                            onChange={e => onChange(e)}
                             label="Почта"
                             variant="outlined"
                             sx={{width: "100%"}}
@@ -32,7 +43,8 @@ export default function LoginForm() {
                     <Box className={styles['form-input']}>
                         <TextField
                             value={password}
-                            onChange={event => setPassword(event.target.value)}
+                            name="password"
+                            onChange={e => onChange(e)}
                             label="Пароль"
                             variant="outlined"
                             type="password"
@@ -46,9 +58,16 @@ export default function LoginForm() {
                             Нет аккаунта?
                         </Typography>
                     </Link>
-                    <Button onClick={submit} variant="contained">Войти</Button>
+                    <Button onClick={e=> onSubmit(e)} type="submit" variant="contained">Войти</Button>
                 </Box>
             </form>
         </Box>
     );
 }
+
+// const mapStateToProps = state => ({
+//     //TODO implement auth check
+
+// });
+
+export default connect(null, { login })(LoginForm);

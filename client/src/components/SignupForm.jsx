@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {Box, TextField, Button, Typography} from '@mui/material';
 import styles from '../styles/Form.module.css';
-import { authorize } from '../API/auth';
 import {Link} from "react-router-dom";
 
 
@@ -11,7 +10,6 @@ export default function SignupForm() {
     const [repassword, setRepassword] = React.useState('');
 
     function submit() {
-        authorize(email, password)
     }
 
     return (
