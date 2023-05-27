@@ -256,7 +256,7 @@ SIMPLE_JWT = {
 
 # Djoser
 
-DOMAIN = os.getenv('DOMAIN')
+DOMAIN = os.getenv('CLIENT_DOMAIN')
 
 SITE_NAME = os.getenv('SITE_NAME')
 
