@@ -48,6 +48,28 @@ class EducatorIndicatorValueViewSet(RetrieveModelMixin,
         IsOnlyValueUpdateOnPatch
     )
 
+    @action(
+        detail=True,
+        methods=SAFE_METHODS,
+        permission_classes=(
+            IsAuthenticated,
+            IsReportOwnerUser | IsReportControllerUser | IsAdminUser,
+        )
+    )
+    def report_values(self, request: Request, pk: str) -> Response:
+        """Get list of values of specified report."""
+        report = get_object_or_404(EducatorReport, pk=pk)
+        indicator_values = EducatorIndicatorValue.objects.filter(
+            report=report
+        )
+
+        return Response(
+            EducatorIndicatorValueSerializer(
+                instance=indicator_values,
+                many=True
+            ).data
+        )
+
 
 class EducatorReportViewSet(RetrieveModelMixin,
                             CreateModelMixin,
@@ -129,22 +151,3 @@ class EducatorReportViewSet(RetrieveModelMixin,
             report.save(update_fields=('approved', ))
 
         return Response(EducatorReportSerializer(instance=report).data)
-
-    @action(
-        detail=True,
-        methods=SAFE_METHODS,
-        permission_classes=(
-            IsAuthenticated,
-            IsEducatorUser | IsAdminUser
-        )
-    )
-    def indicator_values(self, request: Request, pk: str) -> Response:
-        """Get list of indicator values of specified report."""
-
-        report = get_object_or_404(EducatorReport, pk=pk)
-
-        indicator_value_pks = EducatorIndicatorValue.objects.filter(
-            report=report
-        ).values_list('pk', flat=True)
-
-        return Response(indicator_value_pks)
