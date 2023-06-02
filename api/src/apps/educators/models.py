@@ -30,6 +30,12 @@ class Educator(models.Model):
         to=UserProfile,
         on_delete=models.PROTECT
     )
+    personal_number = models.CharField(
+        verbose_name=_('personal number'),
+        max_length=20,
+        unique=True,
+    )
+
     qualification = models.ForeignKey(
         verbose_name=_('educator qualification'),
         to=Qualification,
