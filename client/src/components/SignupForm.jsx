@@ -1,61 +1,71 @@
 import * as React from 'react';
-import {Box, TextField, Button, Typography} from '@mui/material';
+import { Box, TextField, Button, Typography } from '@mui/material';
+import { Link } from "react-router-dom";
 import styles from '../styles/Form.module.css';
-import {Link} from "react-router-dom";
 
 
 export default function SignupForm() {
-    const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('');
-    const [repassword, setRepassword] = React.useState('');
+    const [formData, setFormData] = React.useState({
+        email: '',
+        password: '',
+        repassword: ''
+    })
 
-    function submit() {
+    const { email, password, repassword } = formData;
+
+    function onChange(e) {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
+    
+    function onSubmit(e) {
+        e.preventDefault();
+        // signUp(email, password, repassword)
     }
 
     return (
-        <Box className={styles['form-box-container']}>
-            <Typography variant="h5" className={styles['form-title']}>
+        <Box className={ styles.formBoxContainer }>
+            <Typography variant="h5" className={ styles.formTitle }>
                 Регистрация
             </Typography>
             <form>
-                <Box className={styles['form-fields']}>
-                    <Box className={styles['form-input']}>
+                <Box className={ styles.formFields }>
+                    <Box className={ styles.formInput }>
                         <TextField
-                            value={email}
-                            onChange={event => setEmail(event.target.value)}
+                            value={ email }
+                            onChange={ e => onChange(e) }
                             label="Почта"
                             variant="outlined"
-                            sx={{width: "100%"}}
+                            sx={{ width: "100%" }}
                         /> 
                     </Box>
-                    <Box className={styles['form-input']}>
+                    <Box className={ styles.formInput }>
                         <TextField
-                            value={password}
-                            onChange={event => setPassword(event.target.value)}
+                            value={ password }
+                            onChange={ e => onChange(e) }
                             label="Пароль"
                             variant="outlined"
                             type="password"
-                            sx={{width: "100%"}}
+                            sx={{ width: "100%" }}
                         />
                     </Box>
-                    <Box className={styles['form-input']}>
+                    <Box className={ styles.formInput }>
                         <TextField
-                            value={repassword}
-                            onChange={event => setRepassword(event.target.value)}
+                            value={ repassword }
+                            onChange={ e => onChange(e) }
                             label="Подтверждение пароля"
                             variant="outlined"
                             type="password"
-                            sx={{width: "100%"}}
+                            sx={{ width: "100%" }}
                         />
                     </Box>
                 </Box>
-                <Box className={styles['form-actions']}>
-                    <Link to="/login" className={styles['text-action']}>
+                <Box className={ styles.formActions }>
+                    <Link to="/login" className={ styles.textAction }>
                         <Typography >
                             Уже есть аккаунт?
                         </Typography>
                     </Link>
-                    <Button onClick={submit} variant="contained">Зарегистрироваться</Button>
+                    <Button onClick={ e => onSubmit(e) } variant="contained">Зарегистрироваться</Button>
                 </Box>
             </form>
         </Box>

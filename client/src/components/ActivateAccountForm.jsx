@@ -1,19 +1,19 @@
 import * as React from "react";
-import {Box, Button, Typography} from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import styles from '../styles/Form.module.css';
 
 
 export default function ActivateAccountForm() {
-    function submit() {
+    function onSubmit() {
 
     }
 
     return (
-        <Box className={styles['form-box-container']}>
-            <Typography variant="h5" className={styles['form-title']}>
-                Активация аккаунта
+        <Box className={ styles.formBoxContainer }>
+            <Typography variant="h5" className={ styles.formTitle }>
+                Подтвердите активацию
             </Typography>
-            <Button onClick={submit} variant="contained">Активировать</Button>
+            <Button onClick={ onSubmit() } variant="contained">Активировать</Button>
         </Box>
     );
 }

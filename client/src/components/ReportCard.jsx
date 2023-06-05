@@ -1,6 +1,7 @@
 import * as React from 'react';
-import {Card, CardContent, CardActions, CardActionArea, Button, Typography} from '@mui/material';
+import { Button, Card, CardContent, CardActions, CardActionArea, Typography } from '@mui/material';
 import styles from '../styles/ReportCard.module.css';
+
 
 export default function ReportCard({report}) {
     return (

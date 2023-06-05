@@ -1,15 +1,13 @@
 import * as React from "react";
-import {Box} from "@mui/material"
+import { Box } from "@mui/material"
+import { Navigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import ReportListContainer from "../components/ReportListContainer";
 import CreateReportDialog from "../components/CreateReportDialog";
-import Layout from "./Layout";
-import { logout } from "../actions/auth"; 
-import { connect } from "react-redux";
-import { Navigate } from "react-router-dom";
+import styles from "../styles/Page.module.css";
 
 
-function ReportsPage({ logout, isAuthenticated }) {
+export default function ReportsPage({ logout, isAuthenticated }) {
     const [isOpen, setOpenCreateReport] = React.useState(false);
 
     const handleClickOpenCreateReport = () => {
@@ -34,30 +32,24 @@ function ReportsPage({ logout, isAuthenticated }) {
     const availableEducators = [{label: "Фамилия Имя Отчество", value: "TestName"}]
     const availableYears = [{label: "2023", value: "2023"}]
 
-    if (!isAuthenticated) {
+    if (false) {    // TODO: not isAuthenticated
         return <Navigate to='/login' />
     }
 
+
     return (
-        <Layout>
-            <Box>
-                <Navbar actions={navbarActions} fullname={"Фамилия Имя Отчество"} />
-                <ReportListContainer reports={reports}/>
-                <CreateReportDialog 
-                    isOpen={isOpen}
-                    onClose={handleCloseCreateReport}
-                    onCreate={onCreateReport} 
-                    availableYears={availableYears}
-                    availableEducators={availableEducators}
-                />
+        <>
+            <Navbar actions={ navbarActions } pageTitle={ "Фамилия Имя Отчество" } />
+            <Box className={ `${styles.center} ${styles.pageTopStart}` }>
+                <ReportListContainer reports={ reports }/>
             </Box>
-        </Layout>
+            <CreateReportDialog 
+                isOpen={ isOpen }
+                onClose={ handleCloseCreateReport }
+                onCreate={ onCreateReport } 
+                availableYears={ availableYears }
+                availableEducators={ availableEducators }
+            />
+        </>
     );
 }
-
-const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated
-
-});
-
-export default connect(mapStateToProps, { logout })(ReportsPage);

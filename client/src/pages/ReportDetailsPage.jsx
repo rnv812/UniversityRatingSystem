@@ -1,11 +1,11 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
-import {Box} from "@mui/material"
+import { Box } from "@mui/material"
 import ReportListNavbar from "../components/Navbar";
-import Layout from "./Layout";
+import Layout from "../layouts/Layout";
 
 
-export default function ReportDetailedPage() {
+export default function ReportDetailsPage() {
     const navigate = useNavigate();
     
     function backToReports() {
@@ -24,7 +24,7 @@ export default function ReportDetailedPage() {
     return (
         <Layout>
             <Box>
-                <ReportListNavbar actions={navbarActions} fullname={fullname}/>
+                <ReportListNavbar actions={navbarActions} pageTitle={fullname}/>
             </Box>
         </Layout>
     );

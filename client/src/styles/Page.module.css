@@ -1,5 +1,12 @@
-.page-center{
+.center{
     display: flex;
     justify-content: center;
-    margin-top: 10%;
+}
+
+.pageTopMargin{
+    margin-top: 200px;
+}
+
+.pageTopStart{
+    margin-top: 80px;
 }

@@ -1,4 +1,4 @@
-.form-box-container {
+.formBoxContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -10,30 +10,30 @@
     min-width: 25%;
 }
 
-.form-fields{
+.formFields{
     display: flex;
     flex-direction: column;
 }
 
-.form-input{
+.formInput{
     margin: 10px 0;
     display: flex;
     justify-content: center;
 }
 
-.form-title {
+.formTitle {
     text-align: center;
     padding-bottom: 20px;
 }
 
-.form-actions {
+.formActions {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
     vertical-align: middle;
 }
 
-.text-action{
+.textAction{
    display: flex;
    flex-direction: column;
    justify-content: center;

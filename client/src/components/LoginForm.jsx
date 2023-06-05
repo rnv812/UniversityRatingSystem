@@ -1,77 +1,64 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
-import {Box, TextField, Button, Typography} from '@mui/material';
+import { Box, TextField, Button, Typography } from '@mui/material';
+import { Link } from "react-router-dom";
 import styles from '../styles/Form.module.css';
-import {Link, Navigate} from "react-router-dom";
-import { login } from '../actions/auth';
 
 
-function LoginForm({login, isAuthenticated}) {
+export default function LoginForm() {
     const [formData, setFormData] = React.useState({
         email: '',
         password: ''
     })
 
-    const {email, password} = formData;
+    const { email, password } = formData;
 
     function onChange(e) {
-        setFormData({...formData, [e.target.name]: e.target.value});
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     }
     
     function onSubmit(e) {
         e.preventDefault();
-        login(email, password)
-    }
-
-    if (isAuthenticated) {
-        return <Navigate to='/reports' />
+        // login(email, password)
     }
 
     return (
-        <Box className={styles['form-box-container']}>
-            <Typography variant="h5" className={styles['form-title']}>
+        <Box className={ styles.formBoxContainer }>
+            <Typography variant="h5" className={ styles.formTitle }>
                 Авторизация
             </Typography>
             <form>
-                <Box className={styles['form-fields']}>
-                    <Box className={styles['form-input']}>
+                <Box className={ styles.formFields }>
+                    <Box className={ styles.formInput }>
                         <TextField
-                            value={email}
+                            value={ email }
                             name="email"
-                            onChange={e => onChange(e)}
+                            onChange={ e => onChange(e) }
                             label="Почта"
                             variant="outlined"
-                            sx={{width: "100%"}}
+                            sx={{ width: "100%" }}
                         /> 
                     </Box>
-                    <Box className={styles['form-input']}>
+                    <Box className={ styles.formInput }>
                         <TextField
-                            value={password}
+                            value={ password }
                             name="password"
-                            onChange={e => onChange(e)}
+                            onChange={ e => onChange(e) }
                             label="Пароль"
                             variant="outlined"
                             type="password"
-                            sx={{width: "100%"}}
+                            sx={{ width: "100%" }}
                         />
                     </Box>
                 </Box>
-                <Box className={styles['form-actions']}>
-                    <Link to="/signup" className={styles['text-action']}>
+                <Box className={ styles.formActions }>
+                    <Link to="/signup" className={ styles.textAction }>
                         <Typography >
                             Нет аккаунта?
                         </Typography>
                     </Link>
-                    <Button onClick={e=> onSubmit(e)} type="submit" variant="contained">Войти</Button>
+                    <Button onClick={ e => onSubmit(e) } type="submit" variant="contained">Войти</Button>
                 </Box>
             </form>
         </Box>
     );
 }
-
-const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated
-
-});
-
-export default connect(mapStateToProps, { login })(LoginForm);
