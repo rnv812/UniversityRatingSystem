@@ -29,10 +29,8 @@ const baseQueryReauth = async (args, api, extraOptions) => {
             extraOptions
         );
 
-        console.log('Refresh result: ', refreshResult);
         if (refreshResult?.data) {
             const refresh = api.getState().auth.refresh;
-            console.log('Here is new access received from api');
             const access = refreshResult.data.access;
             api.dispatch(setCredentials({ refresh, access }));
             result = await baseQuery(args, api, extraOptions);
