@@ -1,27 +1,28 @@
-import * as React from 'react';
-import {Routes, Route, Navigate} from'react-router-dom';
+import { Routes, Route } from 'react-router-dom'
+import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import ActivateAccountPage from './pages/ActivateAccountPage';
-import LoginPage from './pages/LoginPage';
 import ReportsPage from './pages/ReportsPage';
-import ReportDetailedPage from './pages/ReportDetailedPage';
-import { Provider } from 'react-redux';
-import store from './store';
+import ReportDetailsPage from './pages/ReportDetailsPage';
+import RequireAuth from './features/auth/RequireAuth';
+import Layout from './layouts/Layout';
 
 
 export default function App() {
     return (
-        <Provider store={store}>
-            <Routes>
+        <Routes>
+            <Route path="/" element={<Layout />}>
+                {/* public routes */}
+                <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignupPage />} />
                 <Route path="/activate/:uid/:token" element={<ActivateAccountPage />} />
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/reports" element={<ReportsPage />} />
-                <Route path="/reports/:uuid" element={<ReportDetailedPage />} />
-                <Route path="*" element={<Navigate to="/login" replace={true} />} />
-            </Routes>
-        </Provider>
-          
+
+                {/* protected routes */}
+                <Route element={<RequireAuth />}>
+                    <Route path="/reports" element={<ReportsPage />} />
+                    <Route path="/reports/:uuid" element={<ReportDetailsPage />} />
+                </Route>
+            </Route>
+        </Routes>
     );
 }
-

@@ -1,15 +1,14 @@
 import * as React from "react";
 import { Box } from "@mui/material"
-import { Navigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import ReportListContainer from "../components/ReportListContainer";
 import CreateReportDialog from "../components/CreateReportDialog";
 import styles from "../styles/Page.module.css";
 
 
-export default function ReportsPage({ logout, isAuthenticated }) {
+export default function ReportsPage() {
     const [isOpen, setOpenCreateReport] = React.useState(false);
-
+    
     const handleClickOpenCreateReport = () => {
         setOpenCreateReport(true);
     };
@@ -21,20 +20,16 @@ export default function ReportsPage({ logout, isAuthenticated }) {
     const onCreateReport = () => {
         // TODO send request to api
     };
-
+    
     const navbarActions = [
-        {name: "Создать анкету", func: handleClickOpenCreateReport},
-        {name: "Выйти", func: logout}
+        { name: "Создать анкету", func: handleClickOpenCreateReport },
+        { name: "Выйти", func: () => null }
     ]
 
     var reports = [{id: 1}, {id: 2}, {id: 3}]
 
     const availableEducators = [{label: "Фамилия Имя Отчество", value: "TestName"}]
     const availableYears = [{label: "2023", value: "2023"}]
-
-    if (false) {    // TODO: not isAuthenticated
-        return <Navigate to='/login' />
-    }
 
 
     return (

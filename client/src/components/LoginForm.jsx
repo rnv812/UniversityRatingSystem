@@ -1,24 +1,60 @@
-import * as React from 'react';
+import { useEffect, useState } from 'react'
 import { Box, TextField, Button, Typography } from '@mui/material';
 import { Link } from "react-router-dom";
 import styles from '../styles/Form.module.css';
+import { useDispatch, useSelector } from 'react-redux'
+import { useLoginMutation, useGetUserMutation } from '../features/auth/authApiSlice';
+import { useNavigate } from 'react-router-dom'
+import { setCredentials, setUser, restoreSession, selectIsAuthenticated } from '../features/auth/authSlice'
 
 
 export default function LoginForm() {
-    const [formData, setFormData] = React.useState({
-        email: '',
-        password: ''
-    })
+    const [formData, setFormData] = useState({ email: '', password: '' })
+    const dispatch = useDispatch();
+    const [login] = useLoginMutation();
+    const [getUser] = useGetUserMutation();
+    const navigate = useNavigate();
+    const isAuthenticated = useSelector(selectIsAuthenticated);
 
     const { email, password } = formData;
 
     function onChange(e) {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
-    
-    function onSubmit(e) {
+
+    useEffect(() => {
+        async function fetchUser() {
+            dispatch(restoreSession());
+            if (isAuthenticated) {
+                try {
+                    const user = await getUser().unwrap();
+                    dispatch(setUser(user));
+                    navigate('/reports')
+                } catch (error) {
+                    console.log(error.message); // TODO: add form field for errors
+                }
+            }
+        }
+        fetchUser();
+    }, [dispatch, getUser, navigate, isAuthenticated]);
+
+    async function onSubmit(e) {
         e.preventDefault();
-        // login(email, password)
+        
+        try {
+            const credentials = await login({ email, password }).unwrap();
+            dispatch(setCredentials(credentials));
+            const user = await getUser().unwrap();
+            dispatch(setUser(user));
+            setFormData({
+                email: '',
+                password: ''
+            });
+            navigate('/reports')
+            
+        } catch (error) {
+            console.log(error.message);     // TODO: add form field for errors
+        }
     }
 
     return (

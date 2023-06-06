@@ -9,7 +9,7 @@ export default function Navbar({ actions, pageTitle }) {
                 <Typography variant="h6" sx={{ flexGrow: 1 }}>
                     {pageTitle}
                 </Typography>
-                {actions.map(action => <Button color="inherit" key={action.name} onClick={action.func}>{action.name}</Button>)}
+                { actions.map(action => <Button color="inherit" key={ action.name } onClick={ action.func }>{ action.name }</Button>) }
             </Toolbar>
         </AppBar>
   );
