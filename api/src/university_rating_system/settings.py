@@ -12,12 +12,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os
 
-from datetime import timedelta
 from pathlib import Path
 
 from django.utils.translation import gettext_lazy as _
 
-from corsheaders.defaults import default_headers, default_methods
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -260,11 +258,6 @@ DOMAIN = os.getenv('CLIENT_DOMAIN')
 
 SITE_NAME = os.getenv('SITE_NAME')
 
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
-}
-
 DJOSER = {
     'LOGIN_FIELD': 'email',
     'SET_PASSWORD_RETYPE': True,
@@ -286,14 +279,5 @@ DJOSER = {
 CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS').split(' ')
 
 CSRF_TRUSTED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS').split(' ')
-
-CORS_ALLOW_METHODS = (
-    *default_methods,
-)
-
-CORS_ALLOW_HEADERS = (
-    *default_headers,
-    'JWT',
-)
 
 CORS_ALLOW_CREDENTIALS = True
