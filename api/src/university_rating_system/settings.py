@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'djoser',
     'drf_yasg',
     'corsheaders',
+    'django_extensions',
     'apps.core.apps.CoreConfig',
     'apps.users.apps.UsersConfig',
     'apps.faculties.apps.FacultiesConfig',
