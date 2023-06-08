@@ -158,6 +158,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.UserProfile'
 
+# Routing
+
+APPEND_SLASH = False
+
 # Rest framework
 
 REST_FRAMEWORK = {

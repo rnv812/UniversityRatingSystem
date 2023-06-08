@@ -21,7 +21,7 @@ const baseQueryReauth = async (args, api, extraOptions) => {
     if (result?.error?.status === 401 && api.getState().auth.refresh) {
         const refreshResult = await baseQuery(
             {
-                url: '/jwt/refresh',
+                url: '/jwt/refresh/',
                 method: 'POST',
                 body: { refresh: api.getState().auth.refresh }
             },

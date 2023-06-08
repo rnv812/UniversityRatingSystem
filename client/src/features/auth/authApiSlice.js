@@ -5,18 +5,25 @@ export const authApiSlice = apiSlice.injectEndpoints({
     endpoints: build => ({
         login: build.mutation({
             query: credentials => ({
-                url: '/jwt/create',
+                url: '/jwt/create/',
+                method: 'POST',
+                body: { ...credentials }
+            })
+        }),
+        signup: build.mutation({
+            query: credentials => ({
+                url: '/users/',
                 method: 'POST',
                 body: { ...credentials }
             })
         }),
         getUser: build.mutation({
             query: () => ({
-                url: '/users/me',
+                url: '/users/me/',
                 method: 'GET'
             })
         }),
     })
 })
 
-export const { useLoginMutation, useGetUserMutation } = authApiSlice
+export const { useLoginMutation, useSignupMutation, useGetUserMutation } = authApiSlice
