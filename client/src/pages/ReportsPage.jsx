@@ -4,10 +4,13 @@ import Navbar from "../components/Navbar";
 import ReportListContainer from "../components/ReportListContainer";
 import CreateReportDialog from "../components/CreateReportDialog";
 import styles from "../styles/Page.module.css";
+import { logout } from "../features/auth/authSlice";
+import { useDispatch } from 'react-redux'
 
 
 export default function ReportsPage() {
     const [isOpen, setOpenCreateReport] = React.useState(false);
+    const dispatch = useDispatch();
     
     const handleClickOpenCreateReport = () => {
         setOpenCreateReport(true);
@@ -23,7 +26,7 @@ export default function ReportsPage() {
     
     const navbarActions = [
         { name: "Создать анкету", func: handleClickOpenCreateReport },
-        { name: "Выйти", func: () => null }
+        { name: "Выйти", func: () => { dispatch(logout()) } }
     ]
 
     var reports = [{id: 1}, {id: 2}, {id: 3}]
