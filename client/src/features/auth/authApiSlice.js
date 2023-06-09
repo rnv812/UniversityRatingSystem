@@ -17,6 +17,13 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 body: { ...credentials }
             })
         }),
+        activate: build.mutation({
+            query: obtainedPair => ({
+                url: '/users/activation/',
+                method: 'POST',
+                body: { ...obtainedPair }
+            })
+        }),
         getUser: build.mutation({
             query: () => ({
                 url: '/users/me/',
@@ -26,4 +33,9 @@ export const authApiSlice = apiSlice.injectEndpoints({
     })
 })
 
-export const { useLoginMutation, useSignupMutation, useGetUserMutation } = authApiSlice
+export const {
+    useLoginMutation,
+    useSignupMutation,
+    useActivateMutation,
+    useGetUserMutation,
+} = authApiSlice
