@@ -50,7 +50,6 @@ class Educator(models.Model):
     scopus_id = models.CharField(
         verbose_name=_('scopus id'),
         max_length=20,
-        unique=True,
         blank=True
     )
 
