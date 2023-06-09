@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-02 13:48+0300\n"
+"POT-Creation-Date: 2023-06-09 05:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -116,7 +116,7 @@ msgstr "разделы рейтинга преподавателей"
 msgid "report UUID"
 msgstr "UUID анкеты"
 
-#: apps/educator_rating/models.py:50 apps/educators/models.py:51
+#: apps/educator_rating/models.py:50 apps/educators/models.py:57
 msgid "educator"
 msgstr "преподаватель"
 
@@ -245,7 +245,11 @@ msgstr "квалификация преподавателя"
 msgid "educator department"
 msgstr "кафедра преподавателя"
 
-#: apps/educators/models.py:52
+#: apps/educators/models.py:51
+msgid "scopus id"
+msgstr "идентификатор scopus"
+
+#: apps/educators/models.py:58
 msgid "educators"
 msgstr "преподаватели"
 
@@ -447,7 +451,7 @@ msgstr "фамилия"
 msgid "patronomyc"
 msgstr "отчество"
 
-#: university_rating_system/settings.py:199
+#: university_rating_system/settings.py:202
 msgid "API Administation"
 msgstr "Администрирование API"
 
