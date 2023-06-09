@@ -47,6 +47,13 @@ class Educator(models.Model):
         on_delete=models.PROTECT
     )
 
+    scopus_id = models.CharField(
+        verbose_name=_('scopus id'),
+        max_length=20,
+        unique=True,
+        blank=True
+    )
+
     class Meta:
         verbose_name = _('educator')
         verbose_name_plural = _('educators')
