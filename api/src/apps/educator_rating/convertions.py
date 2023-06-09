@@ -15,6 +15,7 @@ def get_formatted_criterion_key(
     number: int,
     subnumber: Optional[int]
 ) -> str:
+    '''Build string representing criterion key in format of 1C database.'''
     number = str(number).zfill(2)
 
     if subnumber is None:
@@ -24,6 +25,10 @@ def get_formatted_criterion_key(
 
 
 def convert_to_float(multitype_value: dict) -> float:
+    '''Convert multitype value to float. Strings always become `0.0`.
+    Boolean values are converted to `0.0` and `1.0` for `False` and `True`
+    respectively.
+    '''
     match multitype_value:
         case {'value': bool() as value, 'type': DataTypes.BOOL.value}:
             return float(value)
