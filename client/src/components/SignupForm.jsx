@@ -13,6 +13,8 @@ export default function SignupForm() {
     })
     const [signup] = useSignupMutation();
 
+    // TODO: add useEffect the same as in login form to navigate to reports if isAuthenticated  
+
     const { email, password, re_password } = formData;
 
     function onChange(e) {
