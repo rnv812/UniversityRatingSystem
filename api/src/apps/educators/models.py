@@ -32,7 +32,7 @@ class Educator(models.Model):
     )
     personal_number = models.CharField(
         verbose_name=_('personal number'),
-        max_length=20,
+        max_length=20,  # TODO: specify maximum length
         unique=True,
     )
 
@@ -48,8 +48,14 @@ class Educator(models.Model):
     )
 
     scopus_id = models.CharField(
-        verbose_name=_('scopus id'),
-        max_length=20,
+        verbose_name=_('Scopus ID'),
+        max_length=11,
+        blank=True
+    )
+
+    wos_id = models.CharField(
+        verbose_name=_('Web of Science ID'),
+        max_length=13,
         blank=True
     )
 
