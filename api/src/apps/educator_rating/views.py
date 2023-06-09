@@ -11,7 +11,7 @@ from rest_framework.viewsets import GenericViewSet, ReadOnlyModelViewSet
 from apps.educators.models import Educator
 from apps.educators.permissions import IsEducatorUser
 
-from .brokers import RabbitMQBrokerService, send_educator_report_to_broker
+from .brokers import send_educator_report_to_broker
 from .mixins import PartialUpdateModelMixin
 from .models import (EducatorIndicatorValue, EducatorRatingPartition,
                      EducatorReport, EducatorReportController)
@@ -143,19 +143,19 @@ class EducatorReportViewSet(RetrieveModelMixin,
         request body with `true` or `false` values.
         """
 
-        report = EducatorReport.objects.get(pk=pk)
-        current_status = report.approved
+        current_status = EducatorReport.objects.get(pk=pk).approved
         new_status = request.data.get('approved', current_status)
 
+        # using filter with update cause of save violates unique constraint
+        report = EducatorReport.objects.filter(pk=pk)
+
         if new_status != current_status:
-            report.approved = new_status
-            report.save(update_fields=('approved', ))
+            report.update(approved=new_status)
+
+        report = report.first()
 
         # if report becomes approved we send it to broker
         if new_status is True:
-            send_educator_report_to_broker(
-                report=report,
-                broker=RabbitMQBrokerService
-            )
+            send_educator_report_to_broker(report)
 
         return Response(EducatorReportSerializer(instance=report).data)

@@ -1,20 +1,22 @@
-from abc import ABC
+import json
+import os
+
+import pika
 
 from .models import EducatorReport
 from .convertions import bundle_report
 
 
-class BrokerService(ABC):
-    ...
-
-
-class RabbitMQBrokerService(BrokerService):
-    ...
-
-
-def send_educator_report_to_broker(
-    report: EducatorReport,
-    broker: BrokerService
-):
+def send_educator_report_to_broker(report: EducatorReport):
     data = bundle_report(report)
-    # broker.send(data)
+
+    with pika.BlockingConnection(
+            pika.ConnectionParameters(host=os.getenv('RABBITMQ_HOST'))
+    ) as connection:
+        channel = connection.channel()
+
+        channel.basic_publish(
+            exchange=os.getenv('RABBITMQ_EXCHANGE'),
+            routing_key='',
+            body=json.dumps(data, indent=4, ensure_ascii=False).encode('utf-8')
+        )
