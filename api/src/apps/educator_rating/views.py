@@ -11,6 +11,7 @@ from rest_framework.viewsets import GenericViewSet, ReadOnlyModelViewSet
 from apps.educators.models import Educator
 from apps.educators.permissions import IsEducatorUser
 
+from .brokers import RabbitMQBrokerService, send_educator_report_to_broker
 from .mixins import PartialUpdateModelMixin
 from .models import (EducatorIndicatorValue, EducatorRatingPartition,
                      EducatorReport, EducatorReportController)
@@ -143,11 +144,18 @@ class EducatorReportViewSet(RetrieveModelMixin,
         """
 
         report = EducatorReport.objects.get(pk=pk)
-        default_status = report.approved
-        new_status = request.data.get('approved', default_status)
+        current_status = report.approved
+        new_status = request.data.get('approved', current_status)
 
-        if new_status != default_status:
+        if new_status != current_status:
             report.approved = new_status
             report.save(update_fields=('approved', ))
+
+        # if report becomes approved we send it to broker
+        if new_status is True:
+            send_educator_report_to_broker(
+                report=report,
+                broker=RabbitMQBrokerService
+            )
 
         return Response(EducatorReportSerializer(instance=report).data)
