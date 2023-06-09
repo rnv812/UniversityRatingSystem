@@ -10,5 +10,5 @@ if [ $# = 2 ]; then
 else
     echo "Use following format: container-shell.sh <container name> <user>"
     echo
-    echo "Example usage: container-shell.sh dev api root"
+    echo "Example usage: container-shell.sh urs-api-dev root"
 fi
