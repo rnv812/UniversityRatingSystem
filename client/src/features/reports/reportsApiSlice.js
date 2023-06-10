@@ -9,9 +9,23 @@ export const reportsApiSlice = apiSlice.injectEndpoints({
                 method: 'GET'
             })
         }),
+        getReport: build.query({
+            query: (id) => ({
+                url: `/educator-reports/${id}/`,
+                method: 'GET'
+            })
+        }),
+        getReportValues: build.query({
+            query: (id) => ({
+                url: `/educator-indicator-values/${id}/report_values/`,
+                method: 'GET'
+            })
+        }),
     })
 })
 
 export const {
     useGetMyReportsQuery,
+    useGetReportQuery,
+    useGetReportValuesQuery,
 } = reportsApiSlice

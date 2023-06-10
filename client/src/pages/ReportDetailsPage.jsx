@@ -1,8 +1,9 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/material"
+import styles from "../styles/Page.module.css"
 import ReportListNavbar from "../components/Navbar";
-
+import ReportForm from "../components/ReportForm";
 
 export default function ReportDetailsPage() {
     const navigate = useNavigate();
@@ -23,6 +24,9 @@ export default function ReportDetailsPage() {
     return (
         <Box>
             <ReportListNavbar actions={navbarActions} pageTitle={fullname}/>
+            <Box className={ `${styles.center} ${styles.pageTopStart}` }>
+                <ReportForm />
+            </Box>
         </Box>
     );
 }

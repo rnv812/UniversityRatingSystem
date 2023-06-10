@@ -19,7 +19,7 @@ export default function App() {
             {/* protected routes */}
             <Route element={<RequireAuth />}>
                 <Route path="/reports" element={<ReportsPage />} />
-                <Route path="/reports/:uuid" element={<ReportDetailsPage />} />
+                <Route path="/reports/:id" element={<ReportDetailsPage />} />
             </Route>
             <Route path="*" element={<NotFound />} />
         </Routes>

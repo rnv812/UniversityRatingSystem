@@ -31,7 +31,7 @@ export default function LoginForm() {
                 try {
                     const user = await getUser().unwrap();
                     dispatch(setUser(user));
-                    navigate('/reports')
+                    navigate('/reports');
                 } catch (error) {
                     setHelperMessage("Сессия истекла");
                 }
