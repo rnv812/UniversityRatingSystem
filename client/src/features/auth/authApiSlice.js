@@ -24,12 +24,18 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 body: { ...obtainedPair }
             })
         }),
-        getUser: build.mutation({
+        getUserMe: build.mutation({
             query: () => ({
                 url: '/users/me/',
                 method: 'GET'
             })
         }),
+        getUser: build.query({
+            query: (id) => ({
+                url: `/users/${id}/`,
+                method: 'GET'
+            })
+        })
     })
 })
 
@@ -37,5 +43,6 @@ export const {
     useLoginMutation,
     useSignupMutation,
     useActivateMutation,
-    useGetUserMutation,
+    useGetUserMeMutation,
+    useGetUserQuery,
 } = authApiSlice

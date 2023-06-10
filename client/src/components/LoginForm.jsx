@@ -3,7 +3,7 @@ import { Box, TextField, Button, Typography, FormHelperText } from '@mui/materia
 import { Link } from "react-router-dom";
 import styles from '../styles/Form.module.css';
 import { useDispatch, useSelector } from 'react-redux'
-import { useLoginMutation, useGetUserMutation } from '../features/auth/authApiSlice';
+import { useLoginMutation, useGetUserMeMutation } from '../features/auth/authApiSlice';
 import { useNavigate } from 'react-router-dom'
 import { setCredentials, setUser, restoreSession, selectIsAuthenticated } from '../features/auth/authSlice'
 
@@ -14,7 +14,7 @@ export default function LoginForm() {
     const [errorStatus, setErrorStatus] = useState(false)
     const dispatch = useDispatch();
     const [login] = useLoginMutation();
-    const [getUser] = useGetUserMutation();
+    const [getUser] = useGetUserMeMutation();
     const navigate = useNavigate();
     const isAuthenticated = useSelector(selectIsAuthenticated);
 

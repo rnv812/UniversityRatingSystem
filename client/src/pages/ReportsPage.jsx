@@ -5,13 +5,16 @@ import ReportListContainer from "../components/ReportListContainer";
 import CreateReportDialog from "../components/CreateReportDialog";
 import styles from "../styles/Page.module.css";
 import { logout } from "../features/auth/authSlice";
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectCurrentUser } from '../features/auth/authSlice'
+
 
 
 export default function ReportsPage() {
     const [isOpen, setOpenCreateReport] = React.useState(false);
     const dispatch = useDispatch();
-    
+    const user = useSelector(selectCurrentUser);
+
     const handleClickOpenCreateReport = () => {
         setOpenCreateReport(true);
     };
@@ -28,18 +31,16 @@ export default function ReportsPage() {
         { name: "Создать анкету", func: handleClickOpenCreateReport },
         { name: "Выйти", func: () => { dispatch(logout()) } }
     ]
-
-    var reports = [{id: 1}, {id: 2}, {id: 3}]
+    
 
     const availableEducators = [{label: "Фамилия Имя Отчество", value: "TestName"}]
     const availableYears = [{label: "2023", value: "2023"}]
 
-
     return (
         <>
-            <Navbar actions={ navbarActions } pageTitle={ "Фамилия Имя Отчество" } />
+            <Navbar actions={ navbarActions } pageTitle={ `${user.last_name}  ${user.first_name} ${user.patronymic}` } />
             <Box className={ `${styles.center} ${styles.pageTopStart}` }>
-                <ReportListContainer reports={ reports }/>
+                <ReportListContainer/>
             </Box>
             <CreateReportDialog 
                 isOpen={ isOpen }
