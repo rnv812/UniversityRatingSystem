@@ -6,8 +6,8 @@ import { useGetUserQuery } from '../features/auth/authApiSlice';
 
 
 export default function ReportCard({ report }) {
-    const response =  useGetEducatorQuery(report.educator);
-    const user = useGetUserQuery(response.data.user).data;
+    const { data: educator, isLoading: skip } = useGetEducatorQuery(report.educator);
+    const { data: user, isLoading } = useGetUserQuery(educator?.user, { skip });
 
     return (
         <Card className={styles.reportCard}>
@@ -17,7 +17,10 @@ export default function ReportCard({ report }) {
                     {`Анкета №${report.id}` }
                 </Typography>
                 <Typography variant="h5" component="div">
-                    { `${user.last_name}  ${user.first_name} ${user.patronymic}` }
+                    { isLoading 
+                        ? 'Загрузка...'
+                        : `${user?.last_name}  ${user?.first_name} ${user?.patronymic}`
+                    }
                 </Typography>
                 <Typography color="text.secondary">
                     { `Год: ${report.year}` }
