@@ -28,16 +28,6 @@ export default function ReportListFilter() {
             />
 
             <TextField label="Год" variant="outlined" type='number' sx={{ minWidth: 120 }} />
-            
-            <TextField label="ФИО Преподавателя" variant="outlined" sx={{ minWidth: 300 }} />
-
-            <ItemSelect
-                id={ 'report-sort-method-select' }
-                title={ "Сортировка" }
-                items={ [{ label: "ФИО", value: "year" }, { label: "Год", value: "name" }]}
-                defaultValue={"year"}
-                sx={{ minWidth: 120 }}
-            />
         </Box>
     );
 }
