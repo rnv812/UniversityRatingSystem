@@ -279,6 +279,8 @@ DJOSER = {
     }
 }
 
+HIDE_USERS = False
+
 # CORS
 
 CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS').split(' ')
