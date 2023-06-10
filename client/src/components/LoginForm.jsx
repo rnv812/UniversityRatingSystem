@@ -42,9 +42,9 @@ export default function LoginForm() {
 
     async function onSubmit(e) {
         e.preventDefault();
+        setErrorStatus(false);
         
         try {
-            setErrorStatus(false);
             setHelperMessage("Авторизация...");
             const credentials = await login({ email, password }).unwrap();
             dispatch(setCredentials(credentials));
