@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Box, TextField, Button, Typography } from '@mui/material';
+import { Box, TextField, Button, Typography, FormHelperText } from '@mui/material';
 import { Link } from "react-router-dom";
 import styles from '../styles/Form.module.css';
 import { useDispatch, useSelector } from 'react-redux'
@@ -10,6 +10,8 @@ import { setCredentials, setUser, restoreSession, selectIsAuthenticated } from '
 
 export default function LoginForm() {
     const [formData, setFormData] = useState({ email: '', password: '' })
+    const [helperMessage, setHelperMessage] = useState("")
+    const [errorStatus, setErrorStatus] = useState(false)
     const dispatch = useDispatch();
     const [login] = useLoginMutation();
     const [getUser] = useGetUserMutation();
@@ -31,7 +33,7 @@ export default function LoginForm() {
                     dispatch(setUser(user));
                     navigate('/reports')
                 } catch (error) {
-                    console.log(error.message); // TODO: add form field for errors
+                    setHelperMessage("Сессия истекла");
                 }
             }
         }
@@ -42,6 +44,8 @@ export default function LoginForm() {
         e.preventDefault();
         
         try {
+            setErrorStatus(false);
+            setHelperMessage("Авторизация...");
             const credentials = await login({ email, password }).unwrap();
             dispatch(setCredentials(credentials));
             const user = await getUser().unwrap();
@@ -53,7 +57,13 @@ export default function LoginForm() {
             navigate('/reports')
             
         } catch (error) {
-            console.log(error.message);     // TODO: add form field for errors
+            setErrorStatus(true);
+            if (error.status === 401) {
+                setHelperMessage("Неверные учётные данные или аккаунт не активирован");
+            }
+            else {
+                setHelperMessage("Сервер недоступен");
+            }
         }
     }
 
@@ -85,6 +95,7 @@ export default function LoginForm() {
                             sx={{ width: "100%" }}
                         />
                     </Box>
+                    <FormHelperText error={ errorStatus }>{ helperMessage }</FormHelperText>
                 </Box>
                 <Box className={ styles.formActions }>
                     <Link to="/signup" className={ styles.textAction }>
