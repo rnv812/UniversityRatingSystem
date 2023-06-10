@@ -28,6 +28,7 @@ class EducatorReportAdmin(admin.ModelAdmin):
     search_help_text = _('Educator first name, lastname or patronymic')
     list_filter = ('educator__qualification__name', 'year', )
     autocomplete_fields = ('educator', )
+    exclude = ('approved', )
 
 
 @admin.register(EducatorReportController)
