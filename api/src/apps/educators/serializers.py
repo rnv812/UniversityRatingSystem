@@ -7,8 +7,7 @@ class EducatorSerializer(ModelSerializer):
     class Meta:
         model = Educator
         fields = (
-            'id', 'user', 'personal_number',
-            'qualification', 'department',
+            'id', 'user', 'qualification', 'department',
         )
 
 

@@ -9,6 +9,11 @@ class AllowedEmail(models.Model):
     """Model stores emails of users that are allowed to register."""
 
     email = models.EmailField(verbose_name=_('email address'), unique=True)
+    employee_id = models.CharField(
+        verbose_name=_('employee id'),
+        max_length=20,
+        blank=True
+    )
 
     class Meta:
         verbose_name = _('allowed email')

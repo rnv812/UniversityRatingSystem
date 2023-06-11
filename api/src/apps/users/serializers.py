@@ -17,4 +17,4 @@ class UserProfileSerializer(ModelSerializer):
 class AllowedEmailSerializer(ModelSerializer):
     class Meta:
         model = AllowedEmail
-        fields = ('id', 'email',)
+        fields = ('id', 'email', 'employee_id', )

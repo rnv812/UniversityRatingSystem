@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-09 15:35+0000\n"
+"POT-Creation-Date: 2023-06-11 16:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -116,7 +116,7 @@ msgstr "разделы рейтинга преподавателей"
 msgid "report UUID"
 msgstr "UUID анкеты"
 
-#: apps/educator_rating/models.py:50 apps/educators/models.py:63
+#: apps/educator_rating/models.py:50 apps/educators/models.py:58
 msgid "educator"
 msgstr "преподаватель"
 
@@ -233,27 +233,23 @@ msgstr "квалификации"
 msgid "educator profile"
 msgstr "профиль преподавателя"
 
-#: apps/educators/models.py:34
-msgid "personal number"
-msgstr "табельный номер"
-
-#: apps/educators/models.py:40
+#: apps/educators/models.py:35
 msgid "educator qualification"
 msgstr "квалификация преподавателя"
 
-#: apps/educators/models.py:45
+#: apps/educators/models.py:40
 msgid "educator department"
 msgstr "кафедра преподавателя"
 
-#: apps/educators/models.py:51
+#: apps/educators/models.py:46
 msgid "Scopus ID"
 msgstr "идентификатор Scopus"
 
-#: apps/educators/models.py:57
+#: apps/educators/models.py:52
 msgid "Web of Science ID"
 msgstr "идентификатор Web of Science"
 
-#: apps/educators/models.py:64
+#: apps/educators/models.py:59
 msgid "educators"
 msgstr "преподаватели"
 
@@ -427,37 +423,44 @@ msgstr "Важные даты"
 msgid "Users"
 msgstr "Пользователи"
 
-#: apps/users/models.py:11 apps/users/models.py:66
+#: apps/users/models.py:11 apps/users/models.py:71
 msgid "email address"
 msgstr "email"
 
-#: apps/users/models.py:14
+#: apps/users/models.py:13
+msgid "employee id"
+msgstr "табельный номер сотрудника"
+
+#: apps/users/models.py:19
 msgid "allowed email"
 msgstr "разрешенный email"
 
-#: apps/users/models.py:15
+#: apps/users/models.py:20
 msgid "allowed emails"
 msgstr "разрешенные email"
 
-#: apps/users/models.py:26
+#: apps/users/models.py:31
 msgid "Email is not in allowed list"
 msgstr "Email не найден в списке разрешенных"
 
-#: apps/users/models.py:70
+#: apps/users/models.py:75
 msgid "first name"
 msgstr "имя"
 
-#: apps/users/models.py:71
+#: apps/users/models.py:76
 msgid "last name"
 msgstr "фамилия"
 
-#: apps/users/models.py:73
+#: apps/users/models.py:78
 msgid "patronomyc"
 msgstr "отчество"
 
 #: university_rating_system/settings.py:202
 msgid "API Administation"
 msgstr "Администрирование API"
+
+#~ msgid "personal number"
+#~ msgstr "табельный номер"
 
 #~ msgid "Username, first name, last name, patronymic or email"
 #~ msgstr "Имя пользователя, имя, фамилия, отчество или email"
