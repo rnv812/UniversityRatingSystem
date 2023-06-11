@@ -16,7 +16,7 @@ def validate_indicator_value(value: dict) -> None:
             pass
         case {'value': int(), 'type': DataTypes.INT.value}:
             pass
-        case {'value': float(), 'type': DataTypes.FLOAT.value}:
+        case {'value': float() | int(), 'type': DataTypes.FLOAT.value}:
             pass
         case {'value': str(), 'type': DataTypes.STR.value}:
             pass
