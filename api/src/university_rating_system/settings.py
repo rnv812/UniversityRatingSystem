@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'apps.educators.apps.EducatorsConfig',
     'apps.rating.apps.RatingConfig',
     'apps.educator_rating.apps.EducatorRatingConfig',
+    'apps.integration_1c',
 ]
 
 MIDDLEWARE = [
