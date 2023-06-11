@@ -62,7 +62,7 @@ class EducatorIndicatorValueViewSet(RetrieveModelMixin,
         report = get_object_or_404(EducatorReport, pk=pk)
         indicator_values = EducatorIndicatorValue.objects.filter(
             report=report
-        )
+        ).order_by('pk')
 
         return Response(
             EducatorIndicatorValueSerializer(
