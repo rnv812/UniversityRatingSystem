@@ -3,7 +3,7 @@ import os
 
 import pika
 
-from .models import EducatorReport
+from ..educator_rating.models import EducatorReport
 from .convertions import bundle_report
 
 

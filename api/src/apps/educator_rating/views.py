@@ -11,7 +11,7 @@ from rest_framework.viewsets import GenericViewSet, ReadOnlyModelViewSet
 from apps.educators.models import Educator
 from apps.educators.permissions import IsEducatorUser
 
-from .brokers import send_educator_report_to_broker
+from ..integration_1c.brokers import send_educator_report_to_broker
 from .mixins import PartialUpdateModelMixin
 from .models import (EducatorIndicatorValue, EducatorRatingPartition,
                      EducatorReport, EducatorReportController)

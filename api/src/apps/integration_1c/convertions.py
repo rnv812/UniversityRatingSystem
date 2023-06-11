@@ -1,8 +1,8 @@
 from typing import Optional
 
-from .models import (EducatorIndicatorValue,
-                     EducatorRatingPartition,
-                     EducatorReport)
+from ..educator_rating.models import (EducatorIndicatorValue,
+                                      EducatorRatingPartition,
+                                      EducatorReport)
 from ..rating.models import Criterion
 from ..rating.models import ValueType
 
