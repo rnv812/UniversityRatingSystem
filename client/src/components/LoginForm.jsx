@@ -12,6 +12,7 @@ export default function LoginForm() {
     const [formData, setFormData] = useState({ email: '', password: '' })
     const [helperMessage, setHelperMessage] = useState("")
     const [errorStatus, setErrorStatus] = useState(false)
+    const [loginProcess, setLoginProcess] = useState(false);
     const dispatch = useDispatch();
     const [login] = useLoginMutation();
     const [getUser] = useGetUserMeMutation();
@@ -43,6 +44,7 @@ export default function LoginForm() {
     async function onSubmit(e) {
         e.preventDefault();
         setErrorStatus(false);
+        setLoginProcess(true);
         
         try {
             setHelperMessage("Авторизация...");
@@ -65,6 +67,7 @@ export default function LoginForm() {
                 setHelperMessage("Сервер недоступен");
             }
         }
+        setLoginProcess(false);
     }
 
     return (
@@ -103,7 +106,7 @@ export default function LoginForm() {
                             Нет аккаунта?
                         </Typography>
                     </Link>
-                    <Button onClick={ e => onSubmit(e) } type="submit" variant="contained">Войти</Button>
+                    <Button onClick={ e => onSubmit(e) } type="submit" variant="contained" disabled={ loginProcess }>Войти</Button>
                 </Box>
             </form>
         </Box>

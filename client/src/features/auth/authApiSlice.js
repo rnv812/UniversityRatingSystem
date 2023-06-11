@@ -8,7 +8,8 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 url: '/jwt/create/',
                 method: 'POST',
                 body: { ...credentials }
-            })
+            }),
+            invalidatesTags: ['ReportList'],
         }),
         signup: build.mutation({
             query: credentials => ({

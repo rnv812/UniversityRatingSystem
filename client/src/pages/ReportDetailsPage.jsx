@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/material"
 import styles from "../styles/Page.module.css"
 import ReportListNavbar from "../components/Navbar";
-import ReportForm from "../components/ReportForm";
+import ReportFormContainer from "../components/ReportFormContainer";
 
 export default function ReportDetailsPage() {
     const navigate = useNavigate();
@@ -12,10 +12,8 @@ export default function ReportDetailsPage() {
         navigate('/reports')
     }
 
-    const navbarActions = [
+    let navbarActions = [
         {name: "Вернуться к анкетам", func: backToReports},
-        {name: "Утвердить анкету", func: null},
-        {name: "Редактировать анкету", func: null},
         {name: "Выйти", func: null}
     ]
 
@@ -25,7 +23,7 @@ export default function ReportDetailsPage() {
         <Box>
             <ReportListNavbar actions={navbarActions} pageTitle={fullname}/>
             <Box className={ `${styles.center} ${styles.pageTopStart}` }>
-                <ReportForm />
+                <ReportFormContainer />
             </Box>
         </Box>
     );
