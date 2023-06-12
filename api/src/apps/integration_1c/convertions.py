@@ -5,6 +5,7 @@ from ..educator_rating.models import (EducatorIndicatorValue,
                                       EducatorReport)
 from ..rating.models import Criterion
 from ..rating.models import ValueType
+from ..users.models import AllowedEmail
 
 
 DataTypes = ValueType.DataTypes
@@ -49,7 +50,7 @@ def bundle_report(report: EducatorReport) -> dict:
     The structure of the dictionary is as follows:
     {
         'year': <int>,
-        'educatorPersonalNumber': <str>,
+        'employeeId': <str>,
         'values': [
             {
                 'criterionKey': <str>,      # Examples: "П01" / "А15" / "О03_1"
@@ -64,7 +65,11 @@ def bundle_report(report: EducatorReport) -> dict:
     data = dict()
 
     data['year'] = report.year
-    data['educatorPersonalNumber'] = report.educator.personal_number
+
+    employee_record = AllowedEmail.objects.get(
+        email=report.educator.user.email
+    )
+    data['employeeId'] = employee_record.employee_id
     data['values'] = []
 
     educator_partitions = EducatorRatingPartition.objects.all(

@@ -13,7 +13,8 @@ export const reportsApiSlice = apiSlice.injectEndpoints({
             query: (id) => ({
                 url: `/educator-reports/${id}/`,
                 method: 'GET'
-            })
+            }),
+            providesTags: ['Report'],
         }),
         getReportValues: build.query({
             query: (id) => ({
@@ -30,6 +31,21 @@ export const reportsApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ['ReportValues'],
         }),
+        getReportController: build.query({
+            query: () => ({
+                url: `/educator-report-controllers/me/`,
+                method: 'GET'
+            }),
+            providesTags: ['ReportController'],
+        }),
+        changeReportStatus: build.mutation({
+            query: ({ id, status }) => ({
+                url: `/educator-reports/${id}/set_status/`,
+                method: 'PATCH',
+                body: { approved: status }
+            }),
+            invalidatesTags: ['Report'],
+        }),
     })
 })
 
@@ -38,4 +54,6 @@ export const {
     useGetReportQuery,
     useGetReportValuesQuery,
     usePatchReportValueMutation,
+    useGetReportControllerQuery,
+    useChangeReportStatusMutation,
 } = reportsApiSlice

@@ -38,7 +38,7 @@ export default function ReportCard({ report }) {
                     Статус: { 
                     report.approved 
                         ? <span style={{color: "green"}}>Подтверждена</span>
-                        : <span style={{color: "chocolate"}}>На рассмотрении</span> 
+                        : <span style={{color: "chocolate"}}>Нe подтверждена</span> 
                     }
                 </Typography>
             </CardContent>
