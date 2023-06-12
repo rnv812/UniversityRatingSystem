@@ -36,6 +36,24 @@ class EducatorReportControllerViewSet(ReadOnlyModelViewSet):
     queryset = EducatorReportController.objects.all().order_by('pk')
     serializer_class = EducatorReportControllerSerializer
 
+    @action(
+        detail=False,
+        methods=SAFE_METHODS,
+        permission_classes=(
+            IsAuthenticated,
+            IsReportControllerUser
+        )
+    )
+    def me(self, request: Request) -> Response:
+        """Get instance of report controller of requested user"""
+        controller = EducatorReportController.objects.get(user=request.user)
+
+        return Response(
+            EducatorReportControllerSerializer(
+                instance=controller,
+            ).data
+        )
+
 
 class EducatorIndicatorValueViewSet(RetrieveModelMixin,
                                     PartialUpdateModelMixin,
