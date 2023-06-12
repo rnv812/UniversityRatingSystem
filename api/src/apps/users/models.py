@@ -5,7 +5,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.dispatch import receiver
 
-from ..integration_1c.queries import query_mock_employee_data
+from ..integration_1c.queries import query_employee_data
 
 
 class AllowedEmail(models.Model):
@@ -124,7 +124,10 @@ def add_data_from_integration_server(
                                                construct_user_data,
                                                create_educator_hook)
 
-    employee_data = query_mock_employee_data(employee_id)
+    employee_data = query_employee_data(employee_id)
+
+    if employee_data is None:
+        return
 
     user_data = construct_user_data(employee_data)
 
