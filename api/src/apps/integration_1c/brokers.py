@@ -17,6 +17,6 @@ def send_educator_report_to_broker(report: EducatorReport):
 
         channel.basic_publish(
             exchange=os.getenv('RABBITMQ_EXCHANGE'),
-            routing_key='',
+            routing_key=os.getenv('RABBITMQ_ROUTING_KEY'),
             body=json.dumps(data, indent=4, ensure_ascii=False).encode('utf-8')
         )
