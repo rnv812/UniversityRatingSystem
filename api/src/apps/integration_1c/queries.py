@@ -26,7 +26,7 @@ def query_employee_data(employee_id: str) -> Optional[dict]:
 
 def query_mock_employee_data(employee_id: str) -> Optional[dict]:
     return {
-        "fullName": "Кузнецов Михаил Андреевич",
-        "qualificationName": "Доцент",
-        "departmentName": "ЭВМиС",
+        "fullName": "Тестовый Тест Тестович",
+        "qualificationName": "Доценты",
+        "departmentName": "ЭВМ",
     }
