@@ -59,4 +59,4 @@ class Educator(models.Model):
         verbose_name_plural = _('educators')
 
     def __str__(self) -> str:
-        return f'{self.qualification.name} {self.user.get_full_name()}'
+        return f'{self.user.get_full_name()}'
