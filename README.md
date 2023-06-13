@@ -66,7 +66,7 @@ docker-compose -f docker-compose.<dev|prod>.yaml
 
 ## Available endpoints
 - `localhost:8000` - API root;
-- `localhost:8000/swagger` - API swagger;
-- `localhsot:8000/redoc` - API redoc;
-- `localhost:8000/admin` - API admin panel;
-- `localhsot:3000/` - client;
+- `localhost:8000/swagger/` - API swagger;
+- `localhsot:8000/redoc/` - API redoc;
+- `localhost:8000/admin/` - API admin panel;
+- `localhsot:3000/login/` - client;
