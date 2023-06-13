@@ -46,6 +46,14 @@ export const reportsApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ['Report'],
         }),
+        createReport: build.mutation({
+            query: ({ educatorId, year }) => ({
+                url: `/educator-reports/`,
+                method: 'POST',
+                body: { educator: educatorId, year, approved: false }
+            }),
+            invalidatesTags: ['ReportList'],
+        }),
     })
 })
 
@@ -56,4 +64,5 @@ export const {
     usePatchReportValueMutation,
     useGetReportControllerQuery,
     useChangeReportStatusMutation,
+    useCreateReportMutation,
 } = reportsApiSlice

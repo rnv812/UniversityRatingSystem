@@ -9,9 +9,16 @@ export const educatorsApiSlice = apiSlice.injectEndpoints({
                 method: 'GET'
             })
         }),
+        getEducatorMe: build.query({
+            query: () => ({
+                url: `/educators/me/`,
+                method: 'GET'
+            })
+        }),
     })
 })
 
 export const {
     useGetEducatorQuery,
+    useGetEducatorMeQuery,
 } = educatorsApiSlice

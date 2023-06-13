@@ -23,18 +23,10 @@ export default function ReportsPage() {
         setOpenCreateReport(false);
     };
 
-    const onCreateReport = () => {
-        // TODO send request to api
-    };
-    
     const navbarActions = [
         { name: "Создать анкету", func: handleClickOpenCreateReport },
         { name: "Выйти", func: () => { dispatch(logout()) } }
     ]
-    
-
-    const availableEducators = [{label: "Фамилия Имя Отчество", value: "TestName"}]
-    const availableYears = [{label: "2023", value: "2023"}]
 
     return (
         <>
@@ -45,9 +37,6 @@ export default function ReportsPage() {
             <CreateReportDialog 
                 isOpen={ isOpen }
                 onClose={ handleCloseCreateReport }
-                onCreate={ onCreateReport } 
-                availableYears={ availableYears }
-                availableEducators={ availableEducators }
             />
         </>
     );
