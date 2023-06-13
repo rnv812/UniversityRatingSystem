@@ -44,7 +44,7 @@ export const reportsApiSlice = apiSlice.injectEndpoints({
                 method: 'PATCH',
                 body: { approved: status }
             }),
-            invalidatesTags: ['Report'],
+            invalidatesTags: ['Report', 'ReportList'],
         }),
         createReport: build.mutation({
             query: ({ educatorId, year }) => ({
