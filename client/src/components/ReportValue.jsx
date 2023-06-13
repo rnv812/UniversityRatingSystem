@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Box, Typography, Checkbox, TextField } from '@mui/material'; 
+import { Box, Typography, Checkbox, TextField, Divider } from '@mui/material'; 
 import { usePatchReportValueMutation } from '../features/reports/reportsApiSlice';
+import styles from '../styles/ReportValue.module.css';
 
 
 export default function ReportValue({ indicator, valueType, value, id }) {
@@ -26,16 +27,21 @@ export default function ReportValue({ indicator, valueType, value, id }) {
         if (valueType === 'bool') {
             return <Checkbox checked={ val } onChange={ e => handleOnChange(e.target.checked) } />;
         } else if (valueType === 'int' || valueType === 'float') {
-            return <TextField type='number' value={ val } onChange={ e => handleOnChange(e.target.value) } />
+            return <TextField sx={{ maxWidth: "80px" }} type='number' value={ val } onChange={ e => handleOnChange(e.target.value) } />
         } else {
-            return <TextField value={ val } onChange={ e => handleOnChange(e.target.value) } />
+            return <TextField sx={{ minWidth: "300px" }} value={ val } onChange={ e => handleOnChange(e.target.value) } />
         }
     }
     
     return (
-        <Box>
-            <Typography>{ indicator.name }</Typography>
-            { getInputElement() }
-        </Box>
+        <>
+            <Box className={ styles.lineBox }>
+                <Box className={ styles.indicatorName }>
+                    <Typography>{ indicator.name }</Typography>
+                </Box>
+                { getInputElement() }
+            </Box>
+            <Divider />
+        </>
     )
 }

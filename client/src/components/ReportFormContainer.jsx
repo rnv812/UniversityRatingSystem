@@ -14,7 +14,7 @@ export default function ReportFormContainer({ report }) {
     const { data: reportValues } = useGetReportValuesQuery(id);
 
     return (
-        <Box sx={{ width: "90%" }}>
+        <Box sx={{ width: "70%" }}>
             <Typography variant="h4">
                 { userLoading 
                     ? 'Загрузка...'
