@@ -1,0 +1,11 @@
+.lineBox {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0 10px 0;
+}
+
+.indicatorName {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}

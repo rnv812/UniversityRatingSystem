@@ -3,12 +3,20 @@ from django.contrib.auth.models import (AbstractUser, BaseUserManager)
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.dispatch import receiver
+
+from ..integration_1c.queries import query_employee_data
 
 
 class AllowedEmail(models.Model):
     """Model stores emails of users that are allowed to register."""
 
     email = models.EmailField(verbose_name=_('email address'), unique=True)
+    employee_id = models.CharField(
+        verbose_name=_('employee id'),
+        max_length=20,
+        blank=True
+    )
 
     class Meta:
         verbose_name = _('allowed email')
@@ -89,3 +97,51 @@ class UserProfile(AbstractUser):
         """
         full_name = f'{self.last_name} {self.first_name} {self.patronymic}'
         return full_name.strip()
+
+
+@receiver(models.signals.post_save, sender=UserProfile)
+def add_data_from_integration_server(
+    sender,
+    instance,
+    created,
+    *args,
+    **kwargs
+) -> None:
+    # We check if for specified email also employee id provided
+    # if so we can fetch data from employee server and set such data as:
+    # first_name, last_name, patronymic, is_active
+    # also we can create a new educator
+    if not created:
+        return
+
+    employee_id = AllowedEmail.objects.get(email=instance.email).employee_id
+
+    if not employee_id:
+        return
+
+    # To avoid circular dependecies imports goes here
+    from ..integration_1c.constructors import (construct_educator_data,
+                                               construct_user_data,
+                                               create_educator_hook)
+
+    employee_data = query_employee_data(employee_id)
+
+    if employee_data is None:
+        return
+
+    user_data = construct_user_data(employee_data)
+
+    if user_data:
+        instance.last_name = user_data.last_name
+        instance.first_name = user_data.first_name
+        instance.patronymic = user_data.patronymic
+        instance.save(update_fields=['last_name', 'first_name', 'patronymic'])
+
+    educator_data = construct_educator_data(employee_data)
+
+    if educator_data:
+        create_educator_hook(
+            user=instance,
+            qualification=educator_data.qualification,
+            department=educator_data.department
+        )

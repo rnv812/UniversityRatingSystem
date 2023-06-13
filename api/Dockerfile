@@ -16,7 +16,9 @@ FROM base as builder
 
 WORKDIR /app/
 
-COPY src/pyproject.toml src/poetry.lock /app/
+COPY src/pyproject.toml src/poetry.lock  /app/
+
+RUN apk add gcc --no-cache gcc musl-dev python3-dev
 
 RUN pip install poetry==$POETRY_VERSION && \
     poetry config virtualenvs.in-project true && \

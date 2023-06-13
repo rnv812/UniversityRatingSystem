@@ -11,6 +11,7 @@ from rest_framework.viewsets import GenericViewSet, ReadOnlyModelViewSet
 from apps.educators.models import Educator
 from apps.educators.permissions import IsEducatorUser
 
+from ..integration_1c.brokers import send_educator_report_to_broker
 from .mixins import PartialUpdateModelMixin
 from .models import (EducatorIndicatorValue, EducatorRatingPartition,
                      EducatorReport, EducatorReportController)
@@ -35,6 +36,24 @@ class EducatorReportControllerViewSet(ReadOnlyModelViewSet):
     queryset = EducatorReportController.objects.all().order_by('pk')
     serializer_class = EducatorReportControllerSerializer
 
+    @action(
+        detail=False,
+        methods=SAFE_METHODS,
+        permission_classes=(
+            IsAuthenticated,
+            IsReportControllerUser
+        )
+    )
+    def me(self, request: Request) -> Response:
+        """Get instance of report controller of requested user"""
+        controller = EducatorReportController.objects.get(user=request.user)
+
+        return Response(
+            EducatorReportControllerSerializer(
+                instance=controller,
+            ).data
+        )
+
 
 class EducatorIndicatorValueViewSet(RetrieveModelMixin,
                                     PartialUpdateModelMixin,
@@ -47,6 +66,28 @@ class EducatorIndicatorValueViewSet(RetrieveModelMixin,
         IsOpenForUpdateValueOnPatch,
         IsOnlyValueUpdateOnPatch
     )
+
+    @action(
+        detail=True,
+        methods=SAFE_METHODS,
+        permission_classes=(
+            IsAuthenticated,
+            IsReportOwnerUser | IsReportControllerUser | IsAdminUser,
+        )
+    )
+    def report_values(self, request: Request, pk: str) -> Response:
+        """Get list of values of specified report."""
+        report = get_object_or_404(EducatorReport, pk=pk)
+        indicator_values = EducatorIndicatorValue.objects.filter(
+            report=report
+        ).order_by('pk')
+
+        return Response(
+            EducatorIndicatorValueSerializer(
+                instance=indicator_values,
+                many=True
+            ).data
+        )
 
 
 class EducatorReportViewSet(RetrieveModelMixin,
@@ -120,31 +161,19 @@ class EducatorReportViewSet(RetrieveModelMixin,
         request body with `true` or `false` values.
         """
 
-        report = EducatorReport.objects.get(pk=pk)
-        default_status = report.approved
-        new_status = request.data.get('approved', default_status)
+        current_status = EducatorReport.objects.get(pk=pk).approved
+        new_status = request.data.get('approved', current_status)
 
-        if new_status != default_status:
-            report.approved = new_status
-            report.save(update_fields=('approved', ))
+        # using filter with update cause of save violates unique constraint
+        report = EducatorReport.objects.filter(pk=pk)
+
+        if new_status != current_status:
+            report.update(approved=new_status)
+
+        report = report.first()
+
+        # if report becomes approved we send it to broker
+        if new_status is True:
+            send_educator_report_to_broker(report)
 
         return Response(EducatorReportSerializer(instance=report).data)
-
-    @action(
-        detail=True,
-        methods=SAFE_METHODS,
-        permission_classes=(
-            IsAuthenticated,
-            IsEducatorUser | IsAdminUser
-        )
-    )
-    def indicator_values(self, request: Request, pk: str) -> Response:
-        """Get list of indicator values of specified report."""
-
-        report = get_object_or_404(EducatorReport, pk=pk)
-
-        indicator_value_pks = EducatorIndicatorValue.objects.filter(
-            report=report
-        ).values_list('pk', flat=True)
-
-        return Response(indicator_value_pks)

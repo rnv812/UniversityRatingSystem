@@ -6,11 +6,11 @@ import styles from '../styles/ReportListFilter.module.css';
 
 export default function ReportListFilter() {
     return (
-        <Box className={styles.filterItems}>
+        <Box className={ styles.filterItems }>
             <ItemSelect
                 id={'report-owner-filter-select'}
                 title={"Показывать"}
-                items={[{label: "Свои", value: "own"}, {label: "Все", value: "all"}]}
+                items={ [{ label: "Свои", value: "own" }, { label: "Все", value: "all" }] }
                 defaultValue={"own"}
                 sx={{ minWidth: 100 }}
             />
@@ -18,22 +18,16 @@ export default function ReportListFilter() {
             <ItemSelect
                 id={'report-status-filter-select'}
                 title={"Статус"}
-                items={[{label: "Не выбрано", value: ""}, {label: "Подтверждена", value: "approved"}, {label: "На рассмотрении", value: "pending"}]}
-                defaultValue={""}
+                items={[
+                    { label: "Не выбрано", value: "" },
+                    { label: "Подтверждена", value: "approved" },
+                    { label: "На рассмотрении", value: "pending" }
+                ]}
+                defaultValue={ "" }
                 sx={{ minWidth: 190 }}
             />
 
             <TextField label="Год" variant="outlined" type='number' sx={{ minWidth: 120 }} />
-            
-            <TextField label="ФИО Преподавателя" variant="outlined" sx={{ minWidth: 300 }} />
-
-            <ItemSelect
-                id={'report-sort-method-select'}
-                title={"Сортировка"}
-                items={[{label: "ФИО", value: "year"}, {label: "Год", value: "name"}]}
-                defaultValue={"year"}
-                sx={{ minWidth: 120 }}
-            />
         </Box>
     );
 }

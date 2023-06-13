@@ -1,0 +1,41 @@
+.formBoxContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: rgb(212, 212, 212);
+    padding: 20px;
+    min-width: 25%;
+}
+
+.formFields{
+    display: flex;
+    flex-direction: column;
+}
+
+.formInput{
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.formTitle {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.formActions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    vertical-align: middle;
+}
+
+.textAction{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   margin-right: 15px;
+}

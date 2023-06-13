@@ -30,6 +30,7 @@ class Educator(models.Model):
         to=UserProfile,
         on_delete=models.PROTECT
     )
+
     qualification = models.ForeignKey(
         verbose_name=_('educator qualification'),
         to=Qualification,
@@ -41,9 +42,21 @@ class Educator(models.Model):
         on_delete=models.PROTECT
     )
 
+    scopus_id = models.CharField(
+        verbose_name=_('Scopus ID'),
+        max_length=11,
+        blank=True
+    )
+
+    wos_id = models.CharField(
+        verbose_name=_('Web of Science ID'),
+        max_length=13,
+        blank=True
+    )
+
     class Meta:
         verbose_name = _('educator')
         verbose_name_plural = _('educators')
 
     def __str__(self) -> str:
-        return f'{self.qualification.name} {self.user.get_full_name()}'
+        return f'{self.user.get_full_name()}'

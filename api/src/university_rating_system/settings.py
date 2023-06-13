@@ -11,9 +11,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 import os
+
 from pathlib import Path
 
 from django.utils.translation import gettext_lazy as _
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -45,6 +47,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'djoser',
     'drf_yasg',
+    'corsheaders',
+    'django_extensions',
     'apps.core.apps.CoreConfig',
     'apps.users.apps.UsersConfig',
     'apps.faculties.apps.FacultiesConfig',
@@ -52,6 +56,7 @@ INSTALLED_APPS = [
     'apps.educators.apps.EducatorsConfig',
     'apps.rating.apps.RatingConfig',
     'apps.educator_rating.apps.EducatorRatingConfig',
+    'apps.integration_1c',
 ]
 
 MIDDLEWARE = [
@@ -62,6 +67,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'university_rating_system.urls'
@@ -152,6 +159,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.UserProfile'
 
+# Routing
+
+APPEND_SLASH = False
+
 # Rest framework
 
 REST_FRAMEWORK = {
@@ -175,7 +186,7 @@ SWAGGER_SETTINGS = {
         },
         'Token': {
             'type': 'apiKey',
-            'name': 'X-API-Key',
+            'name': 'Authorization',
             'in': 'header'
         }
     },
@@ -249,6 +260,10 @@ SIMPLE_JWT = {
 
 # Djoser
 
+DOMAIN = os.getenv('CLIENT_DOMAIN')
+
+SITE_NAME = os.getenv('SITE_NAME')
+
 DJOSER = {
     'LOGIN_FIELD': 'email',
     'SET_PASSWORD_RETYPE': True,
@@ -264,3 +279,13 @@ DJOSER = {
         'current_user': 'apps.users.serializers.UserProfileSerializer',
     }
 }
+
+HIDE_USERS = False
+
+# CORS
+
+CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS').split(' ')
+
+CSRF_TRUSTED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS').split(' ')
+
+CORS_ALLOW_CREDENTIALS = True

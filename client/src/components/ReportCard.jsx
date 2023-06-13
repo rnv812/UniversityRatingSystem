@@ -1,30 +1,51 @@
 import * as React from 'react';
-import {Card, CardContent, CardActions, CardActionArea, Button, Typography} from '@mui/material';
+import { Button, Card, CardContent, CardActions, CardActionArea, Typography } from '@mui/material';
 import styles from '../styles/ReportCard.module.css';
+import { useGetEducatorQuery } from '../features/educators/educatorsApiSlice';
+import { useGetUserQuery } from '../features/auth/authApiSlice';
+import { useNavigate } from 'react-router-dom'
 
-export default function ReportCard() {
+export default function ReportCard({ report }) {
+    const { data: educator, isLoading: skip } = useGetEducatorQuery(report.educator);
+    const { data: user, isLoading } = useGetUserQuery(educator?.user, { skip });
+    const navigate = useNavigate();
+
+    function handleOnOpenReport() {
+        navigate(`/reports/${report.id}`)
+    }
+
+    function handleOnDeleteReport() {
+
+    }
+
     return (
         <Card className={styles.reportCard}>
             <CardActionArea>
-            <CardContent>
+            <CardContent onClick={ handleOnOpenReport }>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                    Анкета №_
+                    {`Анкета №${report.id}` }
                 </Typography>
                 <Typography variant="h5" component="div">
-                    Фамилия Имя Отчество
+                    { isLoading 
+                        ? 'Загрузка...'
+                        : `${user?.last_name}  ${user?.first_name} ${user?.patronymic}`
+                    }
                 </Typography>
                 <Typography color="text.secondary">
-                    Год
+                    { `Год: ${report.year}` }
                 </Typography>
                 <Typography>
-                    Статус
+                    Статус: { 
+                    report.approved 
+                        ? <span style={{color: "green"}}>Подтверждена</span>
+                        : <span style={{color: "chocolate"}}>Нe подтверждена</span> 
+                    }
                 </Typography>
             </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button size="small">Открыть</Button>
-                <Button size="small">Редактировать</Button>
-                <Button size="small" color="error">Удалить</Button>
+                <Button onClick={ handleOnOpenReport } size="small">Открыть</Button>
+                <Button onClick={ handleOnDeleteReport } size="small" color="error">Удалить</Button>
             </CardActions>
         </Card>
     );

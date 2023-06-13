@@ -1,0 +1,9 @@
+.selectBox{
+    margin-top: 20px;
+    min-width: 340px;
+}
+
+.fieldsContainer{
+    display: flex;
+    flex-direction: column;
+}

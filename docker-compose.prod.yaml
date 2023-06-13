@@ -21,6 +21,12 @@ services:
       - pg_data:/var/lib/postgres/data/
     env_file:
       - ./env/prod/postgres.prod.env
+  rabbitmq:
+    image: rabbitmq:3.12.0-management
+    container_name: rabbitmq-prod
+    ports:
+      - 5672:5672
+      - 15672:15672
   client:
     image: university-rating-system-client:latest
     container_name: urs-client-prod
