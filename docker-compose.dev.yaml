@@ -45,4 +45,4 @@ services:
       - ./env/dev/client.dev.env
 
 volumes:
-  pg_data:th
+  pg_data:
